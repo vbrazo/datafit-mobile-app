@@ -43,55 +43,12 @@ export default class SignUp extends Component {
       <View style={styles.container}>
         <View behavior="padding" style={styles.container}>
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
+            <View style={styles.window}>
+              <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
+              <Text style={styles.title}>Completar cadastro</Text>
+            </View>
 
-          <View style={styles.window}>
-            <Text style={styles.title}>Completar cadastro</Text>
-          </View>
-
-          <View style={styles.window}>
-            <TextInput
-              returnKeyType="next"
-              onSubmitEditing={() => this.passwordInput.focus()}
-              keyboardType="email-address"
-              autoCapitalize="none"
-              autoCorrect={false}
-              style={styles.inputText}
-              value={this.state.email}
-              onChangeText={email => this.setState({ email })}
-            />
-            <Text style={styles.formEmailText}>NOME COMPLETO</Text>
-          </View>
-
-          <View style={styles.window}>
-            <TextInput
-              returnKeyType="next"
-              onSubmitEditing={() => this.passwordInput.focus()}
-              keyboardType="email-address"
-              autoCapitalize="none"
-              autoCorrect={false}
-              style={styles.inputText}
-              value={this.state.email}
-              onChangeText={email => this.setState({ email })}
-            />
-            <Text style={styles.formEmailText}>E-MAIL</Text>
-          </View>
-
-          <View style={styles.window}>
-            <TextInput
-              returnKeyType="next"
-              onSubmitEditing={() => this.passwordInput.focus()}
-              keyboardType="email-address"
-              autoCapitalize="none"
-              autoCorrect={false}
-              style={styles.inputText}
-              value={this.state.email}
-              onChangeText={email => this.setState({ email })}
-            />
-            <Text style={styles.formEmailText}>DATA DE NASCIMENTO</Text>
-          </View>
-
-          <View style={styles.window}>
-            <View style={styles.measurements}>
+            <View style={styles.window}>
               <TextInput
                 returnKeyType="next"
                 onSubmitEditing={() => this.passwordInput.focus()}
@@ -102,9 +59,10 @@ export default class SignUp extends Component {
                 value={this.state.email}
                 onChangeText={email => this.setState({ email })}
               />
-              <Text style={styles.formEmailText}>ALTURA (CM)</Text>
+              <Text style={styles.formEmailText}>NOME COMPLETO</Text>
             </View>
-            <View style={styles.measurements}>
+
+            <View style={styles.window}>
               <TextInput
                 returnKeyType="next"
                 onSubmitEditing={() => this.passwordInput.focus()}
@@ -115,11 +73,51 @@ export default class SignUp extends Component {
                 value={this.state.email}
                 onChangeText={email => this.setState({ email })}
               />
-              <Text style={styles.formEmailText}>PESO (KG)</Text>
+              <Text style={styles.formEmailText}>E-MAIL</Text>
             </View>
-          </View>
 
+            <View style={styles.window}>
+              <TextInput
+                returnKeyType="next"
+                onSubmitEditing={() => this.passwordInput.focus()}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                style={styles.inputText}
+                value={this.state.email}
+                onChangeText={email => this.setState({ email })}
+              />
+              <Text style={styles.formEmailText}>DATA DE NASCIMENTO</Text>
+            </View>
 
+            <View style={styles.window}>
+              <View style={styles.measurements}>
+                <TextInput
+                  returnKeyType="next"
+                  onSubmitEditing={() => this.passwordInput.focus()}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  style={styles.inputText}
+                  value={this.state.email}
+                  onChangeText={email => this.setState({ email })}
+                />
+                <Text style={styles.formEmailText}>ALTURA (CM)</Text>
+              </View>
+              <View style={styles.measurements}>
+                <TextInput
+                  returnKeyType="next"
+                  onSubmitEditing={() => this.passwordInput.focus()}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  style={styles.inputText}
+                  value={this.state.email}
+                  onChangeText={email => this.setState({ email })}
+                />
+                <Text style={styles.formEmailText}>PESO (KG)</Text>
+              </View>
+            </View>
 
             <TouchableOpacity
               style={styles.buttonContainer}
@@ -135,10 +133,14 @@ export default class SignUp extends Component {
   }
 
   const styles = StyleSheet.create({
+  backButton:{
+    top: 23
+  },
   title: {
     fontFamily: "Roboto-Regular",
     fontSize: 20,
-    color: "#FFFFFF"
+    color: "#FFFFFF",
+    textAlign: "center"
   },
   measurements: {
     width: "50%"
