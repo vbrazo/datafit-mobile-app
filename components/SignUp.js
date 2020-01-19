@@ -1,20 +1,21 @@
 import React, { Component } from "react";
 import {
   AppRegistry,
-  KeyboardAvoidingView,
-  TouchableOpacity,
-  AsyncStorage,
-  Image,
-  ImageBackground,
-  TextInput,
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput,
+  TouchableHighlight,
+  Image,
+  KeyboardAvoidingView,
+  AsyncStorage,
+  TouchableOpacity,
+  ImageBackground
 } from "react-native";
 
 import { StackNavigator } from "react-navigation";
 
-export default class Login extends Component {
+export default class SignUp extends Component {
   constructor() {
     super();
     this.state = {
@@ -41,11 +42,56 @@ export default class Login extends Component {
     return (
       <View style={styles.container}>
         <View behavior="padding" style={styles.container}>
-          <View style={styles.logoContainer}>
-            <Image source={require("../assets/images/logo.png")} />
-          </View>
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
-            <View style={styles.window}>
+
+          <View style={styles.window}>
+            <Text style={styles.title}>Completar cadastro</Text>
+          </View>
+
+          <View style={styles.window}>
+            <TextInput
+              returnKeyType="next"
+              onSubmitEditing={() => this.passwordInput.focus()}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              style={styles.inputText}
+              value={this.state.email}
+              onChangeText={email => this.setState({ email })}
+            />
+            <Text style={styles.formEmailText}>NOME COMPLETO</Text>
+          </View>
+
+          <View style={styles.window}>
+            <TextInput
+              returnKeyType="next"
+              onSubmitEditing={() => this.passwordInput.focus()}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              style={styles.inputText}
+              value={this.state.email}
+              onChangeText={email => this.setState({ email })}
+            />
+            <Text style={styles.formEmailText}>E-MAIL</Text>
+          </View>
+
+          <View style={styles.window}>
+            <TextInput
+              returnKeyType="next"
+              onSubmitEditing={() => this.passwordInput.focus()}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              style={styles.inputText}
+              value={this.state.email}
+              onChangeText={email => this.setState({ email })}
+            />
+            <Text style={styles.formEmailText}>DATA DE NASCIMENTO</Text>
+          </View>
+
+          <View style={styles.window}>
+            <View style={styles.measurements}>
               <TextInput
                 returnKeyType="next"
                 onSubmitEditing={() => this.passwordInput.focus()}
@@ -56,47 +102,47 @@ export default class Login extends Component {
                 value={this.state.email}
                 onChangeText={email => this.setState({ email })}
               />
-              <Text style={styles.formEmailText}>E-MAIL</Text>
+              <Text style={styles.formEmailText}>ALTURA (CM)</Text>
             </View>
-            <View style={styles.window}>
-              <View style={styles.forgotPasswordForm}>
-                <TextInput
-                  returnKeyType="go"
-                  secureTextEntry
-                  ref={input => (this.passwordInput = input)}
-                  style={styles.inputText}
-                  value={this.state.password}
-                  onChangeText={password => this.setState({ password })} />
-                <Image source={require("../assets/images/eye-no.png")} style={styles.ImageStyle} />
-              </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={styles.formPasswordText}>SENHA</Text>
-                <Text style={styles.formForgotPasswordText}>ESQUECEU SUA SENHA?</Text>
-              </View>
+            <View style={styles.measurements}>
+              <TextInput
+                returnKeyType="next"
+                onSubmitEditing={() => this.passwordInput.focus()}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                style={styles.inputText}
+                value={this.state.email}
+                onChangeText={email => this.setState({ email })}
+              />
+              <Text style={styles.formEmailText}>PESO (KG)</Text>
             </View>
+          </View>
+
+
+
             <TouchableOpacity
               style={styles.buttonContainer}
               onPress={this.onLoginPress.bind(this)}
             >
-              <Text style={styles.buttonText}>Entrar</Text>
+              <Text style={styles.buttonText}>Avancar</Text>
             </TouchableOpacity>
           </KeyboardAvoidingView>
         </View>
-        <TouchableOpacity style={styles.button}>
-          <Text
-            style={styles.signUpText}
-            onPress={() => this.props.navigation.navigate("SignUp")}
-            title="Sign up"
-          >
-            CADASTRE-SE
-          </Text>
-        </TouchableOpacity>
       </View>
     );
   }
-}
+  }
 
-const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
+  title: {
+    fontFamily: "Roboto-Regular",
+    fontSize: 20,
+    color: "#FFFFFF"
+  },
+  measurements: {
+    width: "50%"
+  },
   container: {
     flex: 1,
     backgroundColor: "#2A2E34"
@@ -189,10 +235,7 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
     alignItems: 'center',
     alignSelf: 'flex-end'
-  },
-  forgotPasswordForm: {
-    flexDirection: 'row'
   }
 });
 
-AppRegistry.registerComponent("Login", () => Login);
+AppRegistry.registerComponent("Register", () => Register);
