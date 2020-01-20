@@ -46,7 +46,6 @@ export default class SignUp extends Component {
             <View style={styles.window}>
               <TextInput
                 returnKeyType="next"
-                keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
@@ -57,7 +56,6 @@ export default class SignUp extends Component {
             <View style={styles.window}>
               <TextInput
                 returnKeyType="next"
-                keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
@@ -68,7 +66,6 @@ export default class SignUp extends Component {
             <View style={styles.window}>
               <TextInput
                 returnKeyType="next"
-                keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
@@ -80,7 +77,6 @@ export default class SignUp extends Component {
               <View style={styles.measurementsCol}>
                 <TextInput
                   returnKeyType="next"
-                  keyboardType="email-address"
                   autoCapitalize="none"
                   autoCorrect={false}
                   style={styles.input}
@@ -91,7 +87,6 @@ export default class SignUp extends Component {
               <View style={styles.measurementsCol}>
                 <TextInput
                   returnKeyType="next"
-                  keyboardType="email-address"
                   autoCapitalize="none"
                   autoCorrect={false}
                   style={styles.input}
@@ -110,8 +105,8 @@ export default class SignUp extends Component {
 
             <View style={styles.window}>
               <TextInput
+                secureTextEntry
                 returnKeyType="next"
-                keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
@@ -121,6 +116,7 @@ export default class SignUp extends Component {
 
             <View style={styles.window}>
               <TextInput
+                secureTextEntry
                 returnKeyType="next"
                 keyboardType="email-address"
                 autoCapitalize="none"
