@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import {
+  AsyncStorage,
   AppRegistry,
+  KeyboardAvoidingView,
+  Image,
+  ImageBackground,
   StyleSheet,
-  Text,
-  View,
   TextInput,
   TouchableHighlight,
-  Image,
-  KeyboardAvoidingView,
-  AsyncStorage,
   TouchableOpacity,
-  ImageBackground
+  Text,
+  View
 } from "react-native";
 import { StackNavigator } from "react-navigation";
 
@@ -43,9 +43,9 @@ export default class SignUp extends Component {
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
-                style={styles.inputText}
+                style={styles.formInput}
               />
-              <Text style={styles.formEmailText}>NOME COMPLETO</Text>
+              <Text style={styles.formLabel}>NOME COMPLETO</Text>
             </View>
 
             <View style={styles.window}>
@@ -55,9 +55,9 @@ export default class SignUp extends Component {
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
-                style={styles.inputText}
+                style={styles.formInput}
               />
-              <Text style={styles.formEmailText}>E-MAIL</Text>
+              <Text style={styles.formLabel}>E-MAIL</Text>
             </View>
 
             <View style={styles.window}>
@@ -67,9 +67,9 @@ export default class SignUp extends Component {
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
-                style={styles.inputText}
+                style={styles.formInput}
               />
-              <Text style={styles.formEmailText}>DATA DE NASCIMENTO</Text>
+              <Text style={styles.formLabel}>DATA DE NASCIMENTO</Text>
             </View>
 
             <View style={styles.window}>
@@ -80,9 +80,9 @@ export default class SignUp extends Component {
                   keyboardType="email-address"
                   autoCapitalize="none"
                   autoCorrect={false}
-                  style={styles.inputText}
+                  style={styles.formInput}
                 />
-                <Text style={styles.formEmailText}>ALTURA (CM)</Text>
+                <Text style={styles.formLabel}>ALTURA (CM)</Text>
               </View>
               <View style={styles.measurements}>
                 <TextInput
@@ -91,9 +91,9 @@ export default class SignUp extends Component {
                   keyboardType="email-address"
                   autoCapitalize="none"
                   autoCorrect={false}
-                  style={styles.inputText}
+                  style={styles.formInput}
                 />
-                <Text style={styles.formEmailText}>PESO (KG)</Text>
+                <Text style={styles.formLabel}>PESO (KG)</Text>
               </View>
             </View>
             <TouchableOpacity style={styles.buttonContainer} onPress={this.onNextPress.bind(this)}>
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Regular",
     fontSize: 12.8
   },
-  formEmailText: {
+  formLabel: {
     color: "#C9CDD0",
     fontSize: 12.8,
     marginTop: 10,
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
     fontFamily: "Roboto-Regular"
   },
-  inputText: {
+  formInput: {
     height: 40,
     color: "#FFFFFF",
     fontFamily: "Roboto-Regular",

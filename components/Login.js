@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import {
   AppRegistry,
-  KeyboardAvoidingView,
-  TouchableOpacity,
   AsyncStorage,
+  KeyboardAvoidingView,
   Image,
   ImageBackground,
-  TextInput,
   StyleSheet,
   Text,
+  TextInput,
+  TouchableOpacity,
   View
 } from "react-native";
 
@@ -33,10 +33,8 @@ export default class Login extends Component {
     const { email, password } = this.state;
     console.log(email);
     console.log(password);
-    await AsyncStorage.setItem("email", email);
-    await AsyncStorage.setItem("password", password);
-    this.props.navigation.navigate("Boiler");
   }
+
   render() {
     return (
       <View style={styles.container}>
@@ -74,20 +72,15 @@ export default class Login extends Component {
                 <Text style={styles.formForgotPasswordText}>ESQUECEU SUA SENHA?</Text>
               </View>
             </View>
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={this.onLoginPress.bind(this)}
-            >
+            <TouchableOpacity style={styles.buttonContainer} onPress={this.onLoginPress.bind(this)}>
               <Text style={styles.buttonText}>Entrar</Text>
             </TouchableOpacity>
           </KeyboardAvoidingView>
         </View>
         <TouchableOpacity style={styles.button}>
-          <Text
-            style={styles.signUpText}
-            onPress={() => this.props.navigation.navigate("SignUp")}
-            title="Sign up"
-          >
+          <Text style={styles.signUpText}
+                onPress={() => this.props.navigation.navigate("SignUp")}
+                title="Sign up">
             CADASTRE-SE
           </Text>
         </TouchableOpacity>
