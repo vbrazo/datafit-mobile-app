@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   AppRegistry,
-  AsyncStorage,
   KeyboardAvoidingView,
   Image,
   ImageBackground,
