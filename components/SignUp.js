@@ -46,7 +46,6 @@ export default class SignUp extends Component {
             <View style={styles.window}>
               <TextInput
                 returnKeyType="next"
-                onSubmitEditing={() => this.passwordInput.focus()}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -58,7 +57,6 @@ export default class SignUp extends Component {
             <View style={styles.window}>
               <TextInput
                 returnKeyType="next"
-                onSubmitEditing={() => this.passwordInput.focus()}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -70,7 +68,6 @@ export default class SignUp extends Component {
             <View style={styles.window}>
               <TextInput
                 returnKeyType="next"
-                onSubmitEditing={() => this.passwordInput.focus()}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -83,7 +80,6 @@ export default class SignUp extends Component {
               <View style={styles.measurementsCol}>
                 <TextInput
                   returnKeyType="next"
-                  onSubmitEditing={() => this.passwordInput.focus()}
                   keyboardType="email-address"
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -95,7 +91,6 @@ export default class SignUp extends Component {
               <View style={styles.measurementsCol}>
                 <TextInput
                   returnKeyType="next"
-                  onSubmitEditing={() => this.passwordInput.focus()}
                   keyboardType="email-address"
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -116,7 +111,6 @@ export default class SignUp extends Component {
             <View style={styles.window}>
               <TextInput
                 returnKeyType="next"
-                onSubmitEditing={() => this.passwordInput.focus()}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -128,7 +122,6 @@ export default class SignUp extends Component {
             <View style={styles.window}>
               <TextInput
                 returnKeyType="next"
-                onSubmitEditing={() => this.passwordInput.focus()}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
