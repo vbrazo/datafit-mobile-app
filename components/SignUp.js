@@ -15,13 +15,6 @@ import {
 import { StackNavigator } from "react-navigation";
 
 export default class SignUp extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
   static navigationOptions = {
     headerStyle: {
       backgroundColor: "#16a085",
@@ -37,7 +30,7 @@ export default class SignUp extends Component {
         <View behavior="padding" style={styles.container}>
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
             <View style={styles.window}>
-              <TouchableHighlight onPress={this.props.navigation.navigate("Home")}>
+              <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
                 <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
               </TouchableHighlight>
               <Text style={styles.title}>Completar cadastro</Text>
@@ -51,7 +44,6 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.inputText}
-                value={this.state.email}
                 onChangeText={email => this.setState({ email })}
               />
               <Text style={styles.formEmailText}>NOME COMPLETO</Text>
@@ -65,7 +57,6 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.inputText}
-                value={this.state.email}
                 onChangeText={email => this.setState({ email })}
               />
               <Text style={styles.formEmailText}>E-MAIL</Text>
@@ -79,7 +70,6 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.inputText}
-                value={this.state.email}
                 onChangeText={email => this.setState({ email })}
               />
               <Text style={styles.formEmailText}>DATA DE NASCIMENTO</Text>
@@ -94,7 +84,6 @@ export default class SignUp extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   style={styles.inputText}
-                  value={this.state.email}
                   onChangeText={email => this.setState({ email })}
                 />
                 <Text style={styles.formEmailText}>ALTURA (CM)</Text>
@@ -107,7 +96,6 @@ export default class SignUp extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   style={styles.inputText}
-                  value={this.state.email}
                   onChangeText={email => this.setState({ email })}
                 />
                 <Text style={styles.formEmailText}>PESO (KG)</Text>
@@ -121,9 +109,9 @@ export default class SignUp extends Component {
       </View>
     );
   }
-  }
+}
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   title: {
     fontFamily: "Roboto-Regular",
     fontSize: 20,
@@ -225,6 +213,8 @@ export default class SignUp extends Component {
     resizeMode: 'stretch',
     alignItems: 'center',
     alignSelf: 'flex-end'
+  },
+  backButton: {
   }
 });
 
