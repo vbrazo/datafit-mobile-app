@@ -12,7 +12,6 @@ import {
   TouchableOpacity,
   ImageBackground
 } from "react-native";
-
 import { StackNavigator } from "react-navigation";
 
 export default class SignUp extends Component {
@@ -30,21 +29,17 @@ export default class SignUp extends Component {
     },
     header: null
   };
-  async onLoginPress() {
-    const { email, password } = this.state;
-    console.log(email);
-    console.log(password);
-    await AsyncStorage.setItem("email", email);
-    await AsyncStorage.setItem("password", password);
-    this.props.navigation.navigate("Boiler");
-  }
+  async onNextPress() { }
+
   render() {
     return (
       <View style={styles.container}>
         <View behavior="padding" style={styles.container}>
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
             <View style={styles.window}>
-              <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
+              <TouchableHighlight onPress={this.props.navigation.navigate("Home")}>
+                <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
+              </TouchableHighlight>
               <Text style={styles.title}>Completar cadastro</Text>
             </View>
 
@@ -118,11 +113,7 @@ export default class SignUp extends Component {
                 <Text style={styles.formEmailText}>PESO (KG)</Text>
               </View>
             </View>
-
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={this.onLoginPress.bind(this)}
-            >
+            <TouchableOpacity style={styles.buttonContainer} onPress={this.onNextPress.bind(this)}>
               <Text style={styles.buttonText}>Avancar</Text>
             </TouchableOpacity>
           </KeyboardAvoidingView>
@@ -133,9 +124,6 @@ export default class SignUp extends Component {
   }
 
   const styles = StyleSheet.create({
-  backButton:{
-    top: 23
-  },
   title: {
     fontFamily: "Roboto-Regular",
     fontSize: 20,
@@ -240,4 +228,4 @@ export default class SignUp extends Component {
   }
 });
 
-AppRegistry.registerComponent("Register", () => Register);
+AppRegistry.registerComponent("SignUp", () => SignUp);
