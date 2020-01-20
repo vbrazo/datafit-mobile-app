@@ -44,7 +44,6 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.inputText}
-                onChangeText={email => this.setState({ email })}
               />
               <Text style={styles.formEmailText}>NOME COMPLETO</Text>
             </View>
@@ -57,7 +56,6 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.inputText}
-                onChangeText={email => this.setState({ email })}
               />
               <Text style={styles.formEmailText}>E-MAIL</Text>
             </View>
@@ -70,7 +68,6 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.inputText}
-                onChangeText={email => this.setState({ email })}
               />
               <Text style={styles.formEmailText}>DATA DE NASCIMENTO</Text>
             </View>
@@ -84,7 +81,6 @@ export default class SignUp extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   style={styles.inputText}
-                  onChangeText={email => this.setState({ email })}
                 />
                 <Text style={styles.formEmailText}>ALTURA (CM)</Text>
               </View>
@@ -96,7 +92,6 @@ export default class SignUp extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   style={styles.inputText}
-                  onChangeText={email => this.setState({ email })}
                 />
                 <Text style={styles.formEmailText}>PESO (KG)</Text>
               </View>
