@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  AsyncStorage,
   AppRegistry,
   CheckBox,
   KeyboardAvoidingView,
@@ -29,7 +28,7 @@ export default class SignUp extends Component {
     },
     header: null
   };
-  async onNextPress() { }
+  onNextPress() { }
 
   render() {
     return (
