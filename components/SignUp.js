@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {
   AsyncStorage,
   AppRegistry,
+  CheckBox,
   KeyboardAvoidingView,
   Image,
   ImageBackground,
@@ -15,6 +16,12 @@ import {
 import { StackNavigator } from "react-navigation";
 
 export default class SignUp extends Component {
+  constructor() {
+    super();
+    this.state = {
+      rememberMe: ""
+    };
+  }
   static navigationOptions = {
     headerStyle: {
       backgroundColor: "#16a085",
@@ -72,8 +79,8 @@ export default class SignUp extends Component {
               <Text style={styles.formLabel}>DATA DE NASCIMENTO</Text>
             </View>
 
-            <View style={styles.window}>
-              <View style={styles.measurements}>
+            <View style={styles.row}>
+              <View style={styles.measurementsCol}>
                 <TextInput
                   returnKeyType="next"
                   onSubmitEditing={() => this.passwordInput.focus()}
@@ -84,7 +91,8 @@ export default class SignUp extends Component {
                 />
                 <Text style={styles.formLabel}>ALTURA (CM)</Text>
               </View>
-              <View style={styles.measurements}>
+              <View style={styles.measurementsColSpace}></View>
+              <View style={styles.measurementsCol}>
                 <TextInput
                   returnKeyType="next"
                   onSubmitEditing={() => this.passwordInput.focus()}
@@ -96,6 +104,46 @@ export default class SignUp extends Component {
                 <Text style={styles.formLabel}>PESO (KG)</Text>
               </View>
             </View>
+
+            <View style={styles.window}>
+              <Text style={styles.formLabel}>QUEM VOCÊ É</Text>
+              <View style={styles.rowUserType}>
+                <Text style={styles.userType}>SOU ALUNO</Text>
+                <Text style={styles.userType}>SOU PROFESSOR</Text>
+              </View>
+            </View>
+
+            <View style={styles.window}>
+              <TextInput
+                returnKeyType="next"
+                onSubmitEditing={() => this.passwordInput.focus()}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                style={styles.input}
+              />
+              <Text style={styles.formLabel}>CRIAR SENHA</Text>
+            </View>
+
+            <View style={styles.window}>
+              <TextInput
+                returnKeyType="next"
+                onSubmitEditing={() => this.passwordInput.focus()}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                style={styles.input}
+              />
+              <Text style={styles.formLabel}>CONFIRMAR SENHA</Text>
+            </View>
+
+            <View style={styles.window}>
+              <CheckBox title='Li e concordo com os termos de uso e políticas de privacidade'
+                        style={styles.checkbox}
+                        value={this.state.rememberMe} />
+              <Text style={styles.formLabel}>Li e concordo com os termos de uso e políticas de privacidade</Text>
+            </View>
+
             <TouchableOpacity style={styles.buttonContainer} onPress={this.onNextPress.bind(this)}>
               <Text style={styles.buttonText}>Avancar</Text>
             </TouchableOpacity>
@@ -107,6 +155,30 @@ export default class SignUp extends Component {
 }
 
 const styles = StyleSheet.create({
+  userType: {
+    borderColor: 'green',
+    color: "#C9CDD0",
+    borderColor: "#C9CDD0",
+    borderWidth: 1,
+    width: "50%",
+    borderStyle: 'dotted'
+  },
+  rowUserType: {
+    flexDirection: "row",
+    height: 35
+  },
+  checkbox: {
+    height: 20,
+    width: 20,
+    borderWidth: 1,
+    backgroundColor: 'white',
+    borderColor: 'green',
+    borderStyle: 'dotted'
+  },
+  row: {
+    flexDirection: "row",
+    height: 100
+  },
   window: {
     marginBottom: 15
   },
@@ -116,8 +188,11 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     textAlign: "center"
   },
-  measurements: {
-    width: "50%"
+  measurementsCol: {
+    width: "45%"
+  },
+  measurementsColSpace: {
+    width:"10%"
   },
   container: {
     flex: 1,
