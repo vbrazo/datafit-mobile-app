@@ -43,7 +43,7 @@ export default class SignUp extends Component {
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
-                style={styles.formInput}
+                style={styles.input}
               />
               <Text style={styles.formLabel}>NOME COMPLETO</Text>
             </View>
@@ -55,7 +55,7 @@ export default class SignUp extends Component {
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
-                style={styles.formInput}
+                style={styles.input}
               />
               <Text style={styles.formLabel}>E-MAIL</Text>
             </View>
@@ -67,7 +67,7 @@ export default class SignUp extends Component {
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
-                style={styles.formInput}
+                style={styles.input}
               />
               <Text style={styles.formLabel}>DATA DE NASCIMENTO</Text>
             </View>
@@ -80,7 +80,7 @@ export default class SignUp extends Component {
                   keyboardType="email-address"
                   autoCapitalize="none"
                   autoCorrect={false}
-                  style={styles.formInput}
+                  style={styles.input}
                 />
                 <Text style={styles.formLabel}>ALTURA (CM)</Text>
               </View>
@@ -91,7 +91,7 @@ export default class SignUp extends Component {
                   keyboardType="email-address"
                   autoCapitalize="none"
                   autoCorrect={false}
-                  style={styles.formInput}
+                  style={styles.input}
                 />
                 <Text style={styles.formLabel}>PESO (KG)</Text>
               </View>
@@ -107,6 +107,9 @@ export default class SignUp extends Component {
 }
 
 const styles = StyleSheet.create({
+  window: {
+    marginBottom: 15
+  },
   title: {
     fontFamily: "Roboto-Regular",
     fontSize: 20,
@@ -126,17 +129,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  logo: {
-    width: 200,
-    height: 150
-  },
-  subtext: {
-    color: "#ffffff",
-    marginTop: 10,
-    width: 160,
-    textAlign: "center",
-    opacity: 0.8
-  },
   keyboard: {
     margin: 20,
     padding: 20,
@@ -154,39 +146,13 @@ const styles = StyleSheet.create({
     color: "#2A2E34",
     fontFamily: "Roboto-Regular"
   },
-  button: {
-    paddingVertical: 15
-  },
-  signUpText: {
-    textAlign: "center",
-    color: "#C9CDD0",
-    paddingBottom: 20,
-    fontFamily: "Roboto-Regular",
-    fontSize: 12.8
-  },
   formLabel: {
     color: "#C9CDD0",
     fontSize: 12.8,
     marginTop: 10,
     fontFamily: "Roboto-Regular"
   },
-  formPasswordText: {
-    color: "#C9CDD0",
-    fontSize: 12.8,
-    marginTop: 10,
-    paddingBottom: 40,
-    fontFamily: "Roboto-Regular"
-  },
-  formForgotPasswordText: {
-    position: 'absolute',
-    right: 0,
-    color: "#C9CDD0",
-    fontSize: 12.8,
-    marginTop: 10,
-    paddingBottom: 40,
-    fontFamily: "Roboto-Regular"
-  },
-  formInput: {
+  input: {
     height: 40,
     color: "#FFFFFF",
     fontFamily: "Roboto-Regular",
@@ -194,20 +160,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1.0,
     width: "100%",
     borderBottomColor: "#C9CDD0"
-  },
-  window: {
-    marginBottom: 15
-  },
-  ImageStyle: {
-    bottom: 5,
-    padding: 10,
-    margin: 5,
-    height: 25,
-    right: 30,
-    width: 25,
-    resizeMode: 'stretch',
-    alignItems: 'center',
-    alignSelf: 'flex-end'
   },
   backButton: {
   }
