@@ -36,7 +36,7 @@ export default class EditPassword extends Component {
         <View behavior="padding" style={styles.container}>
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
             <View style={styles.window}>
-              <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
+              <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
                 <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
               </TouchableHighlight>
               <Text style={styles.title}>Alterar senha</Text>

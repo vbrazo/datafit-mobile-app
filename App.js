@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import {
   Platform,
+  StatusBar,
   StyleSheet,
   Text,
-  View,
-  StatusBar
+  View
 } from 'react-native';
 
 import EditPassword from "./components/EditPassword";
 import EditProfile from "./components/EditProfile";
-import SignUp from "./components/SignUp";
 import Login from "./components/Login";
+import Profile from "./components/Profile";
+import SignUp from "./components/SignUp";
 
 import { StackNavigator } from "react-navigation";
 
@@ -61,6 +62,12 @@ export default App = StackNavigator({
     screen: EditPassword,
     navigationOptions: {
       title: "EditPassword"
+    }
+  },
+  Profile: {
+    screen: Profile,
+    navigationOptions: {
+      title: "Profile"
     }
   }
 });
