@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   AppRegistry,
-  CheckBox,
   KeyboardAvoidingView,
   Image,
   ImageBackground,
@@ -125,14 +124,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 35,
     marginTop: 10
-  },
-  checkbox: {
-    height: 20,
-    width: 20,
-    borderWidth: 1,
-    backgroundColor: 'white',
-    borderColor: 'green',
-    borderStyle: 'dotted'
   },
   row: {
     flexDirection: "row",
