@@ -97,8 +97,8 @@ export default class SignUp extends Component {
             <View style={styles.window}>
               <Text style={styles.formLabel}>QUEM VOCÊ É</Text>
               <View style={styles.rowUserType}>
-                <Text style={styles.userType}>SOU ALUNO</Text>
-                <Text style={styles.userType}>SOU PROFESSOR</Text>
+                <View style={styles.userType1}><Text style={styles.userTypeText}>SOU ALUNO</Text></View>
+                <View style={styles.userType2}><Text style={styles.userTypeText}>SOU PROFESSOR</Text></View>
               </View>
             </View>
 
@@ -143,17 +143,30 @@ export default class SignUp extends Component {
 }
 
 const styles = StyleSheet.create({
-  userType: {
-    borderColor: 'green',
+  userTypeText:{
     color: "#C9CDD0",
+    width: "100%",
+    textAlign: "center",
+    textAlignVertical: "center"
+  },
+  userType1: {
     borderColor: "#C9CDD0",
     borderWidth: 1,
-    width: "50%",
-    borderStyle: 'dotted'
+    borderBottomLeftRadius: 7,
+    borderTopLeftRadius: 7,
+    width: "50%"
+  },
+  userType2: {
+    borderColor: "#C9CDD0",
+    borderWidth: 1,
+    borderBottomEndRadius: 7,
+    borderTopRightRadius: 7,
+    width: "50%"
   },
   rowUserType: {
     flexDirection: "row",
-    height: 35
+    height: 35,
+    marginTop: 10
   },
   checkbox: {
     height: 20,
