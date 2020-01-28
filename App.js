@@ -7,6 +7,7 @@ import {
   StatusBar
 } from 'react-native';
 
+import EditProfile from "./components/EditProfile";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 
@@ -47,6 +48,12 @@ export default App = StackNavigator({
     screen: SignUp,
     navigationOptions: {
       title: "SignUp"
+    }
+  },
+  EditProfile: {
+    screen: EditProfile,
+    navigationOptions: {
+      title: "EditProfile"
     }
   }
 });
