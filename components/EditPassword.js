@@ -1,17 +1,26 @@
 import React, { Component } from "react";
 import {
   AppRegistry,
+  CheckBox,
   KeyboardAvoidingView,
   Image,
+  ImageBackground,
   StyleSheet,
   TextInput,
   TouchableHighlight,
+  TouchableOpacity,
   Text,
   View
 } from "react-native";
 import { StackNavigator } from "react-navigation";
 
-export default class EditProfile extends Component {
+export default class EditPassword extends Component {
+  constructor() {
+    super();
+    this.state = {
+      rememberMe: ""
+    };
+  }
   static navigationOptions = {
     headerStyle: {
       backgroundColor: "#16a085",
@@ -19,6 +28,8 @@ export default class EditProfile extends Component {
     },
     header: null
   };
+  onNextPress() { }
+
   render() {
     return (
       <View style={styles.container}>
@@ -28,67 +39,41 @@ export default class EditProfile extends Component {
               <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
                 <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
               </TouchableHighlight>
-              <Text style={styles.title}>Editar perfil</Text>
+              <Text style={styles.title}>Alterar senha</Text>
             </View>
 
             <View style={styles.window}>
               <TextInput
+                secureTextEntry
                 returnKeyType="next"
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
               />
-              <Text style={styles.formLabel}>NOME COMPLETO</Text>
+              <Text style={styles.formLabel}>SENHA ATUAL</Text>
             </View>
 
             <View style={styles.window}>
               <TextInput
+                secureTextEntry
                 returnKeyType="next"
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
               />
-              <Text style={styles.formLabel}>E-MAIL</Text>
+              <Text style={styles.formLabel}>CRIAR SENHA</Text>
             </View>
 
             <View style={styles.window}>
               <TextInput
+                secureTextEntry
                 returnKeyType="next"
+                keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
               />
-              <Text style={styles.formLabel}>DATA DE NASCIMENTO</Text>
-            </View>
-
-            <View style={styles.row}>
-              <View style={styles.measurementsCol}>
-                <TextInput
-                  returnKeyType="next"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  style={styles.input}
-                />
-                <Text style={styles.formLabel}>ALTURA (CM)</Text>
-              </View>
-              <View style={styles.measurementsColSpace}></View>
-              <View style={styles.measurementsCol}>
-                <TextInput
-                  returnKeyType="next"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  style={styles.input}
-                />
-                <Text style={styles.formLabel}>PESO (KG)</Text>
-              </View>
-            </View>
-
-            <View style={styles.window}>
-              <Text style={styles.formLabel}>QUEM VOCÊ É</Text>
-              <View style={styles.rowUserType}>
-                <View style={styles.userType1}><Text style={styles.userTypeText}>SOU ALUNO</Text></View>
-                <View style={styles.userType2}><Text style={styles.userTypeText}>SOU PROFESSOR</Text></View>
-              </View>
+              <Text style={styles.formLabel}>CONFIRMAR SENHA</Text>
             </View>
           </KeyboardAvoidingView>
         </View>
@@ -122,6 +107,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 35,
     marginTop: 10
+  },
+  checkbox: {
+    height: 20,
+    width: 20,
+    borderWidth: 1,
+    backgroundColor: 'white',
+    borderColor: 'green',
+    borderStyle: 'dotted'
   },
   row: {
     flexDirection: "row",
@@ -188,4 +181,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent("EditProfile", () => EditProfile);
+AppRegistry.registerComponent("EditPassword", () => EditPassword);
