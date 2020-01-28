@@ -3,11 +3,9 @@ import {
   AppRegistry,
   KeyboardAvoidingView,
   Image,
-  ImageBackground,
   StyleSheet,
   TextInput,
   TouchableHighlight,
-  TouchableOpacity,
   Text,
   View
 } from "react-native";
