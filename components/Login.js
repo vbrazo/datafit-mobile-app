@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import {
   AppRegistry,
   KeyboardAvoidingView,
-  TouchableOpacity,
-  AsyncStorage,
   Image,
   ImageBackground,
-  TextInput,
   StyleSheet,
   Text,
+  TextInput,
+  TouchableOpacity,
   View
 } from "react-native";
 
@@ -33,10 +32,8 @@ export default class Login extends Component {
     const { email, password } = this.state;
     console.log(email);
     console.log(password);
-    await AsyncStorage.setItem("email", email);
-    await AsyncStorage.setItem("password", password);
-    this.props.navigation.navigate("Boiler");
   }
+
   render() {
     return (
       <View style={styles.container}>
@@ -52,42 +49,36 @@ export default class Login extends Component {
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
-                style={styles.inputText}
+                style={styles.input}
                 value={this.state.email}
                 onChangeText={email => this.setState({ email })}
               />
-              <Text style={styles.formEmailText}>E-MAIL</Text>
+              <Text style={styles.emailLabel}>E-MAIL</Text>
             </View>
             <View style={styles.window}>
-              <View style={styles.forgotPasswordForm}>
+              <View style={styles.forgotPasswordContainer}>
                 <TextInput
                   returnKeyType="go"
                   secureTextEntry
-                  ref={input => (this.passwordInput = input)}
-                  style={styles.inputText}
+                  style={styles.input}
                   value={this.state.password}
                   onChangeText={password => this.setState({ password })} />
-                <Image source={require("../assets/images/eye-no.png")} style={styles.ImageStyle} />
+                <Image source={require("../assets/images/eye-no.png")} style={styles.passwordHiddenIcon} />
               </View>
               <View style={{flexDirection: 'row'}}>
-                <Text style={styles.formPasswordText}>SENHA</Text>
-                <Text style={styles.formForgotPasswordText}>ESQUECEU SUA SENHA?</Text>
+                <Text style={styles.passwordLabel}>SENHA</Text>
+                <Text style={styles.forgotPasswordLabel}>ESQUECEU SUA SENHA?</Text>
               </View>
             </View>
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={this.onLoginPress.bind(this)}
-            >
-              <Text style={styles.buttonText}>Entrar</Text>
+            <TouchableOpacity style={styles.buttonContainer} onPress={this.onLoginPress.bind(this)}>
+              <Text style={styles.signInButton}>Entrar</Text>
             </TouchableOpacity>
           </KeyboardAvoidingView>
         </View>
-        <TouchableOpacity style={styles.button}>
-          <Text
-            style={styles.signUpText}
-            onPress={() => this.props.navigation.navigate("Register")}
-            title="Sign up"
-          >
+        <TouchableOpacity style={styles.buttonLinkContainer}>
+          <Text style={styles.signUpLink}
+                onPress={() => this.props.navigation.navigate("SignUp")}
+                title="Sign up">
             CADASTRE-SE
           </Text>
         </TouchableOpacity>
@@ -101,73 +92,49 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#2A2E34"
   },
+  window: {
+    marginBottom: 15
+  },
   logoContainer: {
     alignItems: "center",
     flexGrow: 1,
     justifyContent: "center",
     alignItems: "center"
   },
-  logo: {
-    width: 200,
-    height: 150
-  },
-  subtext: {
-    color: "#ffffff",
-    marginTop: 10,
-    width: 160,
-    textAlign: "center",
-    opacity: 0.8
-  },
   keyboard: {
     margin: 20,
     padding: 20,
     alignSelf: "stretch"
   },
-  buttonContainer: {
-    backgroundColor: "#FFC13C",
-    paddingVertical: 15,
-    borderRadius: 5
-  },
-  buttonText: {
+  signInButton: {
     textAlign: "center",
     fontWeight: "700",
     fontSize: 20,
     color: "#2A2E34",
     fontFamily: "Roboto-Regular"
   },
-  button: {
+  buttonContainer: {
+    backgroundColor: "#FFC13C",
+    paddingVertical: 15,
+    borderRadius: 5
+  },
+  buttonLinkContainer: {
     paddingVertical: 15
   },
-  signUpText: {
+  signUpLink: {
     textAlign: "center",
     color: "#C9CDD0",
     paddingBottom: 20,
     fontFamily: "Roboto-Regular",
     fontSize: 12.8
   },
-  formEmailText: {
+  emailLabel: {
     color: "#C9CDD0",
     fontSize: 12.8,
     marginTop: 10,
     fontFamily: "Roboto-Regular"
   },
-  formPasswordText: {
-    color: "#C9CDD0",
-    fontSize: 12.8,
-    marginTop: 10,
-    paddingBottom: 40,
-    fontFamily: "Roboto-Regular"
-  },
-  formForgotPasswordText: {
-    position: 'absolute',
-    right: 0,
-    color: "#C9CDD0",
-    fontSize: 12.8,
-    marginTop: 10,
-    paddingBottom: 40,
-    fontFamily: "Roboto-Regular"
-  },
-  inputText: {
+  input: {
     height: 40,
     color: "#FFFFFF",
     fontFamily: "Roboto-Regular",
@@ -176,10 +143,23 @@ const styles = StyleSheet.create({
     width: "100%",
     borderBottomColor: "#C9CDD0"
   },
-  window: {
-    marginBottom: 15
+  passwordLabel: {
+    color: "#C9CDD0",
+    fontSize: 12.8,
+    marginTop: 10,
+    paddingBottom: 40,
+    fontFamily: "Roboto-Regular"
   },
-  ImageStyle: {
+  forgotPasswordLabel: {
+    position: 'absolute',
+    right: 0,
+    color: "#C9CDD0",
+    fontSize: 12.8,
+    marginTop: 10,
+    paddingBottom: 40,
+    fontFamily: "Roboto-Regular"
+  },
+  passwordHiddenIcon: {
     bottom: 5,
     padding: 10,
     margin: 5,
@@ -190,7 +170,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'flex-end'
   },
-  forgotPasswordForm: {
+  forgotPasswordContainer: {
     flexDirection: 'row'
   }
 });
