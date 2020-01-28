@@ -7,6 +7,7 @@ import {
   StatusBar
 } from 'react-native';
 
+import EditPassword from "./components/EditPassword";
 import EditProfile from "./components/EditProfile";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
@@ -54,6 +55,12 @@ export default App = StackNavigator({
     screen: EditProfile,
     navigationOptions: {
       title: "EditProfile"
+    }
+  },
+  EditPassword: {
+    screen: EditPassword,
+    navigationOptions: {
+      title: "EditPassword"
     }
   }
 });
