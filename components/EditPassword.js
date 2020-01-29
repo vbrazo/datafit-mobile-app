@@ -22,7 +22,39 @@ export default class EditPassword extends Component {
     },
     header: null
   };
-  onNextPress() { }
+
+  constructor() {
+    super();
+    this.state = {
+      password: "",
+      password_confirmation: ""
+    };
+  }
+
+  onSubmitPress() {
+    const { password } = this.state;
+
+    const params = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        password: password
+      })
+    }
+
+    fetch('https://datafit-api.herokuapp.com/api/users/password', params).then((response) => response.json())
+    .then((response) => {
+      if (response["errors"][0]["status"] == "200"){
+        this.props.navigation.navigate("Home");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
 
   render() {
     return (
@@ -34,6 +66,9 @@ export default class EditPassword extends Component {
                 <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
               </TouchableHighlight>
               <Text style={styles.title}>Alterar senha</Text>
+              <TouchableOpacity onPress={this.onSubmitPress.bind(this)}>
+                <Image source={require("../assets/images/icon-submit.png")} style={styles.submitButton} />
+              </TouchableOpacity>
             </View>
 
             <View style={styles.window}>
@@ -172,6 +207,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "#C9CDD0"
   },
   backButton: {
+  },
+  submitButton: {
   }
 });
 
