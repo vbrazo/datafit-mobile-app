@@ -33,7 +33,7 @@ export default class SignUp extends Component {
   }
 
   onNextPress() {
-    const { email, password, name } = this.state;
+    const { email, password, name, dateOfBirth, height, weight, userType} = this.state;
 
     const params = {
       method: 'POST',
@@ -47,7 +47,11 @@ export default class SignUp extends Component {
           password: password,
           password_confirmation: password,
           name: name,
-          agree_to_tac: true
+          agree_to_tac: true,
+          date_of_birth: dateOfBirth,
+          height: height,
+          weight: weight,
+          user_type: userType
         }
       })
     }
@@ -107,6 +111,8 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
+                value={this.state.dateOfBirth}
+                onChangeText={dateOfBirth => this.setState({ dateOfBirth })}
               />
               <Text style={styles.formLabel}>DATA DE NASCIMENTO</Text>
             </View>
@@ -118,6 +124,8 @@ export default class SignUp extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   style={styles.input}
+                  value={this.state.height}
+                  onChangeText={height => this.setState({ height })}
                 />
                 <Text style={styles.formLabel}>ALTURA (CM)</Text>
               </View>
@@ -128,6 +136,8 @@ export default class SignUp extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   style={styles.input}
+                  value={this.state.weight}
+                  onChangeText={weight => this.setState({ weight })}
                 />
                 <Text style={styles.formLabel}>PESO (KG)</Text>
               </View>
@@ -136,8 +146,12 @@ export default class SignUp extends Component {
             <View style={styles.window}>
               <Text style={styles.formLabel}>QUEM VOCÊ É</Text>
               <View style={styles.rowUserType}>
-                <View style={styles.userType1}><Text style={styles.userTypeText}>SOU ALUNO</Text></View>
-                <View style={styles.userType2}><Text style={styles.userTypeText}>SOU PROFESSOR</Text></View>
+                <View style={styles.userType1}>
+                  <Text style={styles.userTypeText}>SOU ALUNO</Text>
+                </View>
+                <View style={styles.userType2}>
+                  <Text style={styles.userTypeText}>SOU PROFESSOR</Text>
+                </View>
               </View>
             </View>
 
