@@ -43,7 +43,7 @@ export default class Login extends Component {
 
     axios.post("https://datafit-api.herokuapp.com/api/users/sign_in", params).then((response) => {
       if(response["status"] == 200){
-        AsyncStorage.setItem('@token', response["headers"]["authorization"]);
+        AsyncStorage.setItem('token', `${response["headers"]["authorization"]}`);
 
         this.props.navigation.navigate("Home");
       } else {

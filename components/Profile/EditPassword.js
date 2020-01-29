@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  AsyncStorage,
   AppRegistry,
   CheckBox,
   KeyboardAvoidingView,
@@ -13,6 +14,7 @@ import {
   View
 } from "react-native";
 import { StackNavigator } from "react-navigation";
+import axios from 'axios';
 
 export default class EditPassword extends Component {
   static navigationOptions = {
@@ -34,8 +36,10 @@ export default class EditPassword extends Component {
   onSubmitPress() {
     const { password } = this.state;
 
+    console.error(AsyncStorage.getItem('token'));
+
     const headers = {
-      'Authorization': AsyncStorage.getItem('@token')
+      'Authorization': AsyncStorage.getItem('token')
     };
 
     const params = {
@@ -43,8 +47,8 @@ export default class EditPassword extends Component {
     }
 
     axios({
-      method: 'POST',
-      url: 'https://datafit-api.herokuapp.com/api/users/sign_in',
+      method: 'PUT',
+      url: 'https://datafit-api.herokuapp.com/api/mobile/users/change_profile',
       headers: headers
     }).then((response) => {
       if(response["status"] == 200){
