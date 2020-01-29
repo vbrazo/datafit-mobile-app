@@ -59,21 +59,6 @@ export default class Login extends Component {
     });
   }
 
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: "",
-      password_confirmation: "",
-      name: "",
-      agree_to_tac: "",
-      date_of_birth: "",
-      height: "",
-      weight: "",
-      user_type: ""
-    };
-  }
-
   render() {
     return (
       <View style={styles.container}>
