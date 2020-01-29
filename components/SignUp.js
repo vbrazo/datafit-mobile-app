@@ -15,12 +15,6 @@ import {
 import { StackNavigator } from "react-navigation";
 
 export default class SignUp extends Component {
-  constructor() {
-    super();
-    this.state = {
-      rememberMe: ""
-    };
-  }
   static navigationOptions = {
     headerStyle: {
       backgroundColor: "#16a085",
@@ -28,7 +22,52 @@ export default class SignUp extends Component {
     },
     header: null
   };
-  onNextPress() { }
+
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      name: ""
+    };
+  }
+
+  onNextPress() {
+    const { email, password, name, dateOfBirth, height, weight, userType} = this.state;
+
+    const params = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          email: email,
+          password: password,
+          password_confirmation: password,
+          name: name,
+          agree_to_tac: true,
+          date_of_birth: dateOfBirth,
+          height: height,
+          weight: weight,
+          user_type: userType
+        }
+      })
+    }
+
+    fetch('https://datafit-api.herokuapp.com/api/users', params).then((response) => response.json())
+    .then((response) => {
+      if(response["errors"][0]["status"] == "400"){
+        console.error("Bad request - user may already exist");
+      } else if (response["errors"][0]["status"] == "200"){
+        this.props.navigation.navigate("Home");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
 
   render() {
     return (
@@ -48,6 +87,8 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
+                value={this.state.name}
+                onChangeText={name => this.setState({ name })}
               />
               <Text style={styles.formLabel}>NOME COMPLETO</Text>
             </View>
@@ -58,6 +99,8 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
+                value={this.state.email}
+                onChangeText={email => this.setState({ email })}
               />
               <Text style={styles.formLabel}>E-MAIL</Text>
             </View>
@@ -68,6 +111,8 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
+                value={this.state.dateOfBirth}
+                onChangeText={dateOfBirth => this.setState({ dateOfBirth })}
               />
               <Text style={styles.formLabel}>DATA DE NASCIMENTO</Text>
             </View>
@@ -79,6 +124,8 @@ export default class SignUp extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   style={styles.input}
+                  value={this.state.height}
+                  onChangeText={height => this.setState({ height })}
                 />
                 <Text style={styles.formLabel}>ALTURA (CM)</Text>
               </View>
@@ -89,6 +136,8 @@ export default class SignUp extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   style={styles.input}
+                  value={this.state.weight}
+                  onChangeText={weight => this.setState({ weight })}
                 />
                 <Text style={styles.formLabel}>PESO (KG)</Text>
               </View>
@@ -97,8 +146,12 @@ export default class SignUp extends Component {
             <View style={styles.window}>
               <Text style={styles.formLabel}>QUEM VOCÊ É</Text>
               <View style={styles.rowUserType}>
-                <View style={styles.userType1}><Text style={styles.userTypeText}>SOU ALUNO</Text></View>
-                <View style={styles.userType2}><Text style={styles.userTypeText}>SOU PROFESSOR</Text></View>
+                <View style={styles.userType1}>
+                  <Text style={styles.userTypeText}>SOU ALUNO</Text>
+                </View>
+                <View style={styles.userType2}>
+                  <Text style={styles.userTypeText}>SOU PROFESSOR</Text>
+                </View>
               </View>
             </View>
 
@@ -109,6 +162,8 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
+                value={this.state.password}
+                onChangeText={password => this.setState({ password })}
               />
               <Text style={styles.formLabel}>CRIAR SENHA</Text>
             </View>

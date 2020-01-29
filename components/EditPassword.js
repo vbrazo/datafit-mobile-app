@@ -15,12 +15,6 @@ import {
 import { StackNavigator } from "react-navigation";
 
 export default class EditPassword extends Component {
-  constructor() {
-    super();
-    this.state = {
-      rememberMe: ""
-    };
-  }
   static navigationOptions = {
     headerStyle: {
       backgroundColor: "#16a085",

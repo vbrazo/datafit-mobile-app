@@ -32,6 +32,7 @@ export default class Login extends Component {
     const { email, password } = this.state;
     console.log(email);
     console.log(password);
+    this.props.navigation.navigate("Home");
   }
 
   render() {
