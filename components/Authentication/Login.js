@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  AsyncStorage,
   AppRegistry,
   KeyboardAvoidingView,
   Image,
@@ -52,6 +53,10 @@ export default class Login extends Component {
          (response["error"] == "You need to sign in or sign up before continuing.")){
         console.error("Bad request");
       } else {
+        console.error(response.headers);
+
+        // AsyncStorage.setItem('@token', response.headers.get('Authorization'));
+
         this.props.navigation.navigate("Home");
       }
     })
