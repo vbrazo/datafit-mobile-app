@@ -40,7 +40,7 @@ export default class EditProfile extends Component {
     const { email, password, name, dateOfBirth, height, weight, userType} = this.state;
 
     const headers = {
-      'Authorization': AsyncStorage.getItem('@token')
+      'Authorization': AsyncStorage.getItem('token')
     };
 
     const params = {
@@ -59,7 +59,7 @@ export default class EditProfile extends Component {
       headers: headers
     }).then((response) => {
       if(response["status"] == 200){
-        AsyncStorage.setItem('@token', response["headers"]["authorization"]);
+        AsyncStorage.setItem('token', response["headers"]["authorization"]);
 
         this.props.navigation.navigate("Home");
       } else {
