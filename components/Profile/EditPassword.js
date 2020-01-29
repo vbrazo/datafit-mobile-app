@@ -34,25 +34,29 @@ export default class EditPassword extends Component {
   onSubmitPress() {
     const { password } = this.state;
 
+    const headers = {
+      'Authorization': AsyncStorage.getItem('@token')
+    };
+
     const params = {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        password: password
-      })
+      password: password
     }
 
-    fetch('https://datafit-api.herokuapp.com/api/users/password', params).then((response) => response.json())
-    .then((response) => {
-      if (response["errors"][0]["status"] == "200"){
+    axios({
+      method: 'POST',
+      url: 'https://datafit-api.herokuapp.com/api/users/sign_in',
+      headers: headers
+    }).then((response) => {
+      if(response["status"] == 200){
+        AsyncStorage.setItem('@token', response["headers"]["authorization"]);
+
         this.props.navigation.navigate("Home");
+      } else {
+        console.error("Bad request");
       }
     })
     .catch((error) => {
-      console.error(error);
+       // Handle returned errors here
     });
   }
 
