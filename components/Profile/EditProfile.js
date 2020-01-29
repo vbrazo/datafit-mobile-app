@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  AsyncStorage,
   AppRegistry,
   KeyboardAvoidingView,
   Image,
@@ -11,6 +12,7 @@ import {
   View
 } from "react-native";
 import { StackNavigator } from "react-navigation";
+import axios from 'axios';
 
 export default class EditProfile extends Component {
   static navigationOptions = {
@@ -37,31 +39,35 @@ export default class EditProfile extends Component {
   onSubmitPress() {
     const { email, password, name, dateOfBirth, height, weight, userType} = this.state;
 
+    const headers = {
+      'Authorization': AsyncStorage.getItem('@token')
+    };
+
     const params = {
-      method: 'PUT',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-        name: name,
-        date_of_birth: dateOfBirth,
-        height: height,
-        weight: weight,
-        user_type: userType
-      })
+      email: email,
+      password: password,
+      name: name,
+      date_of_birth: dateOfBirth,
+      height: height,
+      weight: weight,
+      user_type: userType
     }
 
-    fetch('https://datafit-api.herokuapp.com/api/mobile/users/1/change_profile', params).then((response) => response.json())
-    .then((response) => {
-      if (response["errors"][0]["status"] == "200"){
+    axios({
+      method: 'PUT',
+      url: 'https://datafit-api.herokuapp.com/api/mobile/users/change_profile',
+      headers: headers
+    }).then((response) => {
+      if(response["status"] == 200){
+        AsyncStorage.setItem('@token', response["headers"]["authorization"]);
+
         this.props.navigation.navigate("Home");
+      } else {
+        console.error("Bad request");
       }
     })
     .catch((error) => {
-      console.error(error);
+       // Handle returned errors here
     });
   }
 
