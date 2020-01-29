@@ -89,6 +89,8 @@ export default class EditPassword extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
+                value={this.state.password}
+                onChangeText={password => this.setState({ password })}
               />
               <Text style={styles.formLabel}>CRIAR SENHA</Text>
             </View>
@@ -101,6 +103,8 @@ export default class EditPassword extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
+                value={this.state.passwordConfirmation}
+                onChangeText={passwordConfirmation => this.setState({ passwordConfirmation })}
               />
               <Text style={styles.formLabel}>CONFIRMAR SENHA</Text>
             </View>
