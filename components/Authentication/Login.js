@@ -48,9 +48,10 @@ export default class Login extends Component {
 
     fetch('https://datafit-api.herokuapp.com/api/users/sign_in', params).then((response) => response.json())
     .then((response) => {
-      if(response["errors"][0]["status"] == "400"){
-        console.error("Bad request - invalid credentials");
-      } else if (response["errors"][0]["status"] == "200"){
+      if((response["error"] == "Invalid Email or password.") ||
+         (response["error"] == "You need to sign in or sign up before continuing.")){
+        console.error("Bad request");
+      } else {
         this.props.navigation.navigate("Home");
       }
     })
