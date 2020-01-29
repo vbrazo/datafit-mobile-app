@@ -72,11 +72,11 @@ export default class EditProfile extends Component {
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
             <View style={styles.window}>
               <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
-                <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
+                <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
               </TouchableHighlight>
               <Text style={styles.title}>Editar perfil</Text>
               <TouchableOpacity onPress={this.onSubmitPress.bind(this)}>
-                <Image source={require("../assets/images/icon-submit.png")} style={styles.submitButton} />
+                <Image source={require("../../assets/images/icon-submit.png")} style={styles.submitButton} />
               </TouchableOpacity>
             </View>
 

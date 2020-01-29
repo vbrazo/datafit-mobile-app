@@ -82,7 +82,7 @@ export default class SignUp extends Component {
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
             <View style={styles.window}>
               <TouchableHighlight onPress={() => this.props.navigation.navigate("Login")}>
-                <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
+                <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
               </TouchableHighlight>
               <Text style={styles.title}>Completar cadastro</Text>
             </View>
