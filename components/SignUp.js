@@ -15,12 +15,6 @@ import {
 import { StackNavigator } from "react-navigation";
 
 export default class SignUp extends Component {
-  constructor() {
-    super();
-    this.state = {
-      rememberMe: ""
-    };
-  }
   static navigationOptions = {
     headerStyle: {
       backgroundColor: "#16a085",
@@ -28,7 +22,40 @@ export default class SignUp extends Component {
     },
     header: null
   };
-  onNextPress() { }
+
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      name: ""
+    };
+  }
+
+  onNextPress() {
+    const { email, password, name } = this.state;
+
+    fetch('https://datafit-api.herokuapp.com/api/users', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(
+        {
+          user: {
+            email: email,
+            password: password,
+            password_confirmation: password,
+            name: name,
+            agree_to_tac: true
+          }
+        })
+    }).catch((error) => {
+      console.error(error);
+    });
+    // this.props.navigation.navigate("Home");
+  }
 
   render() {
     return (
@@ -48,6 +75,8 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
+                value={this.state.name}
+                onChangeText={name => this.setState({ name })}
               />
               <Text style={styles.formLabel}>NOME COMPLETO</Text>
             </View>
@@ -58,6 +87,8 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
+                value={this.state.email}
+                onChangeText={email => this.setState({ email })}
               />
               <Text style={styles.formLabel}>E-MAIL</Text>
             </View>
@@ -109,6 +140,8 @@ export default class SignUp extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
+                value={this.state.password}
+                onChangeText={password => this.setState({ password })}
               />
               <Text style={styles.formLabel}>CRIAR SENHA</Text>
             </View>

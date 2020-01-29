@@ -9,13 +9,14 @@ import {
 
 import EditPassword from "./components/EditPassword";
 import EditProfile from "./components/EditProfile";
+import Home from "./components/Home";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import SignUp from "./components/SignUp";
 
 import { StackNavigator } from "react-navigation";
 
-class Home extends Component<{}> {
+class Initial extends Component<{}> {
   static navigationOptions = {
     headerStyle: {
       backgroundColor: "#16a085",
@@ -34,10 +35,10 @@ class Home extends Component<{}> {
 }
 
 export default App = StackNavigator({
-  Home: {
-    screen: Home,
+  Initial: {
+    screen: Initial,
     navigationOptions: {
-      title: "Home"
+      title: "Initial"
     }
   },
   Login: {
@@ -68,6 +69,12 @@ export default App = StackNavigator({
     screen: Profile,
     navigationOptions: {
       title: "Profile"
+    }
+  },
+  Home: {
+    screen: Home,
+    navigationOptions: {
+      title: "Home"
     }
   }
 });

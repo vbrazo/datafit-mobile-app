@@ -42,7 +42,7 @@ export default class Profile extends Component {
           </View>
 
           <View style={styles.window}>
-            <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
+            <TouchableHighlight onPress={() => this.props.navigation.navigate("Initial")}>
               <Text style={styles.formLabel}>Sair</Text>
             </TouchableHighlight>
           </View>
