@@ -28,7 +28,13 @@ export default class SignUp extends Component {
     this.state = {
       email: "",
       password: "",
-      name: ""
+      password_confirmation: "",
+      name: "",
+      agree_to_tac: "",
+      date_of_birth: "",
+      height: "",
+      weight: "",
+      user_type: ""
     };
   }
 
@@ -75,7 +81,7 @@ export default class SignUp extends Component {
         <View behavior="padding" style={styles.container}>
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
             <View style={styles.window}>
-              <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
+              <TouchableHighlight onPress={() => this.props.navigation.navigate("Login")}>
                 <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
               </TouchableHighlight>
               <Text style={styles.title}>Completar cadastro</Text>
