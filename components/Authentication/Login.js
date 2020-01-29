@@ -28,11 +28,50 @@ export default class Login extends Component {
     },
     header: null
   };
-  async onLoginPress() {
-    const { email, password } = this.state;
-    console.log(email);
-    console.log(password);
-    this.props.navigation.navigate("Home");
+
+  onLoginPress() {
+    const { email, password} = this.state;
+
+    const params = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          email: email,
+          password: password
+        }
+      })
+    }
+
+    fetch('https://datafit-api.herokuapp.com/api/users/sign_in', params).then((response) => response.json())
+    .then((response) => {
+      if(response["errors"][0]["status"] == "400"){
+        console.error("Bad request - invalid credentials");
+      } else if (response["errors"][0]["status"] == "200"){
+        this.props.navigation.navigate("Home");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      password_confirmation: "",
+      name: "",
+      agree_to_tac: "",
+      date_of_birth: "",
+      height: "",
+      weight: "",
+      user_type: ""
+    };
   }
 
   render() {
