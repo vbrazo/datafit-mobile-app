@@ -35,26 +35,34 @@ export default class SignUp extends Component {
   onNextPress() {
     const { email, password, name } = this.state;
 
-    fetch('https://datafit-api.herokuapp.com/api/users', {
+    const params = {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(
-        {
-          user: {
-            email: email,
-            password: password,
-            password_confirmation: password,
-            name: name,
-            agree_to_tac: true
-          }
-        })
-    }).catch((error) => {
+      body: JSON.stringify({
+        user: {
+          email: email,
+          password: password,
+          password_confirmation: password,
+          name: name,
+          agree_to_tac: true
+        }
+      })
+    }
+
+    fetch('https://datafit-api.herokuapp.com/api/users', params).then((response) => response.json())
+    .then((response) => {
+      if(response["errors"][0]["status"] == "400"){
+        console.error("Bad request - user may already exist");
+      } else if (response["errors"][0]["status"] == "200"){
+        this.props.navigation.navigate("Home");
+      }
+    })
+    .catch((error) => {
       console.error(error);
     });
-    // this.props.navigation.navigate("Home");
   }
 
   render() {
