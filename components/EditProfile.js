@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableHighlight,
+  TouchableOpacity,
   Text,
   View
 } from "react-native";
@@ -19,6 +20,51 @@ export default class EditProfile extends Component {
     },
     header: null
   };
+
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      name: "",
+      date_of_birth: "",
+      height: "",
+      weight: "",
+      user_type: ""
+    };
+  }
+
+  onSubmitPress() {
+    const { email, password, name, dateOfBirth, height, weight, userType} = this.state;
+
+    const params = {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        name: name,
+        date_of_birth: dateOfBirth,
+        height: height,
+        weight: weight,
+        user_type: userType
+      })
+    }
+
+    fetch('https://datafit-api.herokuapp.com/api/mobile/users/1/change_profile', params).then((response) => response.json())
+    .then((response) => {
+      if (response["errors"][0]["status"] == "200"){
+        this.props.navigation.navigate("Home");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -29,6 +75,9 @@ export default class EditProfile extends Component {
                 <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
               </TouchableHighlight>
               <Text style={styles.title}>Editar perfil</Text>
+              <TouchableOpacity onPress={this.onSubmitPress.bind(this)}>
+                <Image source={require("../assets/images/icon-submit.png")} style={styles.submitButton} />
+              </TouchableOpacity>
             </View>
 
             <View style={styles.window}>
@@ -37,6 +86,8 @@ export default class EditProfile extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
+                value={this.state.name}
+                onChangeText={name => this.setState({ name })}
               />
               <Text style={styles.formLabel}>NOME COMPLETO</Text>
             </View>
@@ -47,6 +98,8 @@ export default class EditProfile extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
+                value={this.state.email}
+                onChangeText={email => this.setState({ email })}
               />
               <Text style={styles.formLabel}>E-MAIL</Text>
             </View>
@@ -57,6 +110,8 @@ export default class EditProfile extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
+                value={this.state.name}
+                onChangeText={dateOfBirth => this.setState({ dateOfBirth })}
               />
               <Text style={styles.formLabel}>DATA DE NASCIMENTO</Text>
             </View>
@@ -68,6 +123,8 @@ export default class EditProfile extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   style={styles.input}
+                  value={this.state.height}
+                  onChangeText={height => this.setState({ height })}
                 />
                 <Text style={styles.formLabel}>ALTURA (CM)</Text>
               </View>
@@ -78,6 +135,8 @@ export default class EditProfile extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   style={styles.input}
+                  value={this.state.weight}
+                  onChangeText={weight => this.setState({ weight })}
                 />
                 <Text style={styles.formLabel}>PESO (KG)</Text>
               </View>
@@ -184,7 +243,8 @@ const styles = StyleSheet.create({
     width: "100%",
     borderBottomColor: "#C9CDD0"
   },
-  backButton: {
+  submitButton: {
+
   }
 });
 
