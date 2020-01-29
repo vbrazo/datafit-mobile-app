@@ -13,6 +13,7 @@ import {
 } from "react-native";
 
 import { StackNavigator } from "react-navigation";
+import axios from 'axios';
 
 export default class Login extends Component {
   constructor() {
@@ -34,34 +35,23 @@ export default class Login extends Component {
     const { email, password} = this.state;
 
     const params = {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        user: {
-          email: email,
-          password: password
-        }
-      })
+      user: {
+        email: email,
+        password: password
+      }
     }
 
-    fetch('https://datafit-api.herokuapp.com/api/users/sign_in', params).then((response) => response.json())
-    .then((response) => {
-      if((response["error"] == "Invalid Email or password.") ||
-         (response["error"] == "You need to sign in or sign up before continuing.")){
-        console.error("Bad request");
-      } else {
-        console.error(response.headers);
-
-        // AsyncStorage.setItem('@token', response.headers.get('Authorization'));
+    axios.post("https://datafit-api.herokuapp.com/api/users/sign_in", params).then((response) => {
+      if(response["status"] == 200){
+        AsyncStorage.setItem('@token', response["headers"]["authorization"]);
 
         this.props.navigation.navigate("Home");
+      } else {
+        console.error("Bad request");
       }
     })
     .catch((error) => {
-      console.error(error);
+       // Handle returned errors here
     });
   }
 
