@@ -7,12 +7,13 @@ import {
   View
 } from 'react-native';
 
-import EditPassword from "./components/EditPassword";
-import EditProfile from "./components/EditProfile";
 import Home from "./components/Home";
-import Login from "./components/Login";
-import Profile from "./components/Profile";
-import SignUp from "./components/SignUp";
+import Login from "./components/Authentication/Login";
+import SignUp from "./components/Authentication/SignUp";
+
+import EditPassword from "./components/Profile/EditPassword";
+import EditProfile from "./components/Profile/EditProfile";
+import Profile from "./components/Profile/Profile";
 
 import { StackNavigator } from "react-navigation";
 
