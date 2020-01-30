@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {
-  Platform,
   StatusBar,
   StyleSheet,
-  Text,
   View
 } from 'react-native';
 

@@ -5,7 +5,6 @@ import {
   CheckBox,
   KeyboardAvoidingView,
   Image,
-  ImageBackground,
   StyleSheet,
   TextInput,
   TouchableHighlight,
@@ -13,7 +12,6 @@ import {
   Text,
   View
 } from "react-native";
-import { StackNavigator } from "react-navigation";
 import axios from 'axios';
 
 export default class SignUp extends Component {
@@ -80,11 +78,17 @@ export default class SignUp extends Component {
       <View style={styles.container}>
         <View behavior="padding" style={styles.container}>
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
-            <View style={styles.window}>
-              <TouchableHighlight onPress={() => this.props.navigation.navigate("Login")}>
-                <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
-              </TouchableHighlight>
-              <Text style={styles.title}>Completar cadastro</Text>
+            <View style={styles.navBar}>
+              <View style={styles.leftContainer}>
+                <TouchableHighlight onPress={() => this.props.navigation.navigate("Initial")}>
+                  <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
+                </TouchableHighlight>
+              </View>
+              <Text style={styles.title}>
+                Completar cadastro
+              </Text>
+              <View style={styles.rightContainer}>
+              </View>
             </View>
 
             <View style={styles.window}>
@@ -187,10 +191,18 @@ export default class SignUp extends Component {
             </View>
 
             <View style={styles.window}>
-              <CheckBox title='Li e concordo com os termos de uso e políticas de privacidade'
-                        style={styles.checkbox}
-                        value={this.state.rememberMe} />
-              <Text style={styles.formLabel}>Li e concordo com os termos de uso e políticas de privacidade</Text>
+              <View style={styles.navBar}>
+                <View style={styles.leftContainer}>
+                  <CheckBox title='Li e concordo com os termos de uso e políticas de privacidade'
+                      style={styles.checkbox}
+                      value={this.state.rememberMe} />
+                </View>
+                <Text style={styles.titleCheckbox}>
+                  Li e concordo com os termos de uso e políticas de privacidade
+                </Text>
+                <View style={styles.rightContainer}>
+                </View>
+              </View>
             </View>
 
             <TouchableOpacity style={styles.buttonContainer} onPress={this.onNextPress.bind(this)}>
@@ -204,13 +216,37 @@ export default class SignUp extends Component {
 }
 
 const styles = StyleSheet.create({
+  navBar: {
+    height: 60,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  leftContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  },
+  rightContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
+  },
+  rightIcon: {
+    height: 10,
+    width: 10,
+    resizeMode: 'contain',
+    backgroundColor: 'white',
+  },
   userTypeText:{
     color: "#C9CDD0",
     width: "100%",
     textAlign: "center",
-    textAlignVertical: "center"
+    textAlignVertical: "center",
+    top: 7
   },
   userType1: {
+    textAlignVertical: "center",
     borderColor: "#C9CDD0",
     borderWidth: 1,
     borderBottomLeftRadius: 7,
@@ -281,6 +317,14 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 20,
     color: "#2A2E34",
+    fontFamily: "Roboto-Regular"
+  },
+  titleCheckbox: {
+    color: "#C9CDD0",
+    fontSize: 15,
+    marginTop: 10,
+    left: 20,
+    lineHeight: 18,
     fontFamily: "Roboto-Regular"
   },
   formLabel: {

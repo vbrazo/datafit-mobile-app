@@ -4,14 +4,12 @@ import {
   AppRegistry,
   KeyboardAvoidingView,
   Image,
-  ImageBackground,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View
 } from "react-native";
-import { StackNavigator } from "react-navigation";
 import axios from 'axios';
 
 export default class Login extends Component {
@@ -70,7 +68,6 @@ export default class Login extends Component {
             <View style={styles.window}>
               <TextInput
                 returnKeyType="next"
-                onSubmitEditing={() => this.passwordInput.focus()}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}

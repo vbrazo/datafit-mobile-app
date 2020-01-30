@@ -3,8 +3,8 @@ import {
   AppRegistry,
   Image,
   StyleSheet,
-  TextInput,
   TouchableHighlight,
+  TouchableOpacity,
   Text,
   View
 } from "react-native";
@@ -18,37 +18,72 @@ export default class Profile extends Component {
     },
     header: null
   };
+
   render() {
     return (
       <View style={styles.container}>
         <View behavior="padding" style={styles.container}>
-          <View style={styles.firstWindow}>
-            <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
-              <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
-            </TouchableHighlight>
-            <Text style={styles.title}>Perfil</Text>
+          <View style={styles.navBar}>
+            <Text style={styles.title}>
+              Perfil
+            </Text>
           </View>
 
-          <View style={styles.window}>
+          <View>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("EditProfile")}>
-              <Text style={styles.formLabel}>Editar Perfil</Text>
+              <View style={{backgroundColor:"#303641",marginTop: 10,flexDirection: 'row',justifyContent: 'space-between',alignItems: 'center', height: 56}}>
+                <View style={{flexDirection: 'row',justifyContent: 'flex-start',flex: 1}}>
+                  <Text style={styles.formLabel}>
+                    Editar Perfil
+                  </Text>
+                </View>
+                <View style={{flex: 1,flexDirection: 'row',justifyContent: 'flex-end',alignItems: 'center', paddingRight: 20}}>
+                  <Image source={require("../../assets/images/icon-profile.png")} />
+                </View>
+              </View>
             </TouchableHighlight>
           </View>
 
-          <View style={styles.window}>
+          <View>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("EditPassword")}>
-              <Text style={styles.formLabel}>Alterar senha</Text>
+              <View style={{backgroundColor:"#303641",marginTop: 10,flexDirection: 'row',justifyContent: 'space-between',alignItems: 'center', height: 56}}>
+                <View style={{flexDirection: 'row',justifyContent: 'flex-start',flex: 1}}>
+                  <Text style={styles.formLabel}>
+                    Alterar senha
+                  </Text>
+                </View>
+                <View style={{flex: 1,flexDirection: 'row',justifyContent: 'flex-end',alignItems: 'center', paddingRight: 20}}>
+                  <Image source={require("../../assets/images/icon-profile.png")} />
+                </View>
+              </View>
             </TouchableHighlight>
           </View>
 
           <View style={styles.window}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Initial")}>
-              <Text style={styles.formLabel}>Sair</Text>
+              <View style={{backgroundColor:"#303641",marginTop: 10,flexDirection: 'row',justifyContent: 'space-between',alignItems: 'center', height: 56}}>
+                <View style={{flexDirection: 'row',justifyContent: 'flex-start',flex: 1}}>
+                  <Text style={styles.formLabel}>
+                    Sair
+                  </Text>
+                </View>
+              </View>
             </TouchableHighlight>
           </View>
 
           <View style={styles.window}>
             <Text style={styles.versionText}>version 1.0.0</Text>
+          </View>
+
+          <View style={styles.footer}>
+            <View style={styles.footerCol}>
+              <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
+                <Image source={require("../../assets/images/icon-home.png")} />
+              </TouchableHighlight>
+            </View>
+            <View style={styles.footerCol}>
+              <Image source={require("../../assets/images/icon-profile-active.png")} />
+            </View>
           </View>
         </View>
       </View>
@@ -57,6 +92,31 @@ export default class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
+  navBar: {
+    padding: 20,
+    marginTop: 50,
+    height: 60,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  leftContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  },
+  rightContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  rightIcon: {
+    height: 10,
+    width: 10,
+    resizeMode: 'contain',
+    backgroundColor: 'white',
+  },
   userTypeText:{
     color: "#C9CDD0",
     width: "100%",
@@ -87,13 +147,14 @@ const styles = StyleSheet.create({
     height: 100
   },
   window: {
-    marginBottom: 15
+    marginBottom: 15,
+    width: "100%"
   },
   firstWindow: {
     marginTop: 55
   },
   title: {
-    fontFamily: "Roboto-Regular",
+    fontFamily: "Roboto-Medium",
     fontSize: 20,
     color: "#FFFFFF",
     textAlign: "center"
@@ -127,10 +188,15 @@ const styles = StyleSheet.create({
   formLabel: {
     color: "#C9CDD0",
     backgroundColor: "#303641",
-    height: 40,
-    fontSize: 12.8,
-    marginTop: 10,
-    fontFamily: "Roboto-Regular"
+    height: 56,
+    fontSize: 16,
+    fontFamily: "Roboto-Regular",
+    paddingLeft: 20,
+    paddingTop: 18
+  },
+  layer: {
+    color: "#C9CDD0",
+    backgroundColor: "#303641"
   },
   input: {
     height: 40,
@@ -140,6 +206,25 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1.0,
     width: "100%",
     borderBottomColor: "#C9CDD0"
+  },
+  icons: {
+  },
+  footer: {
+    flexDirection: 'row',
+    position: "absolute",
+    height: 60,
+    left: 0,
+    bottom: 0,
+    backgroundColor: "#2A2E34",
+    elevation: 4,
+    shadowColor: "rgba(35, 37, 40, 0.614729)",
+    shadowOpacity: 0.5,
+    shadowRadius: 10
+  },
+  footerCol: {
+    width: "50%",
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
