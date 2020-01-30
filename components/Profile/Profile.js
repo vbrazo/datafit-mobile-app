@@ -3,7 +3,6 @@ import {
   AppRegistry,
   Image,
   StyleSheet,
-  TextInput,
   TouchableHighlight,
   Text,
   View
@@ -18,6 +17,7 @@ export default class Profile extends Component {
     },
     header: null
   };
+
   render() {
     return (
       <View style={styles.container}>
@@ -31,19 +31,30 @@ export default class Profile extends Component {
 
           <View style={styles.window}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("EditProfile")}>
-              <Text style={styles.formLabel}>Editar Perfil</Text>
+              <View>
+                <Text style={styles.formLabel}>
+                  Editar Perfil
+                  <Image source={require("../../assets/images/icon-profile.png")} />
+                </Text>
+              </View>
             </TouchableHighlight>
           </View>
 
           <View style={styles.window}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("EditPassword")}>
-              <Text style={styles.formLabel}>Alterar senha</Text>
+              <Text style={styles.formLabel}>
+                Alterar senha
+                <Image source={require("../../assets/images/icon-profile.png")} />
+              </Text>
             </TouchableHighlight>
           </View>
 
           <View style={styles.window}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Initial")}>
-              <Text style={styles.formLabel}>Sair</Text>
+              <Text style={styles.formLabel}>
+                Sair
+                <Image source={require("../../assets/images/icon-profile.png")} style={{textAlign: 'right'}} />
+              </Text>
             </TouchableHighlight>
           </View>
 
@@ -127,10 +138,12 @@ const styles = StyleSheet.create({
   formLabel: {
     color: "#C9CDD0",
     backgroundColor: "#303641",
-    height: 40,
-    fontSize: 12.8,
+    height: 56,
+    fontSize: 16,
     marginTop: 10,
-    fontFamily: "Roboto-Regular"
+    fontFamily: "Roboto-Regular",
+    paddingLeft: 20,
+    paddingTop: 15
   },
   input: {
     height: 40,

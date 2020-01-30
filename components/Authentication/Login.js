@@ -4,14 +4,12 @@ import {
   AppRegistry,
   KeyboardAvoidingView,
   Image,
-  ImageBackground,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View
 } from "react-native";
-import { StackNavigator } from "react-navigation";
 import axios from 'axios';
 
 export default class Login extends Component {

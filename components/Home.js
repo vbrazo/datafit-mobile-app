@@ -62,8 +62,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#2A2E34"
   },
   footer: {
+    flexDirection: 'row',
     position: "absolute",
-    height: 68,
+    height: 60,
     left: 0,
     top: 828,
     backgroundColor: "#2A2E34",
@@ -73,7 +74,9 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
   },
   footerCol: {
-    width: "33%"
+    width: "33%",
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

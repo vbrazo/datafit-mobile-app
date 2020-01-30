@@ -5,7 +5,6 @@ import {
   CheckBox,
   KeyboardAvoidingView,
   Image,
-  ImageBackground,
   StyleSheet,
   TextInput,
   TouchableHighlight,
@@ -13,7 +12,6 @@ import {
   Text,
   View
 } from "react-native";
-import { StackNavigator } from "react-navigation";
 import axios from 'axios';
 
 export default class SignUp extends Component {

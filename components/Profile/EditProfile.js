@@ -11,8 +11,8 @@ import {
   Text,
   View
 } from "react-native";
-import { StackNavigator } from "react-navigation";
 import axios from 'axios';
+import { StackNavigator } from "react-navigation";
 
 export default class EditProfile extends Component {
   static navigationOptions = {

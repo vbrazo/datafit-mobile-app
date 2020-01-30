@@ -5,7 +5,6 @@ import {
   CheckBox,
   KeyboardAvoidingView,
   Image,
-  ImageBackground,
   StyleSheet,
   TextInput,
   TouchableHighlight,
@@ -13,8 +12,8 @@ import {
   Text,
   View
 } from "react-native";
-import { StackNavigator } from "react-navigation";
 import axios from 'axios';
+import { StackNavigator } from "react-navigation";
 
 export default class EditPassword extends Component {
   static navigationOptions = {
