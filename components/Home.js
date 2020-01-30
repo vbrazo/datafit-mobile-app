@@ -15,13 +15,6 @@ import {
 import { StackNavigator } from "react-navigation";
 
 export default class Home extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
   static navigationOptions = {
     headerStyle: {
       backgroundColor: "#16a085",
@@ -29,17 +22,10 @@ export default class Home extends Component {
     },
     header: null
   };
-  async onLoginPress() {
-    const { email, password } = this.state;
-    console.log(email);
-    console.log(password);
-  }
 
   componentWillUnmount() {
     AsyncStorage.getItem('token').then(token => {
       if (token !== null) {
-        const { password } = this.state;
-
         const headers = {
           'Authorization': token
         };
@@ -50,7 +36,7 @@ export default class Home extends Component {
           headers: headers
         }).then((response) => {
           if(response["status"] == 200){
-            // build grid
+            // it should build the list of exercise grid
           } else {
             console.error("Bad request");
           }
