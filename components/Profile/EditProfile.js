@@ -36,37 +36,46 @@ export default class EditProfile extends Component {
     };
   }
 
-  onSubmitPress() {
+  onSubmitPress = async () => {
     const { email, password, name, dateOfBirth, height, weight, userType} = this.state;
 
-    const headers = {
-      'Authorization': AsyncStorage.getItem('token')
-    };
+    AsyncStorage.getItem('token').then(token => {
+      if (token !== null) {
+        const { password } = this.state;
 
-    const params = {
-      email: email,
-      password: password,
-      name: name,
-      date_of_birth: dateOfBirth,
-      height: height,
-      weight: weight,
-      user_type: userType
-    }
+        const headers = {
+          'Authorization': token
+        };
 
-    axios({
-      method: 'PUT',
-      url: 'https://datafit-api.herokuapp.com/api/mobile/users/change_profile',
-      headers: headers
-    }).then((response) => {
-      if(response["status"] == 200){
-        this.props.navigation.navigate("Profile");
+        const params = {
+          email: email,
+          password: password,
+          name: name,
+          date_of_birth: dateOfBirth,
+          height: height,
+          weight: weight,
+          user_type: userType
+        }
+
+        axios({
+          method: 'PUT',
+          url: 'https://datafit-api.herokuapp.com/api/mobile/users/change_profile',
+          params: params,
+          headers: headers
+        }).then((response) => {
+          if(response["status"] == 200){
+            this.props.navigation.navigate("Profile");
+          } else {
+            console.error("Bad request");
+          }
+        })
+        .catch((error) => {
+           // Handle returned errors here
+        });
       } else {
-        console.error("Bad request");
+        // Handle exception
       }
-    })
-    .catch((error) => {
-       // Handle returned errors here
-    });
+    }).catch(err => reject(err));
   }
 
   render() {
@@ -114,7 +123,7 @@ export default class EditProfile extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
-                value={this.state.name}
+                value={this.state.dateOfBirth}
                 onChangeText={dateOfBirth => this.setState({ dateOfBirth })}
               />
               <Text style={styles.formLabel}>DATA DE NASCIMENTO</Text>

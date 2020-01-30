@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  AsyncStorage,
   AppRegistry,
   KeyboardAvoidingView,
   Image,
@@ -11,7 +12,6 @@ import {
   View
 } from "react-native";
 import { StackNavigator } from "react-navigation";
-import RNSecureStorage, { ACCESSIBLE } from 'rn-secure-storage';
 import axios from 'axios';
 
 export default class Login extends Component {
@@ -32,12 +32,9 @@ export default class Login extends Component {
   };
 
   onSuccess = async (token) => {
-    RNSecureStorage.set("token", token, {accessible: ACCESSIBLE.WHEN_UNLOCKED}).then((res) => {
-      console.log(res);
-      this.props.navigation.navigate("Home");
-    }, (err) => {
-      console.log(err);
-    });
+    AsyncStorage.setItem('token', token);
+
+    this.props.navigation.navigate("Home");
   }
 
   onLoginPress() {

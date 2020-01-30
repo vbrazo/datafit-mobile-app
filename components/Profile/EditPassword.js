@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  AsyncStorage,
   AppRegistry,
   CheckBox,
   KeyboardAvoidingView,
@@ -14,7 +15,6 @@ import {
 } from "react-native";
 import { StackNavigator } from "react-navigation";
 import axios from 'axios';
-import RNSecureStorage from 'rn-secure-storage';
 
 export default class EditPassword extends Component {
   static navigationOptions = {
@@ -34,32 +34,37 @@ export default class EditPassword extends Component {
   }
 
   onSubmitPress = async () => {
-    const token = await RNSecureStorage.get("token");
+    AsyncStorage.getItem('token').then(token => {
+      if (token !== null) {
+        const { password } = this.state;
 
-    const { password } = this.state;
+        const headers = {
+          'Authorization': token
+        };
 
-    const headers = {
-      'Authorization': token
-    };
+        const params = {
+          password: password
+        }
 
-    const params = {
-      password: password
-    }
-
-    axios({
-      method: 'PUT',
-      url: 'https://datafit-api.herokuapp.com/api/mobile/users/change_profile',
-      headers: headers
-    }).then((response) => {
-      if(response["status"] == 200){
-        this.props.navigation.navigate("Profile");
+        axios({
+          method: 'PUT',
+          url: 'https://datafit-api.herokuapp.com/api/mobile/users/change_profile',
+          params: params,
+          headers: headers
+        }).then((response) => {
+          if(response["status"] == 200){
+            this.props.navigation.navigate("Profile");
+          } else {
+            console.error("Bad request");
+          }
+        })
+        .catch((error) => {
+           // Handle returned errors here
+        });
       } else {
-        console.error("Bad request");
+        // Handle exception
       }
-    })
-    .catch((error) => {
-       // Handle returned errors here
-    });
+    }).catch(err => reject(err));
   }
 
   render() {
