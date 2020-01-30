@@ -37,16 +37,15 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
-        <View><Text>my text</Text></View>
+      <View style={styles.containerFooter}>
         <View style={styles.footer}>
-          <View style={styles.measurementsCol}>
+          <View style={styles.footerCol}>
             <Image source={require("../assets/images/home/home-icon.png")} />
           </View>
-          <View style={styles.measurementsCol}>
+          <View style={styles.footerCol}>
             <Image source={require("../assets/images/home/history-icon.png")} />
           </View>
-          <View style={styles.measurementsCol}>
+          <View style={styles.footerCol}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
               <Image source={require("../assets/images/home/profile-icon.png")} />
             </TouchableHighlight>
@@ -58,17 +57,22 @@ export default class Home extends Component {
 }
 
 const styles = StyleSheet.create({
-  footer: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "#2A2E34",
-    height: 50,
-    flexDirection: "row",
-    height: 100
+  containerFooter: {
+    flex: 1,
+    backgroundColor: "#2A2E34"
   },
-  measurementsCol: {
+  footer: {
+    position: "absolute",
+    height: 68,
+    left: 0,
+    top: 828,
+    backgroundColor: "#2A2E34",
+    elevation: 4,
+    shadowColor: "rgba(35, 37, 40, 0.614729)",
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+  },
+  footerCol: {
     width: "33%"
   }
 });
