@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  AsyncStorage,
   AppRegistry,
   KeyboardAvoidingView,
   Image,
@@ -23,7 +24,7 @@ export default class Home extends Component {
     header: null
   };
 
-  componentWillUnmount() {
+  componentWillMount() {
     AsyncStorage.getItem('token').then(token => {
       if (token !== null) {
         const headers = {
