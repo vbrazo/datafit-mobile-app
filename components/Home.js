@@ -35,6 +35,35 @@ export default class Home extends Component {
     console.log(password);
   }
 
+  componentWillUnmount() {
+    AsyncStorage.getItem('token').then(token => {
+      if (token !== null) {
+        const { password } = this.state;
+
+        const headers = {
+          'Authorization': token
+        };
+
+        axios({
+          method: 'GET',
+          url: 'https://datafit-api.herokuapp.com/api/mobile/exercises',
+          headers: headers
+        }).then((response) => {
+          if(response["status"] == 200){
+            // build grid
+          } else {
+            console.error("Bad request");
+          }
+        })
+        .catch((error) => {
+           // Handle returned errors here
+        });
+      } else {
+        // Handle exception
+      }
+    }).catch(err => reject(err));
+  }
+
   render() {
     return (
       <View style={styles.container}>
