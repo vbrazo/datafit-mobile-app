@@ -4,6 +4,7 @@ import {
   Image,
   StyleSheet,
   TouchableHighlight,
+  TouchableOpacity,
   Text,
   View
 } from "react-native";
@@ -22,19 +23,18 @@ export default class Profile extends Component {
     return (
       <View style={styles.container}>
         <View behavior="padding" style={styles.container}>
-          <View style={styles.firstWindow}>
-            <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
-              <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
-            </TouchableHighlight>
-            <Text style={styles.title}>Perfil</Text>
+          <View style={styles.navBar}>
+            <Text style={styles.title}>
+              Perfil
+            </Text>
           </View>
 
-          <View style={styles.window}>
+          <View>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("EditProfile")}>
               <View>
                 <Text style={styles.formLabel}>
                   Editar Perfil
-                  <Image source={require("../../assets/images/icon-profile.png")} style={styles.icons} />
+                  <Image source={require("../../assets/images/icon-profile.png")} />
                 </Text>
               </View>
             </TouchableHighlight>
@@ -44,7 +44,7 @@ export default class Profile extends Component {
             <TouchableHighlight onPress={() => this.props.navigation.navigate("EditPassword")}>
               <Text style={styles.formLabel}>
                 Alterar senha
-                <Image source={require("../../assets/images/icon-profile.png")} style={styles.icons} />
+                <Image source={require("../../assets/images/icon-profile.png")} />
               </Text>
             </TouchableHighlight>
           </View>
@@ -53,7 +53,7 @@ export default class Profile extends Component {
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Initial")}>
               <Text style={styles.formLabel}>
                 Sair
-                <View style={styles.icons}>
+                <View style={{width:"100%", textAlign:"right"}}>
                   <Image source={require("../../assets/images/icon-profile.png")} />
                 </View>
               </Text>
@@ -63,6 +63,17 @@ export default class Profile extends Component {
           <View style={styles.window}>
             <Text style={styles.versionText}>version 1.0.0</Text>
           </View>
+
+          <View style={styles.footer}>
+            <View style={styles.footerCol}>
+              <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
+                <Image source={require("../../assets/images/icon-home.png")} />
+              </TouchableHighlight>
+            </View>
+            <View style={styles.footerCol}>
+              <Image source={require("../../assets/images/icon-profile-active.png")} />
+            </View>
+          </View>
         </View>
       </View>
     );
@@ -70,6 +81,31 @@ export default class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
+  navBar: {
+    padding: 20,
+    marginTop: 50,
+    height: 60,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  leftContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  },
+  rightContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  rightIcon: {
+    height: 10,
+    width: 10,
+    resizeMode: 'contain',
+    backgroundColor: 'white',
+  },
   userTypeText:{
     color: "#C9CDD0",
     width: "100%",
@@ -100,13 +136,14 @@ const styles = StyleSheet.create({
     height: 100
   },
   window: {
-    marginBottom: 15
+    marginBottom: 15,
+    width: "100%"
   },
   firstWindow: {
     marginTop: 55
   },
   title: {
-    fontFamily: "Roboto-Regular",
+    fontFamily: "Roboto-Medium",
     fontSize: 20,
     color: "#FFFFFF",
     textAlign: "center"
@@ -157,7 +194,23 @@ const styles = StyleSheet.create({
     borderBottomColor: "#C9CDD0"
   },
   icons: {
-    alignItems: "center"
+  },
+  footer: {
+    flexDirection: 'row',
+    position: "absolute",
+    height: 60,
+    left: 0,
+    bottom: 0,
+    backgroundColor: "#2A2E34",
+    elevation: 4,
+    shadowColor: "rgba(35, 37, 40, 0.614729)",
+    shadowOpacity: 0.5,
+    shadowRadius: 10
+  },
+  footerCol: {
+    width: "50%",
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

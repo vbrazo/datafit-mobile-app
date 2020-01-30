@@ -97,12 +97,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     height: 60,
     left: 0,
-    top: 828,
+    bottom: 0,
     backgroundColor: "#2A2E34",
     elevation: 4,
     shadowColor: "rgba(35, 37, 40, 0.614729)",
     shadowOpacity: 0.5,
-    shadowRadius: 10,
+    shadowRadius: 10
   },
   footerCol: {
     width: "50%",

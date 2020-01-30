@@ -83,14 +83,20 @@ export default class EditProfile extends Component {
       <View style={styles.container}>
         <View behavior="padding" style={styles.container}>
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
-            <View style={styles.window}>
-              <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
-                <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
-              </TouchableHighlight>
-              <Text style={styles.title}>Editar perfil</Text>
-              <TouchableOpacity onPress={this.onSubmitPress.bind(this)}>
-                <Image source={require("../../assets/images/icon-submit.png")} style={styles.submitButton} />
-              </TouchableOpacity>
+            <View style={styles.navBar}>
+              <View style={styles.leftContainer}>
+                <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
+                  <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
+                </TouchableHighlight>
+              </View>
+              <Text style={styles.title}>
+                Editar perfil
+              </Text>
+              <View style={styles.rightContainer}>
+                <TouchableOpacity onPress={this.onSubmitPress.bind(this)}>
+                  <Image source={require("../../assets/images/icon-submit.png")} style={styles.submitButton} />
+                </TouchableOpacity>
+              </View>
             </View>
 
             <View style={styles.window}>
@@ -170,6 +176,29 @@ export default class EditProfile extends Component {
 }
 
 const styles = StyleSheet.create({
+  navBar: {
+    height: 60,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  leftContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  },
+  rightContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  rightIcon: {
+    height: 10,
+    width: 10,
+    resizeMode: 'contain',
+    backgroundColor: 'white',
+  },
   userTypeText:{
     color: "#C9CDD0",
     width: "100%",
