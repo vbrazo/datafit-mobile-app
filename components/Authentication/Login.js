@@ -70,7 +70,6 @@ export default class Login extends Component {
             <View style={styles.window}>
               <TextInput
                 returnKeyType="next"
-                onSubmitEditing={() => this.passwordInput.focus()}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
