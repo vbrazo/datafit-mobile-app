@@ -37,7 +37,20 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View style={styles.containerFooter}>
+      <View style={styles.container}>
+        <View style={styles.contentContainer}>
+          <Text style={styles.title}>CrossFit</Text>
+          <Text style={styles.description}>Escolha um exercício abaixo para começar a praticar</Text>
+          <View>
+            <Image source={require("../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
+          </View>
+          <View>
+            <Image source={require("../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
+          </View>
+          <View>
+            <Image source={require("../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
+          </View>
+        </View>
         <View style={styles.footer}>
           <View style={styles.footerCol}>
             <Image source={require("../assets/images/home/home-icon.png")} />
@@ -54,7 +67,28 @@ export default class Home extends Component {
 }
 
 const styles = StyleSheet.create({
-  containerFooter: {
+  mainPicture: {
+    width: "98%",
+    top: 20
+  },
+  description: {
+    color: "#868E97",
+    fontFamily: "Roboto-Regular",
+    fontSize: 16,
+    lineHeight: 23,
+    width: 220,
+    top: 5
+  },
+  title: {
+    fontFamily: "Roboto-Medium",
+    color: "#E9E9E9",
+    fontSize: 25
+  },
+  contentContainer: {
+    padding: 24,
+    top: 50
+  },
+  container: {
     flex: 1,
     backgroundColor: "#2A2E34"
   },

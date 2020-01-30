@@ -34,7 +34,7 @@ export default class Profile extends Component {
               <View>
                 <Text style={styles.formLabel}>
                   Editar Perfil
-                  <Image source={require("../../assets/images/icon-profile.png")} />
+                  <Image source={require("../../assets/images/icon-profile.png")} style={styles.icons} />
                 </Text>
               </View>
             </TouchableHighlight>
@@ -44,7 +44,7 @@ export default class Profile extends Component {
             <TouchableHighlight onPress={() => this.props.navigation.navigate("EditPassword")}>
               <Text style={styles.formLabel}>
                 Alterar senha
-                <Image source={require("../../assets/images/icon-profile.png")} />
+                <Image source={require("../../assets/images/icon-profile.png")} style={styles.icons} />
               </Text>
             </TouchableHighlight>
           </View>
@@ -53,7 +53,9 @@ export default class Profile extends Component {
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Initial")}>
               <Text style={styles.formLabel}>
                 Sair
-                <Image source={require("../../assets/images/icon-profile.png")} style={{textAlign: 'right'}} />
+                <View style={styles.icons}>
+                  <Image source={require("../../assets/images/icon-profile.png")} />
+                </View>
               </Text>
             </TouchableHighlight>
           </View>
@@ -153,6 +155,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1.0,
     width: "100%",
     borderBottomColor: "#C9CDD0"
+  },
+  icons: {
+    alignItems: "center"
   }
 });
 
