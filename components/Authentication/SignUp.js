@@ -191,10 +191,18 @@ export default class SignUp extends Component {
             </View>
 
             <View style={styles.window}>
-              <CheckBox title='Li e concordo com os termos de uso e políticas de privacidade'
-                        style={styles.checkbox}
-                        value={this.state.rememberMe} />
-              <Text style={styles.formLabel}>Li e concordo com os termos de uso e políticas de privacidade</Text>
+              <View style={styles.navBar}>
+                <View style={styles.leftContainer}>
+                  <CheckBox title='Li e concordo com os termos de uso e políticas de privacidade'
+                      style={styles.checkbox}
+                      value={this.state.rememberMe} />
+                </View>
+                <Text style={styles.titleCheckbox}>
+                  Li e concordo com os termos de uso e políticas de privacidade
+                </Text>
+                <View style={styles.rightContainer}>
+                </View>
+              </View>
             </View>
 
             <TouchableOpacity style={styles.buttonContainer} onPress={this.onNextPress.bind(this)}>
@@ -222,8 +230,7 @@ const styles = StyleSheet.create({
   rightContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center'
+    justifyContent: 'flex-end'
   },
   rightIcon: {
     height: 10,
@@ -235,9 +242,11 @@ const styles = StyleSheet.create({
     color: "#C9CDD0",
     width: "100%",
     textAlign: "center",
-    textAlignVertical: "center"
+    textAlignVertical: "center",
+    top: 7
   },
   userType1: {
+    textAlignVertical: "center",
     borderColor: "#C9CDD0",
     borderWidth: 1,
     borderBottomLeftRadius: 7,
@@ -308,6 +317,14 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 20,
     color: "#2A2E34",
+    fontFamily: "Roboto-Regular"
+  },
+  titleCheckbox: {
+    color: "#C9CDD0",
+    fontSize: 15,
+    marginTop: 10,
+    left: 20,
+    lineHeight: 18,
     fontFamily: "Roboto-Regular"
   },
   formLabel: {

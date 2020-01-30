@@ -203,7 +203,8 @@ const styles = StyleSheet.create({
     color: "#C9CDD0",
     width: "100%",
     textAlign: "center",
-    textAlignVertical: "center"
+    textAlignVertical: "center",
+    top: 7
   },
   userType1: {
     borderColor: "#C9CDD0",

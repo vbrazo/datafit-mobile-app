@@ -31,32 +31,43 @@ export default class Profile extends Component {
 
           <View>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("EditProfile")}>
-              <View>
-                <Text style={styles.formLabel}>
-                  Editar Perfil
+              <View style={{backgroundColor:"#303641",marginTop: 10,flexDirection: 'row',justifyContent: 'space-between',alignItems: 'center', height: 56}}>
+                <View style={{flexDirection: 'row',justifyContent: 'flex-start',flex: 1}}>
+                  <Text style={styles.formLabel}>
+                    Editar Perfil
+                  </Text>
+                </View>
+                <View style={{flex: 1,flexDirection: 'row',justifyContent: 'flex-end',alignItems: 'center', paddingRight: 20}}>
                   <Image source={require("../../assets/images/icon-profile.png")} />
-                </Text>
+                </View>
+              </View>
+            </TouchableHighlight>
+          </View>
+
+          <View>
+            <TouchableHighlight onPress={() => this.props.navigation.navigate("EditPassword")}>
+              <View style={{backgroundColor:"#303641",marginTop: 10,flexDirection: 'row',justifyContent: 'space-between',alignItems: 'center', height: 56}}>
+                <View style={{flexDirection: 'row',justifyContent: 'flex-start',flex: 1}}>
+                  <Text style={styles.formLabel}>
+                    Alterar senha
+                  </Text>
+                </View>
+                <View style={{flex: 1,flexDirection: 'row',justifyContent: 'flex-end',alignItems: 'center', paddingRight: 20}}>
+                  <Image source={require("../../assets/images/icon-profile.png")} />
+                </View>
               </View>
             </TouchableHighlight>
           </View>
 
           <View style={styles.window}>
-            <TouchableHighlight onPress={() => this.props.navigation.navigate("EditPassword")}>
-              <Text style={styles.formLabel}>
-                Alterar senha
-                <Image source={require("../../assets/images/icon-profile.png")} />
-              </Text>
-            </TouchableHighlight>
-          </View>
-
-          <View style={styles.window}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Initial")}>
-              <Text style={styles.formLabel}>
-                Sair
-                <View style={{width:"100%", textAlign:"right"}}>
-                  <Image source={require("../../assets/images/icon-profile.png")} />
+              <View style={{backgroundColor:"#303641",marginTop: 10,flexDirection: 'row',justifyContent: 'space-between',alignItems: 'center', height: 56}}>
+                <View style={{flexDirection: 'row',justifyContent: 'flex-start',flex: 1}}>
+                  <Text style={styles.formLabel}>
+                    Sair
+                  </Text>
                 </View>
-              </Text>
+              </View>
             </TouchableHighlight>
           </View>
 
@@ -179,10 +190,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#303641",
     height: 56,
     fontSize: 16,
-    marginTop: 10,
     fontFamily: "Roboto-Regular",
     paddingLeft: 20,
-    paddingTop: 15
+    paddingTop: 18
+  },
+  layer: {
+    color: "#C9CDD0",
+    backgroundColor: "#303641"
   },
   input: {
     height: 40,
