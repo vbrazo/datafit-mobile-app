@@ -12,7 +12,7 @@ import {
   ScrollView,
   View
 } from "react-native";
-
+import axios from 'axios';
 import { StackNavigator } from "react-navigation";
 
 export default class Home extends Component {
@@ -48,7 +48,7 @@ export default class Home extends Component {
       } else {
         // Handle exception
       }
-    }).catch(err => reject(err));
+    }).catch(err => console.error(err));
   }
 
   render() {
