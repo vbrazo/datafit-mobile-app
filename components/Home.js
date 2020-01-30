@@ -43,9 +43,6 @@ export default class Home extends Component {
             <Image source={require("../assets/images/home/home-icon.png")} />
           </View>
           <View style={styles.footerCol}>
-            <Image source={require("../assets/images/home/history-icon.png")} />
-          </View>
-          <View style={styles.footerCol}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
               <Image source={require("../assets/images/home/profile-icon.png")} />
             </TouchableHighlight>
@@ -74,7 +71,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
   },
   footerCol: {
-    width: "33%",
+    width: "50%",
     justifyContent: 'center',
     alignItems: 'center'
   }
