@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  AsyncStorage,
   AppRegistry,
   CheckBox,
   KeyboardAvoidingView,
@@ -13,6 +14,7 @@ import {
   View
 } from "react-native";
 import { StackNavigator } from "react-navigation";
+import axios from 'axios';
 
 export default class EditPassword extends Component {
   static navigationOptions = {
@@ -31,29 +33,38 @@ export default class EditPassword extends Component {
     };
   }
 
-  onSubmitPress() {
-    const { password } = this.state;
+  onSubmitPress = async () => {
+    AsyncStorage.getItem('token').then(token => {
+      if (token !== null) {
+        const { password } = this.state;
 
-    const params = {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        password: password
-      })
-    }
+        const headers = {
+          'Authorization': token
+        };
 
-    fetch('https://datafit-api.herokuapp.com/api/users/password', params).then((response) => response.json())
-    .then((response) => {
-      if (response["errors"][0]["status"] == "200"){
-        this.props.navigation.navigate("Home");
+        const params = {
+          password: password
+        }
+
+        axios({
+          method: 'PUT',
+          url: 'https://datafit-api.herokuapp.com/api/mobile/users/change_profile',
+          params: params,
+          headers: headers
+        }).then((response) => {
+          if(response["status"] == 200){
+            this.props.navigation.navigate("Profile");
+          } else {
+            console.error("Bad request");
+          }
+        })
+        .catch((error) => {
+           // Handle returned errors here
+        });
+      } else {
+        // Handle exception
       }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+    }).catch(err => reject(err));
   }
 
   render() {
@@ -63,11 +74,11 @@ export default class EditPassword extends Component {
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
             <View style={styles.window}>
               <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
-                <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
+                <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
               </TouchableHighlight>
               <Text style={styles.title}>Alterar senha</Text>
               <TouchableOpacity onPress={this.onSubmitPress.bind(this)}>
-                <Image source={require("../assets/images/icon-submit.png")} style={styles.submitButton} />
+                <Image source={require("../../assets/images/icon-submit.png")} style={styles.submitButton} />
               </TouchableOpacity>
             </View>
 

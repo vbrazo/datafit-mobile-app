@@ -24,7 +24,7 @@ export default class Profile extends Component {
         <View behavior="padding" style={styles.container}>
           <View style={styles.firstWindow}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
-              <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
+              <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
             </TouchableHighlight>
             <Text style={styles.title}>Perfil</Text>
           </View>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  AsyncStorage,
   AppRegistry,
   KeyboardAvoidingView,
   Image,
@@ -10,8 +11,8 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-
 import { StackNavigator } from "react-navigation";
+import axios from 'axios';
 
 export default class Login extends Component {
   constructor() {
@@ -20,6 +21,7 @@ export default class Login extends Component {
       email: "",
       password: ""
     };
+    this.onSuccess.bind(this);
   }
   static navigationOptions = {
     headerStyle: {
@@ -28,11 +30,33 @@ export default class Login extends Component {
     },
     header: null
   };
-  async onLoginPress() {
-    const { email, password } = this.state;
-    console.log(email);
-    console.log(password);
+
+  onSuccess = async (token) => {
+    AsyncStorage.setItem('token', token);
+
     this.props.navigation.navigate("Home");
+  }
+
+  onLoginPress() {
+    const { email, password } = this.state;
+
+    const params = {
+      user: {
+        email: email,
+        password: password
+      }
+    }
+
+    axios.post("https://datafit-api.herokuapp.com/api/users/sign_in", params).then((response) => {
+      if(response["status"] == 200){
+        this.onSuccess(response["headers"]["authorization"]);
+      } else {
+        console.error("Bad request");
+      }
+    })
+    .catch((error) => {
+       // Handle returned errors here
+    });
   }
 
   render() {
@@ -40,7 +64,7 @@ export default class Login extends Component {
       <View style={styles.container}>
         <View behavior="padding" style={styles.container}>
           <View style={styles.logoContainer}>
-            <Image source={require("../assets/images/logo.png")} />
+            <Image source={require("../../assets/images/logo.png")} />
           </View>
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
             <View style={styles.window}>
@@ -64,7 +88,7 @@ export default class Login extends Component {
                   style={styles.input}
                   value={this.state.password}
                   onChangeText={password => this.setState({ password })} />
-                <Image source={require("../assets/images/eye-no.png")} style={styles.passwordHiddenIcon} />
+                <Image source={require("../../assets/images/eye-no.png")} style={styles.passwordHiddenIcon} />
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Text style={styles.passwordLabel}>SENHA</Text>

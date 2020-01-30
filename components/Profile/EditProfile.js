@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  AsyncStorage,
   AppRegistry,
   KeyboardAvoidingView,
   Image,
@@ -11,6 +12,7 @@ import {
   View
 } from "react-native";
 import { StackNavigator } from "react-navigation";
+import axios from 'axios';
 
 export default class EditProfile extends Component {
   static navigationOptions = {
@@ -34,35 +36,46 @@ export default class EditProfile extends Component {
     };
   }
 
-  onSubmitPress() {
+  onSubmitPress = async () => {
     const { email, password, name, dateOfBirth, height, weight, userType} = this.state;
 
-    const params = {
-      method: 'PUT',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-        name: name,
-        date_of_birth: dateOfBirth,
-        height: height,
-        weight: weight,
-        user_type: userType
-      })
-    }
+    AsyncStorage.getItem('token').then(token => {
+      if (token !== null) {
+        const { password } = this.state;
 
-    fetch('https://datafit-api.herokuapp.com/api/mobile/users/1/change_profile', params).then((response) => response.json())
-    .then((response) => {
-      if (response["errors"][0]["status"] == "200"){
-        this.props.navigation.navigate("Home");
+        const headers = {
+          'Authorization': token
+        };
+
+        const params = {
+          email: email,
+          password: password,
+          name: name,
+          date_of_birth: dateOfBirth,
+          height: height,
+          weight: weight,
+          user_type: userType
+        }
+
+        axios({
+          method: 'PUT',
+          url: 'https://datafit-api.herokuapp.com/api/mobile/users/change_profile',
+          params: params,
+          headers: headers
+        }).then((response) => {
+          if(response["status"] == 200){
+            this.props.navigation.navigate("Profile");
+          } else {
+            console.error("Bad request");
+          }
+        })
+        .catch((error) => {
+           // Handle returned errors here
+        });
+      } else {
+        // Handle exception
       }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+    }).catch(err => reject(err));
   }
 
   render() {
@@ -72,11 +85,11 @@ export default class EditProfile extends Component {
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
             <View style={styles.window}>
               <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
-                <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
+                <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
               </TouchableHighlight>
               <Text style={styles.title}>Editar perfil</Text>
               <TouchableOpacity onPress={this.onSubmitPress.bind(this)}>
-                <Image source={require("../assets/images/icon-submit.png")} style={styles.submitButton} />
+                <Image source={require("../../assets/images/icon-submit.png")} style={styles.submitButton} />
               </TouchableOpacity>
             </View>
 
@@ -110,7 +123,7 @@ export default class EditProfile extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
-                value={this.state.name}
+                value={this.state.dateOfBirth}
                 onChangeText={dateOfBirth => this.setState({ dateOfBirth })}
               />
               <Text style={styles.formLabel}>DATA DE NASCIMENTO</Text>

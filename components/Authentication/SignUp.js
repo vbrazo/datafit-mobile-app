@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  AsyncStorage,
   AppRegistry,
   CheckBox,
   KeyboardAvoidingView,
@@ -13,6 +14,7 @@ import {
   View
 } from "react-native";
 import { StackNavigator } from "react-navigation";
+import axios from 'axios';
 
 export default class SignUp extends Component {
   static navigationOptions = {
@@ -38,40 +40,38 @@ export default class SignUp extends Component {
     };
   }
 
+  onSuccess = async (token) => {
+    AsyncStorage.setItem('token', token);
+
+    this.props.navigation.navigate("Home");
+  }
+
   onNextPress() {
     const { email, password, name, dateOfBirth, height, weight, userType} = this.state;
 
     const params = {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        user: {
-          email: email,
-          password: password,
-          password_confirmation: password,
-          name: name,
-          agree_to_tac: true,
-          date_of_birth: dateOfBirth,
-          height: height,
-          weight: weight,
-          user_type: userType
-        }
-      })
+      user: {
+        email: email,
+        password: password,
+        password_confirmation: password,
+        name: name,
+        agree_to_tac: true,
+        date_of_birth: dateOfBirth,
+        height: height,
+        weight: weight,
+        user_type: userType
+      }
     }
 
-    fetch('https://datafit-api.herokuapp.com/api/users', params).then((response) => response.json())
-    .then((response) => {
-      if(response["errors"][0]["status"] == "400"){
-        console.error("Bad request - user may already exist");
-      } else if (response["errors"][0]["status"] == "200"){
-        this.props.navigation.navigate("Home");
+    axios.post("https://datafit-api.herokuapp.com/api/users", params).then((response) => {
+      if(response["status"] == 200){
+        this.onSuccess(response["headers"]["authorization"]);
+      } else {
+        console.error("Bad request");
       }
     })
     .catch((error) => {
-      console.error(error);
+       // Handle returned errors here
     });
   }
 
@@ -82,7 +82,7 @@ export default class SignUp extends Component {
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
             <View style={styles.window}>
               <TouchableHighlight onPress={() => this.props.navigation.navigate("Login")}>
-                <Image source={require("../assets/images/icon.png")} style={styles.backButton} />
+                <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
               </TouchableHighlight>
               <Text style={styles.title}>Completar cadastro</Text>
             </View>
