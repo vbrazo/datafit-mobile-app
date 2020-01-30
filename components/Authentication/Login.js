@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  AsyncStorage,
   AppRegistry,
   KeyboardAvoidingView,
   Image,
@@ -11,8 +10,8 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-
 import { StackNavigator } from "react-navigation";
+import RNSecureStorage, { ACCESSIBLE } from 'rn-secure-storage';
 import axios from 'axios';
 
 export default class Login extends Component {
@@ -22,6 +21,7 @@ export default class Login extends Component {
       email: "",
       password: ""
     };
+    this.onSuccess.bind(this);
   }
   static navigationOptions = {
     headerStyle: {
@@ -31,8 +31,17 @@ export default class Login extends Component {
     header: null
   };
 
+  onSuccess = async (token) => {
+    RNSecureStorage.set("token", token, {accessible: ACCESSIBLE.WHEN_UNLOCKED}).then((res) => {
+      console.log(res);
+      this.props.navigation.navigate("Home");
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
   onLoginPress() {
-    const { email, password} = this.state;
+    const { email, password } = this.state;
 
     const params = {
       user: {
@@ -43,9 +52,7 @@ export default class Login extends Component {
 
     axios.post("https://datafit-api.herokuapp.com/api/users/sign_in", params).then((response) => {
       if(response["status"] == 200){
-        AsyncStorage.setItem('token', `${response["headers"]["authorization"]}`);
-
-        this.props.navigation.navigate("Home");
+        this.onSuccess(response["headers"]["authorization"]);
       } else {
         console.error("Bad request");
       }

@@ -59,8 +59,6 @@ export default class EditProfile extends Component {
       headers: headers
     }).then((response) => {
       if(response["status"] == 200){
-        AsyncStorage.setItem('token', response["headers"]["authorization"]);
-
         this.props.navigation.navigate("Profile");
       } else {
         console.error("Bad request");

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  AsyncStorage,
   AppRegistry,
   CheckBox,
   KeyboardAvoidingView,
@@ -15,6 +14,7 @@ import {
 } from "react-native";
 import { StackNavigator } from "react-navigation";
 import axios from 'axios';
+import RNSecureStorage from 'rn-secure-storage';
 
 export default class EditPassword extends Component {
   static navigationOptions = {
@@ -33,13 +33,13 @@ export default class EditPassword extends Component {
     };
   }
 
-  onSubmitPress() {
+  onSubmitPress = async () => {
+    const token = await RNSecureStorage.get("token");
+
     const { password } = this.state;
 
-    console.error(AsyncStorage.getItem('token'));
-
     const headers = {
-      'Authorization': AsyncStorage.getItem('token')
+      'Authorization': token
     };
 
     const params = {
