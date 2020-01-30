@@ -80,7 +80,7 @@ export default class SignUp extends Component {
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
             <View style={styles.navBar}>
               <View style={styles.leftContainer}>
-                <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
+                <TouchableHighlight onPress={() => this.props.navigation.navigate("Initial")}>
                   <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
                 </TouchableHighlight>
               </View>
