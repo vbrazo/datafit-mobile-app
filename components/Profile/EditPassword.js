@@ -54,17 +54,15 @@ export default class EditPassword extends Component {
         }).then((response) => {
           if(response["status"] == 200){
             Alert.alert(
-              'Edit Password',
-              'Senha atualizada.',
+              'Senha atualizada',
+              '',
               [
                 {
                   text: 'Voltar',
                   onPress: () => this.props.navigation.navigate("Profile"),
                   style: 'cancel',
                 },
-                {text: 'OK', onPress: () => console.log('OK Pressed')},
               ],
-              {cancelable: false},
             );
           } else {
             console.error("Bad request");

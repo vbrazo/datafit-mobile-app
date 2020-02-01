@@ -66,17 +66,15 @@ export default class EditProfile extends Component {
         }).then((response) => {
           if(response["status"] == 200){
             Alert.alert(
-              'Edit Profile',
-              'Perfil atualizado.',
+              'Perfil atualizado',
+              '',
               [
                 {
                   text: 'Voltar',
                   onPress: () => this.props.navigation.navigate("Profile"),
                   style: 'cancel',
-                },
-                {text: 'OK', onPress: () => console.log('OK Pressed')},
+                }
               ],
-              {cancelable: false},
             );
           } else {
             console.error("Bad request");
