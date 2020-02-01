@@ -53,11 +53,11 @@ export default class Login extends Component {
         if(response["status"] == 200){
           this.onSuccess(response["headers"]["authorization"]);
         } else {
-          Alert.alert('Invalid credentials. Please try again.');
+          Alert.alert('Dados inválidos. Por favor tente novamente.');
         }
       })
       .catch((error) => {
-         Alert.alert('Invalid credentials. Please try again.');
+         Alert.alert('Dados inválidos. Por favor tente novamente.');
       });
     }
   }
