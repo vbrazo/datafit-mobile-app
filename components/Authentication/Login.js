@@ -52,7 +52,7 @@ export default class Login extends Component {
 
     if(email == ""){
       this.alertMessage();
-    }else{
+    } else {
       axios.post("https://datafit-api.herokuapp.com/api/users/sign_in", params).then((response) => {
         if(response["status"] == 200){
           this.onSuccess(response["headers"]["authorization"]);
