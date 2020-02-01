@@ -74,7 +74,7 @@ export default class EditProfile extends Component {
                   onPress: () => this.props.navigation.navigate("Profile"),
                   style: 'cancel',
                 }
-              ],
+              ]
             );
           } else {
             console.error("Bad request");

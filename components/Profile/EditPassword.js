@@ -61,8 +61,8 @@ export default class EditPassword extends Component {
                   text: 'Voltar',
                   onPress: () => this.props.navigation.navigate("Profile"),
                   style: 'cancel',
-                },
-              ],
+                }
+              ]
             );
           } else {
             console.error("Bad request");
