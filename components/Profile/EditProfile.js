@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  Alert,
   AsyncStorage,
   AppRegistry,
   KeyboardAvoidingView,
@@ -64,7 +65,19 @@ export default class EditProfile extends Component {
           headers: headers
         }).then((response) => {
           if(response["status"] == 200){
-            this.props.navigation.navigate("Profile");
+            Alert.alert(
+              'Edit Profile',
+              'Perfil atualizado.',
+              [
+                {
+                  text: 'Voltar',
+                  onPress: () => this.props.navigation.navigate("Profile"),
+                  style: 'cancel',
+                },
+                {text: 'OK', onPress: () => console.log('OK Pressed')},
+              ],
+              {cancelable: false},
+            );
           } else {
             console.error("Bad request");
           }

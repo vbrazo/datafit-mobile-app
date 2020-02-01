@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  Alert,
   AsyncStorage,
   AppRegistry,
   KeyboardAvoidingView,
@@ -45,16 +46,20 @@ export default class Login extends Component {
       }
     }
 
-    axios.post("https://datafit-api.herokuapp.com/api/users/sign_in", params).then((response) => {
-      if(response["status"] == 200){
-        this.onSuccess(response["headers"]["authorization"]);
-      } else {
-        console.error("Bad request");
-      }
-    })
-    .catch((error) => {
-       // Handle returned errors here
-    });
+    if(email == ""){
+      Alert.alert('Dados inválidos. Por favor tente novamente.');
+    }else{
+      axios.post("https://datafit-api.herokuapp.com/api/users/sign_in", params).then((response) => {
+        if(response["status"] == 200){
+          this.onSuccess(response["headers"]["authorization"]);
+        } else {
+          Alert.alert('Invalid credentials. Please try again.');
+        }
+      })
+      .catch((error) => {
+         Alert.alert('Invalid credentials. Please try again.');
+      });
+    }
   }
 
   render() {
