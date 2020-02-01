@@ -41,8 +41,6 @@ export default class EditProfile extends Component {
 
     AsyncStorage.getItem('token').then(token => {
       if (token !== null) {
-        const { password } = this.state;
-
         const headers = {
           'Authorization': token
         };
