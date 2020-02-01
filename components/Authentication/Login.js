@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  Alert,
   AsyncStorage,
   AppRegistry,
   KeyboardAvoidingView,
@@ -35,6 +36,10 @@ export default class Login extends Component {
     this.props.navigation.navigate("Home");
   }
 
+  alertMessage(){
+    Alert.alert('Dados inválidos. Por favor tente novamente.');
+  }
+
   onLoginPress() {
     const { email, password } = this.state;
 
@@ -45,16 +50,20 @@ export default class Login extends Component {
       }
     }
 
-    axios.post("https://datafit-api.herokuapp.com/api/users/sign_in", params).then((response) => {
-      if(response["status"] == 200){
-        this.onSuccess(response["headers"]["authorization"]);
-      } else {
-        console.error("Bad request");
-      }
-    })
-    .catch((error) => {
-       // Handle returned errors here
-    });
+    if(email == ""){
+      this.alertMessage();
+    } else {
+      axios.post("https://datafit-api.herokuapp.com/api/users/sign_in", params).then((response) => {
+        if(response["status"] == 200){
+          this.onSuccess(response["headers"]["authorization"]);
+        } else {
+          this.alertMessage();
+        }
+      })
+      .catch((error) => {
+        this.alertMessage();
+      });
+    }
   }
 
   render() {

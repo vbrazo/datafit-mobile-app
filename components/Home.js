@@ -24,6 +24,7 @@ export default class Home extends Component {
     header: null
   };
 
+<<<<<<< HEAD
   componentWillMount() {
     AsyncStorage.getItem('token').then(token => {
       if (token !== null) {
@@ -49,6 +50,12 @@ export default class Home extends Component {
         // Handle exception
       }
     }).catch(err => console.error(err));
+=======
+  async onLoginPress() {
+    const { email, password } = this.state;
+    console.log(email);
+    console.log(password);
+>>>>>>> master
   }
 
   render() {

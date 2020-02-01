@@ -10,7 +10,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@unimodules/core": "^5.0.0",
+    "@unimodules/react-native-adapter": "^5.0.0",
     "axios": "^0.19.2",
+    "expo-constants": "^8.0.0",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-navigation": "^1.0.0-beta.14"
