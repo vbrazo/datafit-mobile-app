@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  Alert,
   AsyncStorage,
   AppRegistry,
   CheckBox,
@@ -52,7 +53,17 @@ export default class EditPassword extends Component {
           headers: headers
         }).then((response) => {
           if(response["status"] == 200){
-            this.props.navigation.navigate("Profile");
+            Alert.alert(
+              'Senha atualizada',
+              '',
+              [
+                {
+                  text: 'Voltar',
+                  onPress: () => this.props.navigation.navigate("Profile"),
+                  style: 'cancel',
+                }
+              ]
+            );
           } else {
             console.error("Bad request");
           }
