@@ -13,6 +13,7 @@ import {
   View
 } from "react-native";
 import axios from 'axios';
+
 import { StackNavigator } from "react-navigation";
 
 export default class Home extends Component {
@@ -24,38 +25,31 @@ export default class Home extends Component {
     header: null
   };
 
-<<<<<<< HEAD
   componentWillMount() {
     AsyncStorage.getItem('token').then(token => {
-      if (token !== null) {
-        const headers = {
-          'Authorization': token
-        };
+        if (token !== null) {
+          const headers = {
+            'Authorization': token
+          };
 
-        axios({
-          method: 'GET',
-          url: 'https://datafit-api.herokuapp.com/api/mobile/exercises',
-          headers: headers
-        }).then((response) => {
-          if(response["status"] == 200){
-            // it should build the list of exercise grid
-          } else {
-            console.error("Bad request");
-          }
-        })
-        .catch((error) => {
-           // Handle returned errors here
-        });
-      } else {
-        // Handle exception
-      }
+          axios({
+            method: 'GET',
+            url: 'https://datafit-api.herokuapp.com/api/mobile/exercises',
+            headers: headers
+          }).then((response) => {
+            if(response["status"] == 200){
+              // it should build the list of exercise grid
+            } else {
+              console.error("Bad request");
+            }
+          })
+          .catch((error) => {
+             // Handle returned errors here
+          });
+        } else {
+          // Handle exception
+        }
     }).catch(err => console.error(err));
-=======
-  async onLoginPress() {
-    const { email, password } = this.state;
-    console.log(email);
-    console.log(password);
->>>>>>> master
   }
 
   render() {
@@ -134,4 +128,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent("Home", () => Home);
+AppRegistry.registerComponent("Login", () => Login);
