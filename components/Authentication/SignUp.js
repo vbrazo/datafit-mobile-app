@@ -5,6 +5,8 @@ import {
   CheckBox,
   KeyboardAvoidingView,
   Image,
+  ScrollView,
+  SafeAreaView,
   StyleSheet,
   TextInput,
   TouchableHighlight,
@@ -13,6 +15,7 @@ import {
   View
 } from "react-native";
 import axios from 'axios';
+import Constants from 'expo-constants';
 
 export default class SignUp extends Component {
   static navigationOptions = {
@@ -76,146 +79,154 @@ export default class SignUp extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View behavior="padding" style={styles.container}>
-          <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
-            <View style={styles.navBar}>
-              <View style={styles.leftContainer}>
-                <TouchableHighlight onPress={() => this.props.navigation.navigate("Initial")}>
-                  <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
-                </TouchableHighlight>
-              </View>
-              <Text style={styles.title}>
-                Completar cadastro
-              </Text>
-              <View style={styles.rightContainer}>
-              </View>
-            </View>
-
-            <View style={styles.window}>
-              <TextInput
-                returnKeyType="next"
-                autoCapitalize="none"
-                autoCorrect={false}
-                style={styles.input}
-                value={this.state.name}
-                onChangeText={name => this.setState({ name })}
-              />
-              <Text style={styles.formLabel}>NOME COMPLETO</Text>
-            </View>
-
-            <View style={styles.window}>
-              <TextInput
-                returnKeyType="next"
-                autoCapitalize="none"
-                autoCorrect={false}
-                style={styles.input}
-                value={this.state.email}
-                onChangeText={email => this.setState({ email })}
-              />
-              <Text style={styles.formLabel}>E-MAIL</Text>
-            </View>
-
-            <View style={styles.window}>
-              <TextInput
-                returnKeyType="next"
-                autoCapitalize="none"
-                autoCorrect={false}
-                style={styles.input}
-                value={this.state.dateOfBirth}
-                onChangeText={dateOfBirth => this.setState({ dateOfBirth })}
-              />
-              <Text style={styles.formLabel}>DATA DE NASCIMENTO</Text>
-            </View>
-
-            <View style={styles.row}>
-              <View style={styles.measurementsCol}>
-                <TextInput
-                  returnKeyType="next"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  style={styles.input}
-                  value={this.state.height}
-                  onChangeText={height => this.setState({ height })}
-                />
-                <Text style={styles.formLabel}>ALTURA (CM)</Text>
-              </View>
-              <View style={styles.measurementsColSpace}></View>
-              <View style={styles.measurementsCol}>
-                <TextInput
-                  returnKeyType="next"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  style={styles.input}
-                  value={this.state.weight}
-                  onChangeText={weight => this.setState({ weight })}
-                />
-                <Text style={styles.formLabel}>PESO (KG)</Text>
-              </View>
-            </View>
-
-            <View style={styles.window}>
-              <Text style={styles.formLabel}>QUEM VOCÊ É</Text>
-              <View style={styles.rowUserType}>
-                <View style={styles.userType1}>
-                  <Text style={styles.userTypeText}>SOU ALUNO</Text>
+        <SafeAreaView style={styles.safeAreaView}>
+          <ScrollView>
+            <View behavior="padding" style={styles.container}>
+              <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
+                <View style={styles.navBar}>
+                  <View style={styles.leftContainer}>
+                    <TouchableHighlight onPress={() => this.props.navigation.navigate("Initial")}>
+                      <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
+                    </TouchableHighlight>
+                  </View>
+                  <Text style={styles.title}>
+                    Completar cadastro
+                  </Text>
+                  <View style={styles.rightContainer}>
+                  </View>
                 </View>
-                <View style={styles.userType2}>
-                  <Text style={styles.userTypeText}>SOU PROFESSOR</Text>
+
+                <View style={styles.window}>
+                  <TextInput
+                    returnKeyType="next"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    style={styles.input}
+                    value={this.state.name}
+                    onChangeText={name => this.setState({ name })}
+                  />
+                  <Text style={styles.formLabel}>NOME COMPLETO</Text>
                 </View>
-              </View>
-            </View>
 
-            <View style={styles.window}>
-              <TextInput
-                secureTextEntry
-                returnKeyType="next"
-                autoCapitalize="none"
-                autoCorrect={false}
-                style={styles.input}
-                value={this.state.password}
-                onChangeText={password => this.setState({ password })}
-              />
-              <Text style={styles.formLabel}>CRIAR SENHA</Text>
-            </View>
-
-            <View style={styles.window}>
-              <TextInput
-                secureTextEntry
-                returnKeyType="next"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                autoCorrect={false}
-                style={styles.input}
-              />
-              <Text style={styles.formLabel}>CONFIRMAR SENHA</Text>
-            </View>
-
-            <View style={styles.window}>
-              <View style={styles.navBar}>
-                <View style={styles.leftContainer}>
-                  <CheckBox title='Li e concordo com os termos de uso e políticas de privacidade'
-                      style={styles.checkbox}
-                      value={this.state.rememberMe} />
+                <View style={styles.window}>
+                  <TextInput
+                    returnKeyType="next"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    style={styles.input}
+                    value={this.state.email}
+                    onChangeText={email => this.setState({ email })}
+                  />
+                  <Text style={styles.formLabel}>E-MAIL</Text>
                 </View>
-                <Text style={styles.titleCheckbox}>
-                  Li e concordo com os termos de uso e políticas de privacidade
-                </Text>
-                <View style={styles.rightContainer}>
-                </View>
-              </View>
-            </View>
 
-            <TouchableOpacity style={styles.buttonContainer} onPress={this.onNextPress.bind(this)}>
-              <Text style={styles.buttonText}>Avancar</Text>
-            </TouchableOpacity>
-          </KeyboardAvoidingView>
-        </View>
+                <View style={styles.window}>
+                  <TextInput
+                    returnKeyType="next"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    style={styles.input}
+                    value={this.state.dateOfBirth}
+                    onChangeText={dateOfBirth => this.setState({ dateOfBirth })}
+                  />
+                  <Text style={styles.formLabel}>DATA DE NASCIMENTO</Text>
+                </View>
+
+                <View style={styles.row}>
+                  <View style={styles.measurementsCol}>
+                    <TextInput
+                      returnKeyType="next"
+                      autoCapitalize="none"
+                      autoCorrect={false}
+                      style={styles.input}
+                      value={this.state.height}
+                      onChangeText={height => this.setState({ height })}
+                    />
+                    <Text style={styles.formLabel}>ALTURA (CM)</Text>
+                  </View>
+                  <View style={styles.measurementsColSpace}></View>
+                  <View style={styles.measurementsCol}>
+                    <TextInput
+                      returnKeyType="next"
+                      autoCapitalize="none"
+                      autoCorrect={false}
+                      style={styles.input}
+                      value={this.state.weight}
+                      onChangeText={weight => this.setState({ weight })}
+                    />
+                    <Text style={styles.formLabel}>PESO (KG)</Text>
+                  </View>
+                </View>
+
+                <View style={styles.window}>
+                  <Text style={styles.formLabel}>QUEM VOCÊ É</Text>
+                  <View style={styles.rowUserType}>
+                    <View style={styles.userType1}>
+                      <Text style={styles.userTypeText}>SOU ALUNO</Text>
+                    </View>
+                    <View style={styles.userType2}>
+                      <Text style={styles.userTypeText}>SOU PROFESSOR</Text>
+                    </View>
+                  </View>
+                </View>
+
+                <View style={styles.window}>
+                  <TextInput
+                    secureTextEntry
+                    returnKeyType="next"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    style={styles.input}
+                    value={this.state.password}
+                    onChangeText={password => this.setState({ password })}
+                  />
+                  <Text style={styles.formLabel}>CRIAR SENHA</Text>
+                </View>
+
+                <View style={styles.window}>
+                  <TextInput
+                    secureTextEntry
+                    returnKeyType="next"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    style={styles.input}
+                  />
+                  <Text style={styles.formLabel}>CONFIRMAR SENHA</Text>
+                </View>
+
+                <View style={styles.window}>
+                  <View style={styles.navBar}>
+                    <View style={styles.leftContainer}>
+                      <CheckBox title='Li e concordo com os termos de uso e políticas de privacidade'
+                          style={styles.checkbox}
+                          value={this.state.rememberMe} />
+                    </View>
+                    <Text style={styles.titleCheckbox}>
+                      Li e concordo com os termos de uso e políticas de privacidade
+                    </Text>
+                    <View style={styles.rightContainer}>
+                    </View>
+                  </View>
+                </View>
+
+                <TouchableOpacity style={styles.buttonContainer} onPress={this.onNextPress.bind(this)}>
+                  <Text style={styles.buttonText}>Avancar</Text>
+                </TouchableOpacity>
+              </KeyboardAvoidingView>
+            </View>
+          </ScrollView>
+        </SafeAreaView>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  safeAreaView: {
+    flex: 1,
+    marginTop: Constants.statusBarHeight,
+  },
   navBar: {
     height: 60,
     flexDirection: 'row',

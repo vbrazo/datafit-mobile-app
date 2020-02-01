@@ -29,6 +29,7 @@ export default class Home extends Component {
     },
     header: null
   };
+
   async onLoginPress() {
     const { email, password } = this.state;
     console.log(email);
