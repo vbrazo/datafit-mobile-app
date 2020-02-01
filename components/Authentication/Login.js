@@ -36,6 +36,10 @@ export default class Login extends Component {
     this.props.navigation.navigate("Home");
   }
 
+  alertMessage(){
+    Alert.alert('Dados inválidos. Por favor tente novamente.');
+  }
+
   onLoginPress() {
     const { email, password } = this.state;
 
@@ -47,17 +51,17 @@ export default class Login extends Component {
     }
 
     if(email == ""){
-      Alert.alert('Dados inválidos. Por favor tente novamente.');
+      this.alertMessage();
     }else{
       axios.post("https://datafit-api.herokuapp.com/api/users/sign_in", params).then((response) => {
         if(response["status"] == 200){
           this.onSuccess(response["headers"]["authorization"]);
         } else {
-          Alert.alert('Dados inválidos. Por favor tente novamente.');
+          this.alertMessage();
         }
       })
       .catch((error) => {
-         Alert.alert('Dados inválidos. Por favor tente novamente.');
+        this.alertMessage();
       });
     }
   }
