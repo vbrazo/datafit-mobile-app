@@ -29,7 +29,9 @@ export default class Exercise extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.contentContainer}>
-          <Text style={styles.description}>Escolha um exercício abaixo para começar a praticar</Text>
+          <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
+            <Image source={require("../../assets/images/go.png")} />
+          </TouchableHighlight>
         </View>
 
         <View style={styles.footer}>
