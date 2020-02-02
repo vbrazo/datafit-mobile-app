@@ -75,7 +75,7 @@ export default class Home extends Component {
             {this.state.exercises.map((exercise, index) => (
               <View>
                 <TouchableHighlight onPress={() => this.props.navigation.navigate("Exercise")}>
-                <Image source={require("../../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
+                <Image source={require("../../assets/images/air-squat.png")} style={styles.mainPicture} />
                 </TouchableHighlight>
               </View>
             ))}
@@ -104,7 +104,8 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
   },
   mainPicture: {
-    width: "98%",
+    width: "100%",
+    height: 200,
     top: 20
   },
   description: {

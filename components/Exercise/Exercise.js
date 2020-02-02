@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import {
   AsyncStorage,
   AppRegistry,
+  ImageBackground,
   KeyboardAvoidingView,
   Image,
+  SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -28,12 +31,25 @@ export default class Exercise extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.contentContainer}>
-          <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
-            <Image source={require("../../assets/images/go.png")} />
-          </TouchableHighlight>
-        </View>
-
+      <SafeAreaView style={styles.safeAreaView}>
+        <ScrollView>
+        <ImageBackground source={require("../../assets/images/air-squat.png")} style={{width: '100%', height: 627}}>
+          <View style={styles.navBar}>
+            <View style={styles.leftContainer}>
+              <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
+                <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
+              </TouchableHighlight>
+            </View>
+          </View>
+          <View style={styles.contentContainer}>
+            <Text style={styles.title}>Air Squat</Text>
+            <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
+              <Image source={require("../../assets/images/go.png")} />
+            </TouchableHighlight>
+          </View>
+        </ImageBackground>
+        </ScrollView>
+        </SafeAreaView>
         <View style={styles.footer}>
           <View style={styles.footerCol}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
@@ -52,6 +68,26 @@ export default class Exercise extends Component {
 }
 
 const styles = StyleSheet.create({
+  navBar: {
+    height: 60,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  leftContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  },
+  safeAreaView: {
+    flex: 1,
+    marginTop: Constants.statusBarHeight
+  },
+  title: {
+    color: "#868E97",
+    fontFamily: "Roboto-Medium",
+    fontSize: 25
+  },
   safeAreaView: {
     flex: 1,
     marginTop: Constants.statusBarHeight,
@@ -75,7 +111,10 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 24,
-    top: 50
+    top: 50,
+    position: 'absolute', //Here is the trick
+    bottom: 0, //Here is the trick
+    height: 627
   },
   container: {
     flex: 1,
