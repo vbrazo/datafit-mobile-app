@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import {
+  AsyncStorage,
   AppRegistry,
   KeyboardAvoidingView,
   Image,
+  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
@@ -11,17 +13,12 @@ import {
   ScrollView,
   View
 } from "react-native";
+import axios from 'axios';
+import Constants from 'expo-constants';
 
 import { StackNavigator } from "react-navigation";
 
 export default class Home extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
   static navigationOptions = {
     headerStyle: {
       backgroundColor: "#16a085",
@@ -30,28 +27,60 @@ export default class Home extends Component {
     header: null
   };
 
-  async onLoginPress() {
-    const { email, password } = this.state;
-    console.log(email);
-    console.log(password);
+  constructor(props) {
+    super(props);
+    const exercises = [];
+    this.state = { exercises };
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('token').then(token => {
+      if (token !== null) {
+        const headers = {
+          'Authorization': token
+        };
+
+        axios({
+          method: 'GET',
+          url: 'https://datafit-api.herokuapp.com/api/mobile/exercises',
+          headers: headers
+        }).then((response) => {
+          if(response["status"] == 200){
+            response["data"].map((e, i) => {
+              this.setState({
+                exercises: this.state.exercises.concat([e])
+              })
+            });
+          } else {
+            console.error("Bad request");
+          }
+        })
+        .catch((error) => {
+           // Handle returned errors here
+        });
+      } else {
+        // Handle exception
+      }
+    }).catch(err => console.error(err));
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.contentContainer}>
-          <Text style={styles.title}>CrossFit</Text>
-          <Text style={styles.description}>Escolha um exercício abaixo para começar a praticar</Text>
-          <View>
-            <Image source={require("../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
+      <SafeAreaView style={styles.safeAreaView}>
+        <ScrollView>
+          <View style={styles.contentContainer}>
+            <Text style={styles.title}>CrossFit</Text>
+            <Text style={styles.description}>Escolha um exercício abaixo para começar a praticar</Text>
+            {this.state.exercises.map((exercise, index) => (
+              <View>
+                <Image source={require("../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
+              </View>
+            ))}
           </View>
-          <View>
-            <Image source={require("../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
-          </View>
-          <View>
-            <Image source={require("../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
-          </View>
-        </View>
+        </ScrollView>
+        </SafeAreaView>
+
         <View style={styles.footer}>
           <View style={styles.footerCol}>
             <Image source={require("../assets/images/home/home-icon.png")} />
@@ -68,6 +97,10 @@ export default class Home extends Component {
 }
 
 const styles = StyleSheet.create({
+  safeAreaView: {
+    flex: 1,
+    marginTop: Constants.statusBarHeight,
+  },
   mainPicture: {
     width: "98%",
     top: 20
