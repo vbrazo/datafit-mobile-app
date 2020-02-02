@@ -74,7 +74,9 @@ export default class Home extends Component {
             <Text style={styles.description}>Escolha um exercício abaixo para começar a praticar</Text>
             {this.state.exercises.map((exercise, index) => (
               <View>
-                <Image source={require("../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
+                <TouchableHighlight onPress={() => this.props.navigation.navigate("Exercise")}>
+                <Image source={require("../../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
+                </TouchableHighlight>
               </View>
             ))}
           </View>
@@ -83,11 +85,11 @@ export default class Home extends Component {
 
         <View style={styles.footer}>
           <View style={styles.footerCol}>
-            <Image source={require("../assets/images/home/home-icon.png")} />
+            <Image source={require("../../assets/images/home/home-icon.png")} />
           </View>
           <View style={styles.footerCol}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
-              <Image source={require("../assets/images/home/profile-icon.png")} />
+              <Image source={require("../../assets/images/home/profile-icon.png")} />
             </TouchableHighlight>
           </View>
         </View>

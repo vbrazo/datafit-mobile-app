@@ -5,7 +5,8 @@ import {
   View
 } from 'react-native';
 
-import Home from "./components/Home";
+import Exercise from "./components/Exercise/Exercise";
+import Home from "./components/Exercise/Home";
 import Login from "./components/Authentication/Login";
 import SignUp from "./components/Authentication/SignUp";
 
@@ -74,6 +75,12 @@ export default App = StackNavigator({
     screen: Home,
     navigationOptions: {
       title: "Home"
+    }
+  },
+  Exercise: {
+    screen: Exercise,
+    navigationOptions: {
+      title: "Exercise"
     }
   }
 });
