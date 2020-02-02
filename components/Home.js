@@ -27,7 +27,13 @@ export default class Home extends Component {
     header: null
   };
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+    const exercises = [];
+    this.state = { exercises };
+  }
+
+  componentDidMount() {
     AsyncStorage.getItem('token').then(token => {
       if (token !== null) {
         const headers = {
@@ -40,7 +46,11 @@ export default class Home extends Component {
           headers: headers
         }).then((response) => {
           if(response["status"] == 200){
-            // it should build the list of exercise grid
+            response["data"].map((e, i) => {
+              this.setState({
+                exercises: this.state.exercises.concat([e])
+              })
+            });
           } else {
             console.error("Bad request");
           }
@@ -62,15 +72,11 @@ export default class Home extends Component {
           <View style={styles.contentContainer}>
             <Text style={styles.title}>CrossFit</Text>
             <Text style={styles.description}>Escolha um exercício abaixo para começar a praticar</Text>
-            <View>
-              <Image source={require("../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
-            </View>
-            <View>
-              <Image source={require("../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
-            </View>
-            <View>
-              <Image source={require("../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
-            </View>
+            {this.state.exercises.map((exercise, index) => (
+              <View>
+                <Image source={require("../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
+              </View>
+            ))}
           </View>
         </ScrollView>
         </SafeAreaView>
