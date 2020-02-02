@@ -30,11 +30,45 @@ export default class EditProfile extends Component {
       email: "",
       password: "",
       name: "",
-      date_of_birth: "",
+      dateOfBirth: "",
       height: "",
       weight: "",
-      user_type: ""
+      userType: ""
     };
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('token').then(token => {
+      if (token !== null) {
+        const headers = {
+          'Authorization': token
+        };
+
+        axios({
+          method: 'GET',
+          url: 'https://datafit-api.herokuapp.com/api/mobile/users/by_signature',
+          headers: headers
+        }).then((response) => {
+          if(response["status"] == 200){
+            this.setState({
+              email: response["data"]["email"],
+              name: response["data"]["name"],
+              dateOfBirth: response["data"]["date_of_birth"],
+              height: response["data"]["height"],
+              weight: response["data"]["weight"],
+              userType: response["data"]["user_type"]
+            })
+          } else {
+            console.error("Bad request");
+          }
+        })
+        .catch((error) => {
+           // Handle returned errors here
+        });
+      } else {
+        // Handle exception
+      }
+    }).catch(err => console.error(err));
   }
 
   onSubmitPress = async () => {
