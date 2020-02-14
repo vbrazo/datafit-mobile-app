@@ -33,21 +33,37 @@ export default class Exercise extends Component {
       <View style={styles.container}>
       <SafeAreaView style={styles.safeAreaView}>
         <ScrollView>
-        <ImageBackground source={require("../../assets/images/air-squat.png")} style={{width: '100%', height: 627}}>
-          <View style={styles.navBar}>
-            <View style={styles.leftContainer}>
-              <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
-                <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
-              </TouchableHighlight>
+          <ImageBackground source={require("../../assets/images/air-squat.png")} style={{width: '100%', height: 627}}>
+            <View style={styles.navBar}>
+              <View style={styles.leftContainer}>
+                <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
+                  <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
+                </TouchableHighlight>
+              </View>
+            </View>
+            <View>
+              <View style={styles.contentLeftContainer}>
+                <Text style={styles.title}>Air Squat</Text>
+              </View>
+              <View style={styles.contentContainer}>
+                <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
+                  <Image source={require("../../assets/images/go.png")} />
+                </TouchableHighlight>
+              </View>
+            </View>
+          </ImageBackground>
+          <View style={styles.row}>
+            <View style={styles.measurementsColIcon}>
+              <Image source={require("../../assets/images/oval-green-icon.png")} />
+            </View>
+            <View style={styles.measurementsCol}>
+              <Text style={styles.exerciseTitle}>Deadlift</Text>
+              <Text style={styles.exerciseResult}>Perfect!</Text>
+            </View>
+            <View style={styles.measurementsCol}>
+              <Text style={styles.exerciseResultDate}>15/11/2019</Text>
             </View>
           </View>
-          <View style={styles.contentContainer}>
-            <Text style={styles.title}>Air Squat</Text>
-            <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
-              <Image source={require("../../assets/images/go.png")} />
-            </TouchableHighlight>
-          </View>
-        </ImageBackground>
         </ScrollView>
         </SafeAreaView>
         <View style={styles.footer}>
@@ -68,6 +84,32 @@ export default class Exercise extends Component {
 }
 
 const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    height: 100,
+    padding: 15
+  },
+  measurementsColIcon: {
+    width: "10%"
+  },
+  measurementsCol: {
+    width: "45%"
+  },
+  exerciseTitle: {
+    color: "#fff",
+    fontFamily: "Roboto-Regular",
+    fontSize: 16
+  },
+  exerciseResult: {
+    color: "#6E757D",
+    fontFamily: "Roboto-Regular",
+    fontSize: 16
+  },
+  exerciseResultDate: {
+    color: "#9DA1A5",
+    fontFamily: "Roboto-Regular",
+    fontSize: 12.8
+  },
   navBar: {
     height: 60,
     flexDirection: 'row',
@@ -77,7 +119,8 @@ const styles = StyleSheet.create({
   leftContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    left: 20
   },
   safeAreaView: {
     flex: 1,
@@ -110,11 +153,13 @@ const styles = StyleSheet.create({
     fontSize: 25
   },
   contentContainer: {
-    padding: 24,
-    top: 50,
-    position: 'absolute', //Here is the trick
-    bottom: 0, //Here is the trick
-    height: 627
+    top: 485,
+    right: 10,
+    alignItems: "flex-end"
+  },
+  contentLeftContainer: {
+    top: 520,
+    left: 20
   },
   container: {
     flex: 1,
