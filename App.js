@@ -5,12 +5,18 @@ import {
   View
 } from 'react-native';
 
+// Exercise Components
 import Exercise from "./components/Exercise/Exercise";
 import Home from "./components/Exercise/Home";
+
+// Authentication Components
 import Login from "./components/Authentication/Login";
 import SignUp from "./components/Authentication/SignUp";
+
+// Analyzer Components
 import Camera from "./components/Analyzer/Camera";
 
+// Profile Components
 import EditPassword from "./components/Profile/EditPassword";
 import EditProfile from "./components/Profile/EditProfile";
 import Profile from "./components/Profile/Profile";
