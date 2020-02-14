@@ -9,6 +9,7 @@ import Exercise from "./components/Exercise/Exercise";
 import Home from "./components/Exercise/Home";
 import Login from "./components/Authentication/Login";
 import SignUp from "./components/Authentication/SignUp";
+import Camera from "./components/Analyzer/Camera";
 
 import EditPassword from "./components/Profile/EditPassword";
 import EditProfile from "./components/Profile/EditProfile";
@@ -81,6 +82,12 @@ export default App = StackNavigator({
     screen: Exercise,
     navigationOptions: {
       title: "Exercise"
+    }
+  },
+  Camera: {
+    screen: Camera,
+    navigationOptions: {
+      title: "Camera"
     }
   }
 });
