@@ -46,7 +46,7 @@ export default class Home extends Component {
           headers: headers
         }).then((response) => {
           if(response["status"] == 200){
-            response["data"].map((e, i) => {
+            response["data"]["exercises"].map((e, i) => {
               this.setState({
                 exercises: this.state.exercises.concat([e])
               })
@@ -74,7 +74,9 @@ export default class Home extends Component {
             <Text style={styles.description}>Escolha um exercício abaixo para começar a praticar</Text>
             {this.state.exercises.map((exercise, index) => (
               <View>
-                <Image source={require("../assets/images/home/home-pic-1.png")} style={styles.mainPicture} />
+                <TouchableHighlight onPress={() => this.props.navigation.navigate("Exercise")}>
+                <Image source={require("../../assets/images/air-squat.png")} style={styles.mainPicture} />
+                </TouchableHighlight>
               </View>
             ))}
           </View>
@@ -83,11 +85,11 @@ export default class Home extends Component {
 
         <View style={styles.footer}>
           <View style={styles.footerCol}>
-            <Image source={require("../assets/images/home/home-icon.png")} />
+            <Image source={require("../../assets/images/home/home-icon.png")} />
           </View>
           <View style={styles.footerCol}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
-              <Image source={require("../assets/images/home/profile-icon.png")} />
+              <Image source={require("../../assets/images/home/profile-icon.png")} />
             </TouchableHighlight>
           </View>
         </View>
@@ -102,7 +104,8 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
   },
   mainPicture: {
-    width: "98%",
+    width: "100%",
+    height: 200,
     top: 20
   },
   description: {
