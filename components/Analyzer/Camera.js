@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View
 } from "react-native";
+import { RNCamera } from 'react-native-camera';
 
 export default class Login extends Component {
   static navigationOptions = {
@@ -16,12 +17,41 @@ export default class Login extends Component {
 
   render() {
     return (
-      <View style={styles.wrapper}></View>
+      <View style={styles.wrapper}>
+        <RNCamera
+            ref={ref => {
+              this.camera = ref;
+            }}
+            style={styles.preview}
+            type={RNCamera.Constants.Type.back}
+            flashMode={RNCamera.Constants.FlashMode.on}
+            androidCameraPermissionOptions={{
+              title: 'Permission to use camera',
+              message: 'We need your permission to use your camera',
+              buttonPositive: 'Ok',
+              buttonNegative: 'Cancel',
+            }}
+            androidRecordAudioPermissionOptions={{
+              title: 'Permission to use audio recording',
+              message: 'We need your permission to use your audio',
+              buttonPositive: 'Ok',
+              buttonNegative: 'Cancel',
+            }}
+            onGoogleVisionBarcodesDetected={({ barcodes }) => {
+              console.log(barcodes);
+            }}
+          />
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
   wrapper: {
     flex: 1,
     backgroundColor: "#2A2E34"

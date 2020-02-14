@@ -5076,6 +5076,12 @@ react-lifecycles-compat@^3.0.2:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+"react-native-camera@git+https://git@github.com/react-native-community/react-native-camera.git":
+  version "3.18.0"
+  resolved "git+https://git@github.com/react-native-community/react-native-camera.git#adae4a294df8d0fb35be5bf4f9cbb78c48caed75"
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-dismiss-keyboard/-/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"
