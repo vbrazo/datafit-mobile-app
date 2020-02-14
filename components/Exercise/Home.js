@@ -46,7 +46,7 @@ export default class Home extends Component {
           headers: headers
         }).then((response) => {
           if(response["status"] == 200){
-            response["data"].map((e, i) => {
+            response["data"]["exercises"].map((e, i) => {
               this.setState({
                 exercises: this.state.exercises.concat([e])
               })
