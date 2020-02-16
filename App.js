@@ -5,16 +5,18 @@ import {
   View
 } from 'react-native';
 
-// Exercise Components
-import Exercise from "./components/Exercise/Exercise";
-import Home from "./components/Exercise/Home";
+// Analyzer Components
+import Camera from "./components/Analyzer/Camera";
+import FeedbackDetails from "./components/Analyzer/FeedbackDetails";
+import FeedbackResult from "./components/Analyzer/FeedbackResult";
 
 // Authentication Components
 import Login from "./components/Authentication/Login";
 import SignUp from "./components/Authentication/SignUp";
 
-// Analyzer Components
-import Camera from "./components/Analyzer/Camera";
+// Exercises Components
+import Exercise from "./components/Exercise/Exercise";
+import Home from "./components/Exercise/Home";
 
 // Profile Components
 import EditPassword from "./components/Profile/EditPassword";
@@ -35,7 +37,7 @@ class Initial extends Component<{}> {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" backgroundColor="#16a085" />
-        <Login navigation={this.props.navigation} />
+        <FeedbackResult navigation={this.props.navigation} />
       </View>
     );
   }
@@ -88,6 +90,18 @@ export default App = StackNavigator({
     screen: Exercise,
     navigationOptions: {
       title: "Exercise"
+    }
+  },
+  FeedbackDetails: {
+    screen: FeedbackDetails,
+    navigationOptions: {
+      title: "FeedbackDetails"
+    }
+  },
+  FeedbackResult: {
+    screen: FeedbackResult,
+    navigationOptions: {
+      title: "FeedbackResult"
     }
   },
   Camera: {
