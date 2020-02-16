@@ -5,6 +5,8 @@ import {
   View
 } from 'react-native';
 
+import FeedbackDetails from "./components/Analyzer/FeedbackDetails";
+
 import Exercise from "./components/Exercise/Exercise";
 import Home from "./components/Exercise/Home";
 import Login from "./components/Authentication/Login";
@@ -28,7 +30,7 @@ class Initial extends Component<{}> {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" backgroundColor="#16a085" />
-        <Login navigation={this.props.navigation} />
+        <FeedbackDetails navigation={this.props.navigation} />
       </View>
     );
   }
@@ -81,6 +83,12 @@ export default App = StackNavigator({
     screen: Exercise,
     navigationOptions: {
       title: "Exercise"
+    }
+  },
+  FeedbackDetails: {
+    screen: FeedbackDetails,
+    navigationOptions: {
+      title: "FeedbackDetails"
     }
   }
 });
