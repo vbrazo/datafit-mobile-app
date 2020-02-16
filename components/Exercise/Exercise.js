@@ -46,7 +46,7 @@ export default class Exercise extends Component {
                 <Text style={styles.title}>Air Squat</Text>
               </View>
               <View style={styles.contentContainer}>
-                <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
+                <TouchableHighlight onPress={() => this.props.navigation.navigate("Camera")}>
                   <Image source={require("../../assets/images/go.png")} />
                 </TouchableHighlight>
               </View>

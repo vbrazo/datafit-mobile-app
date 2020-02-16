@@ -16,6 +16,7 @@
     "expo-constants": "^8.0.0",
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-camera": "git+https://git@github.com/react-native-community/react-native-camera.git",
     "react-navigation": "^1.0.0-beta.14"
   },
   "devDependencies": {

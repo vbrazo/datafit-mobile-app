@@ -5,14 +5,20 @@ import {
   View
 } from 'react-native';
 
+// Analyzer Components
+import Camera from "./components/Analyzer/Camera";
 import FeedbackDetails from "./components/Analyzer/FeedbackDetails";
 import FeedbackResult from "./components/Analyzer/FeedbackResult";
 
-import Exercise from "./components/Exercise/Exercise";
-import Home from "./components/Exercise/Home";
+// Authentication Components
 import Login from "./components/Authentication/Login";
 import SignUp from "./components/Authentication/SignUp";
 
+// Exercises Components
+import Exercise from "./components/Exercise/Exercise";
+import Home from "./components/Exercise/Home";
+
+// Profile Components
 import EditPassword from "./components/Profile/EditPassword";
 import EditProfile from "./components/Profile/EditProfile";
 import Profile from "./components/Profile/Profile";
@@ -96,6 +102,12 @@ export default App = StackNavigator({
     screen: FeedbackResult,
     navigationOptions: {
       title: "FeedbackResult"
+    }
+  },
+  Camera: {
+    screen: Camera,
+    navigationOptions: {
+      title: "Camera"
     }
   }
 });
