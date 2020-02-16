@@ -34,13 +34,7 @@ export default class FeedbackDetails extends Component {
       <SafeAreaView style={styles.safeAreaView}>
         <ScrollView>
           <ImageBackground source={require("../../assets/images/feedback-details.png")} style={{width: '100%', height: 627}}>
-            <View style={styles.navBar}>
-              <View style={styles.leftContainer}>
-                <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
-                  <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
-                </TouchableHighlight>
-              </View>
-            </View>
+            
           </ImageBackground>
           <View style={styles.row}>
             <Text style={styles.exerciseTitle}>Dica 02</Text>
@@ -55,7 +49,7 @@ export default class FeedbackDetails extends Component {
           </View>
           <View style={styles.navBar}>
             <View style={styles.leftContainer}>
-              <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
+              <TouchableHighlight onPress={() => this.props.navigation.navigate("FeedbackResult")}>
                 <Text style={styles.backButton}>
                   Anterior
                 </Text>
@@ -74,18 +68,6 @@ export default class FeedbackDetails extends Component {
           </View>
         </ScrollView>
         </SafeAreaView>
-        <View style={styles.footer}>
-          <View style={styles.footerCol}>
-            <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
-              <Image source={require("../../assets/images/icon-home.png")} />
-            </TouchableHighlight>
-          </View>
-          <View style={styles.footerCol}>
-            <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
-              <Image source={require("../../assets/images/home/profile-icon.png")} />
-            </TouchableHighlight>
-          </View>
-        </View>
       </View>
     );
   }

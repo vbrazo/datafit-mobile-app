@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 
 import FeedbackDetails from "./components/Analyzer/FeedbackDetails";
+import FeedbackResult from "./components/Analyzer/FeedbackResult";
 
 import Exercise from "./components/Exercise/Exercise";
 import Home from "./components/Exercise/Home";
@@ -30,7 +31,7 @@ class Initial extends Component<{}> {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" backgroundColor="#16a085" />
-        <FeedbackDetails navigation={this.props.navigation} />
+        <FeedbackResult navigation={this.props.navigation} />
       </View>
     );
   }
@@ -89,6 +90,12 @@ export default App = StackNavigator({
     screen: FeedbackDetails,
     navigationOptions: {
       title: "FeedbackDetails"
+    }
+  },
+  FeedbackResult: {
+    screen: FeedbackResult,
+    navigationOptions: {
+      title: "FeedbackResult"
     }
   }
 });
