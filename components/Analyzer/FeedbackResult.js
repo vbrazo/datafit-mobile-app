@@ -36,6 +36,9 @@ export default class FeedbackResult extends Component {
               <Text style={{fontSize: 149, color: "#fff", fontFamily: "Roboto-Medium"}}>5</Text>
             </View>
             <View>
+              <Image source={require("../../assets/images/feedback-icon.png")} />
+            </View>
+            <View>
               <Text style={{fontSize: 18, color: "#fff", fontFamily: "Roboto-Medium"}}>Pontos que podemos melhorar!</Text>
             </View>
             <View>
