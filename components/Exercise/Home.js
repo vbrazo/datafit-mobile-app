@@ -4,6 +4,7 @@ import {
   AppRegistry,
   KeyboardAvoidingView,
   Image,
+  ImageBackground,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -72,41 +73,154 @@ export default class Home extends Component {
           <View style={styles.contentContainer}>
             <Text style={styles.title}>CrossFit</Text>
             <Text style={styles.description}>Escolha um exercício abaixo para começar a praticar</Text>
+          </View>
+
+          <View style={styles.contentContainer2}>
             {this.state.exercises.map((exercise, index) => (
               <View>
                 <TouchableHighlight onPress={() => this.props.navigation.navigate("Exercise")}>
-                <Image source={require("../../assets/images/air-squat.png")} style={styles.mainPicture} />
+                  <ImageBackground source={require("../../assets/images/deadlift-home.png")} style={styles.mainPicture}>
+                    <View style={styles.row}>
+                      <View style={styles.item1}>
+                        <Text style={styles.exerciseName}>{exercise.name}</Text>
+                        <View>
+                          <View style={styles.pastExercisesContainer}>
+                            <View style={styles.iconContainer}>
+                              <Image source={require("../../assets/images/clock-icon.png")} style={styles.timeIcon} />
+                            </View>
+                            <View style={styles.iconContainer}>
+                              <Image source={require("../../assets/images/oval-red-icon.png")} style={styles.exerciseIcon} />
+                            </View>
+                            <View style={styles.iconContainer}>
+                              <Image source={require("../../assets/images/oval-red-icon.png")} style={styles.exerciseIcon} />
+                            </View>
+                            <View style={styles.iconContainer}>
+                              <Image source={require("../../assets/images/oval-green-icon.png")} style={styles.exerciseIcon} />
+                            </View>
+                            <View style={styles.iconContainer}>
+                              <Image source={require("../../assets/images/oval-green-icon.png")} style={styles.exerciseIcon} />
+                            </View>
+                            <View style={styles.iconContainer}>
+                              <Image source={require("../../assets/images/oval-green-icon.png")} style={styles.exerciseIcon} />
+                            </View>
+                          </View>
+                        </View>
+                      </View>
+                      <View style={styles.item2}>
+                        <Text style={styles.lastDateLabel}>Ultima vez</Text>
+                        <Text style={styles.lastDate}>22/11/2019</Text>
+                      </View>
+                    </View>
+                  </ImageBackground>
                 </TouchableHighlight>
+
+                <View style={styles.contentContainer3}>
+                  <TouchableHighlight onPress={() => this.props.navigation.navigate("Exercise")}>
+                    <ImageBackground source={require("../../assets/images/deadlift-home.png")} style={styles.mainPicture}>
+                      <View style={styles.row}>
+                        <View style={styles.item1}>
+                          <Text style={styles.exerciseName}>exercise.name</Text>
+                          <View style={styles.exerciseDescriptionContainer}>
+                            <Text style={styles.exerciseDescription}>Você ainda não praticou</Text>
+                          </View>
+                        </View>
+                      </View>
+                    </ImageBackground>
+                  </TouchableHighlight>
+                </View>
               </View>
             ))}
           </View>
         </ScrollView>
-        </SafeAreaView>
+      </SafeAreaView>
 
-        <View style={styles.footer}>
-          <View style={styles.footerCol}>
-            <Image source={require("../../assets/images/home/home-icon.png")} />
-          </View>
-          <View style={styles.footerCol}>
-            <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
-              <Image source={require("../../assets/images/home/profile-icon.png")} />
-            </TouchableHighlight>
-          </View>
+      <View style={styles.footer}>
+        <View style={styles.footerCol}>
+          <Image source={require("../../assets/images/home/home-icon.png")} />
         </View>
+        <View style={styles.footerCol}>
+          <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
+            <Image source={require("../../assets/images/home/profile-icon.png")} />
+          </TouchableHighlight>
+        </View>
+      </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  iconContainer: {
+    width: "10%",
+    bottom: 4
+  },
+  exerciseIcon: {
+    height: 12,
+    width: 12,
+    top: 2,
+    left: 3
+  },
+  timeIcon: {
+    height: 16,
+    width: 16
+  },
+  exerciseName: {
+    fontFamily: "Roboto-Regular",
+    fontSize: 20,
+    bottom: 12,
+    color: "#fff"
+  },
+  exerciseDescription: {
+    fontFamily: "Roboto-Regular",
+    fontSize: 12.8,
+    color: "#6E757D"
+  },
+  exerciseDescriptionContainer: {
+    height: 25
+  },
+  lastDateLabel: {
+    fontFamily: "Roboto-Regular",
+    fontSize: 12.8,
+    bottom: 2,
+    color: "#6E757D"
+  },
+  lastDate: {
+    fontFamily: "Roboto-Regular",
+    fontSize: 12.8,
+    color: "#fff"
+  },
+  item1: {
+    left: 35,
+    width: "50%",
+    position: 'absolute',
+    bottom: 15
+  },
+  item2: {
+    width: "100%",
+    position: 'absolute',
+    bottom: 21,
+    right: 35,
+    alignItems: 'flex-end',
+  },
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    height: 200,
+    width: "100%"
+  },
+  pastExercisesContainer:{
+    flex: 1,
+    flexDirection: 'row'
+  },
   safeAreaView: {
     flex: 1,
     marginTop: Constants.statusBarHeight,
   },
   mainPicture: {
-    width: "100%",
-    height: 200,
-    top: 20
+    top: 20,
+    height: 230
   },
   description: {
     color: "#868E97",
@@ -124,6 +238,13 @@ const styles = StyleSheet.create({
   contentContainer: {
     padding: 24,
     top: 50
+  },
+  contentContainer2: {
+    padding: 4,
+    top: 40
+  },
+  contentContainer3: {
+    top: 10
   },
   container: {
     flex: 1,
