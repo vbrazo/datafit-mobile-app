@@ -277,4 +277,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent("Login", () => Login);
+AppRegistry.registerComponent("Home", () => Home);
