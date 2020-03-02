@@ -14,6 +14,7 @@ import {
   ScrollView,
   View
 } from "react-native";
+import moment from 'moment';
 import axios from 'axios';
 import Constants from 'expo-constants';
 
@@ -47,7 +48,7 @@ export default class Home extends Component {
           headers: headers
         }).then((response) => {
           if(response["status"] == 200){
-            response["data"]["exercises"].map((e, i) => {
+            response["data"].map((e, i) => {
               this.setState({
                 exercises: this.state.exercises.concat([e])
               })
@@ -78,58 +79,61 @@ export default class Home extends Component {
           <View style={styles.contentContainer2}>
             {this.state.exercises.map((exercise, index) => (
               <View>
-                <TouchableHighlight onPress={() => this.props.navigation.navigate("Exercise")}>
-                  <ImageBackground source={require("../../assets/images/deadlift-home.png")} style={styles.mainPicture}>
-                    <View style={styles.row}>
-                      <View style={styles.item1}>
-                        <Text style={styles.exerciseName}>{exercise.name}</Text>
-                        <View>
-                          <View style={styles.pastExercisesContainer}>
-                            <View style={styles.iconContainer}>
-                              <Image source={require("../../assets/images/clock-icon.png")} style={styles.timeIcon} />
-                            </View>
-                            <View style={styles.iconContainer}>
-                              <Image source={require("../../assets/images/oval-red-icon.png")} style={styles.exerciseIcon} />
-                            </View>
-                            <View style={styles.iconContainer}>
-                              <Image source={require("../../assets/images/oval-red-icon.png")} style={styles.exerciseIcon} />
-                            </View>
-                            <View style={styles.iconContainer}>
-                              <Image source={require("../../assets/images/oval-green-icon.png")} style={styles.exerciseIcon} />
-                            </View>
-                            <View style={styles.iconContainer}>
-                              <Image source={require("../../assets/images/oval-green-icon.png")} style={styles.exerciseIcon} />
-                            </View>
-                            <View style={styles.iconContainer}>
-                              <Image source={require("../../assets/images/oval-green-icon.png")} style={styles.exerciseIcon} />
+                {exercise["uploads"]["uploads"] == 0 ? (
+                  <View style={styles.contentContainer3}>
+                    <TouchableHighlight onPress={() => this.props.navigation.navigate("Exercise")}>
+                      <ImageBackground source={require("../../assets/images/deadlift-home.png")} style={styles.mainPicture}>
+                        <View style={styles.row}>
+                          <View style={styles.item1}>
+                            <Text style={styles.exerciseName}>{exercise["exercise"].name}</Text>
+                            <View style={styles.exerciseDescriptionContainer}>
+                              <Text style={styles.exerciseDescription}>Você ainda não praticou</Text>
                             </View>
                           </View>
                         </View>
-                      </View>
-                      <View style={styles.item2}>
-                        <Text style={styles.lastDateLabel}>Ultima vez</Text>
-                        <Text style={styles.lastDate}>22/11/2019</Text>
-                      </View>
-                    </View>
-                  </ImageBackground>
-                </TouchableHighlight>
-
-                <View style={styles.contentContainer3}>
+                      </ImageBackground>
+                    </TouchableHighlight>
+                  </View>
+                ) : (
                   <TouchableHighlight onPress={() => this.props.navigation.navigate("Exercise")}>
                     <ImageBackground source={require("../../assets/images/deadlift-home.png")} style={styles.mainPicture}>
                       <View style={styles.row}>
                         <View style={styles.item1}>
-                          <Text style={styles.exerciseName}>exercise.name</Text>
-                          <View style={styles.exerciseDescriptionContainer}>
-                            <Text style={styles.exerciseDescription}>Você ainda não praticou</Text>
+                          <Text style={styles.exerciseName}>{exercise["exercise"].name}</Text>
+                          <View>
+                            <View style={styles.pastExercisesContainer}>
+                              <View style={styles.iconContainer}>
+                                <Image source={require("../../assets/images/clock-icon.png")} style={styles.timeIcon} />
+                              </View>
+
+                              {Array.from({length: exercise["uploads"]["uploads"] - exercise["uploads"]["failed_uploads"]}, (item, index) =>
+                                <View style={styles.iconContainer}>
+                                  <Image source={require("../../assets/images/oval-green-icon.png")} style={styles.exerciseIcon} />
+                                </View>
+                              )}
+
+                              {Array.from({length: exercise["uploads"]["failed_uploads"]}, (item, index) =>
+                                <View style={styles.iconContainer}>
+                                  <Image source={require("../../assets/images/oval-red-icon.png")} style={styles.exerciseIcon} />
+                                </View>
+                              )}
+
+                            </View>
                           </View>
+                        </View>
+                        <View style={styles.item2}>
+                          <Text style={styles.lastDateLabel}>Última vez</Text>
+                          <Text style={styles.lastDate}>{moment(exercise["exercise"].created_at).format('DD/MM/YYYY')}</Text>
                         </View>
                       </View>
                     </ImageBackground>
                   </TouchableHighlight>
+                )}
                 </View>
-              </View>
             ))}
+          </View>
+          <View style={styles.separator}>
+
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -150,6 +154,9 @@ export default class Home extends Component {
 }
 
 const styles = StyleSheet.create({
+  separator: {
+    height: 120
+  },
   iconContainer: {
     width: "10%",
     bottom: 4
@@ -249,6 +256,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#2A2E34"
+
   },
   footer: {
     flexDirection: 'row',
