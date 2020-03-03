@@ -28,6 +28,46 @@ export default class Exercise extends Component {
     header: null
   };
 
+  constructor(props) {
+    super(props);
+    const uploads = [];
+    this.state = { uploads };
+  }
+
+  componentDidMount() {
+    const { params } = this.props.navigation.state;
+    const id = params ? params.id : null;
+
+    AsyncStorage.getItem('token').then(token => {
+      if (token !== null) {
+        const headers = {
+          'Authorization': token
+        };
+
+        axios({
+          method: 'GET',
+          url: 'https://datafit-api.herokuapp.com/api/mobile/exercises/'+id+'/uploads',
+          headers: headers
+        }).then((response) => {
+          if(response["status"] == 200){
+            response["data"]["uploads"].map((e, i) => {
+              this.setState({
+                uploads: this.state.uploads.concat([e])
+              })
+            });
+          } else {
+            console.error("Bad request");
+          }
+        })
+        .catch((error) => {
+           // Handle returned errors here
+        });
+      } else {
+        // Handle exception
+      }
+    }).catch(err => console.error(err));
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -50,20 +90,23 @@ export default class Exercise extends Component {
                   <Image source={require("../../assets/images/go.png")} />
                 </TouchableHighlight>
               </View>
+              <Text>{this.state.uploads}</Text>
             </View>
           </ImageBackground>
-          <View style={styles.row}>
-            <View style={styles.measurementsColIcon}>
-              <Image source={require("../../assets/images/oval-green-icon.png")} />
+          {this.state.uploads.map((upload, index) => (
+            <View style={styles.row}>
+              <View style={styles.measurementsColIcon}>
+                <Image source={require("../../assets/images/oval-green-icon.png")} />
+              </View>
+              <View style={styles.measurementsCol}>
+                <Text style={styles.exerciseTitle}>Deadlift</Text>
+                <Text style={styles.exerciseResult}>Perfect!</Text>
+              </View>
+              <View style={styles.measurementsCol}>
+                <Text style={styles.exerciseResultDate}>15/11/2019</Text>
+              </View>
             </View>
-            <View style={styles.measurementsCol}>
-              <Text style={styles.exerciseTitle}>Deadlift</Text>
-              <Text style={styles.exerciseResult}>Perfect!</Text>
-            </View>
-            <View style={styles.measurementsCol}>
-              <Text style={styles.exerciseResultDate}>15/11/2019</Text>
-            </View>
-          </View>
+          ))}
         </ScrollView>
         </SafeAreaView>
         <View style={styles.footer}>
