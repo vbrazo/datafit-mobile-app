@@ -86,12 +86,12 @@ export default class Exercise extends Component {
                 <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
                   <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
                 </TouchableHighlight>
+                <View style={styles.contentLeftContainer}>
+                  <Text style={styles.title}>{this.state.name}</Text>
+                </View>
               </View>
             </View>
             <View>
-              <View style={styles.contentLeftContainer}>
-                <Text style={styles.title}>{this.state.name}</Text>
-              </View>
               <View style={styles.contentContainer}>
                 <TouchableHighlight onPress={() => this.props.navigation.navigate("Camera")}>
                   <Image source={require("../../assets/images/go.png")} />
@@ -103,7 +103,10 @@ export default class Exercise extends Component {
             <View style={styles.row}>
               <View style={styles.measurementsColIcon}>
               {Object.keys(upload["uploads"]["failed_uploads"]) == 0 ? (
-                <Image source={require("../../assets/images/oval-green-icon.png")} />) : (<Image source={require("../../assets/images/oval-red-icon.png")} />) }
+                <Image source={require("../../assets/images/oval-green-icon.png")} style={styles.ovalIcon} />
+              ) : (
+                <Image source={require("../../assets/images/oval-red-icon.png")} style={styles.ovalIcon} />
+              )}
               </View>
               <View style={styles.measurementsCol}>
                 <Text style={styles.exerciseTitle}>{this.state.name}</Text>
@@ -134,16 +137,21 @@ export default class Exercise extends Component {
 }
 
 const styles = StyleSheet.create({
+  ovalIcon: {
+    height: 24,
+    width: 24
+  },
   row: {
     flexDirection: "row",
     height: 100,
-    padding: 15
+    padding: 15,
+    left: 10
   },
   measurementsColIcon: {
     width: "10%"
   },
   measurementsCol: {
-    width: "45%"
+    width: "65%"
   },
   exerciseTitle: {
     color: "#fff",
@@ -153,12 +161,14 @@ const styles = StyleSheet.create({
   exerciseResult: {
     color: "#6E757D",
     fontFamily: "Roboto-Regular",
-    fontSize: 16
+    fontSize: 16,
+    top: 10
   },
   exerciseResultDate: {
     color: "#9DA1A5",
     fontFamily: "Roboto-Regular",
-    fontSize: 12.8
+    fontSize: 12.8,
+    top: 3
   },
   navBar: {
     height: 60,
@@ -203,13 +213,13 @@ const styles = StyleSheet.create({
     fontSize: 25
   },
   contentContainer: {
-    top: 485,
-    right: 10,
+    top: 445,
+    right: 20,
     alignItems: "flex-end"
   },
   contentLeftContainer: {
-    top: 520,
-    left: 20
+    top: 490,
+    right: 12
   },
   container: {
     flex: 1,

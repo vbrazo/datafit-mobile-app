@@ -84,7 +84,7 @@ export default class Home extends Component {
                     <TouchableHighlight onPress={() =>
                       this.props.navigation.navigate("Exercise", {
                         id: exercise["exercise"].id,
-                        id: exercise["exercise"].name
+                        name: exercise["exercise"].name
                       }
                     )}>
                       <ImageBackground source={require("../../assets/images/deadlift-home.png")} style={styles.mainPicture}>
@@ -104,7 +104,6 @@ export default class Home extends Component {
                     this.props.navigation.navigate("Exercise", {
                       id: exercise["exercise"].id,
                       name: exercise["exercise"].name,
-                      // image: exercise["exercise"].image
                       image: "../../assets/images/deadlift-home.png"
                     }
                   )}>
