@@ -81,7 +81,12 @@ export default class Home extends Component {
               <View>
                 {exercise["uploads"]["uploads"] == 0 ? (
                   <View style={styles.contentContainer3}>
-                    <TouchableHighlight onPress={() => this.props.navigation.navigate("Exercise")}>
+                    <TouchableHighlight onPress={() =>
+                      this.props.navigation.navigate("Exercise", {
+                        id: exercise["exercise"].id,
+                        name: exercise["exercise"].name
+                      }
+                    )}>
                       <ImageBackground source={require("../../assets/images/deadlift-home.png")} style={styles.mainPicture}>
                         <View style={styles.row}>
                           <View style={styles.item1}>
@@ -95,7 +100,13 @@ export default class Home extends Component {
                     </TouchableHighlight>
                   </View>
                 ) : (
-                  <TouchableHighlight onPress={() => this.props.navigation.navigate("Exercise")}>
+                  <TouchableHighlight onPress={() =>
+                    this.props.navigation.navigate("Exercise", {
+                      id: exercise["exercise"].id,
+                      name: exercise["exercise"].name,
+                      image: "../../assets/images/deadlift-home.png"
+                    }
+                  )}>
                     <ImageBackground source={require("../../assets/images/deadlift-home.png")} style={styles.mainPicture}>
                       <View style={styles.row}>
                         <View style={styles.item1}>
