@@ -159,18 +159,6 @@ export default class SignUp extends Component {
                 </View>
 
                 <View style={styles.window}>
-                  <Text style={styles.formLabel}>QUEM VOCÊ É</Text>
-                  <View style={styles.rowUserType}>
-                    <View style={styles.userType1}>
-                      <Text style={styles.userTypeText}>SOU ALUNO</Text>
-                    </View>
-                    <View style={styles.userType2}>
-                      <Text style={styles.userTypeText}>SOU PROFESSOR</Text>
-                    </View>
-                  </View>
-                </View>
-
-                <View style={styles.window}>
                   <TextInput
                     secureTextEntry
                     returnKeyType="next"
