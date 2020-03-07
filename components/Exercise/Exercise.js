@@ -57,9 +57,9 @@ export default class Exercise extends Component {
           headers: headers
         }).then((response) => {
           if(response["status"] == 200){
-            response["data"]["uploads"].map((e, i) => {
+            response["data"].map((e, i) => {
               this.setState({
-                uploads: this.state.uploads.concat([e[0]])
+                uploads: this.state.uploads.concat([e])
               })
             });
           } else {
@@ -102,14 +102,15 @@ export default class Exercise extends Component {
           {this.state.uploads.map((upload, index) => (
             <View style={styles.row}>
               <View style={styles.measurementsColIcon}>
-                <Image source={require("../../assets/images/oval-green-icon.png")} />
+              {Object.keys(upload["uploads"]["failed_uploads"]) == 0 ? (
+                <Image source={require("../../assets/images/oval-green-icon.png")} />) : (<Image source={require("../../assets/images/oval-red-icon.png")} />) }
               </View>
               <View style={styles.measurementsCol}>
-                <Text style={styles.exerciseTitle}>Deadlift</Text>
-                <Text style={styles.exerciseResult}>Perfect!</Text>
+                <Text style={styles.exerciseTitle}>{this.state.name}</Text>
+                <Text style={styles.exerciseResult}>{Object.keys(upload["uploads"]["failed_uploads"]) == 0 ? 'Perfect!' : Object.keys(upload["uploads"]["failed_uploads"]) + ' pontos para melhorar' }</Text>
               </View>
               <View style={styles.measurementsCol}>
-                <Text style={styles.exerciseResultDate}>15/11/2019</Text>
+                <Text style={styles.exerciseResultDate}>{upload["uploads"]["created_at"]}</Text>
               </View>
             </View>
           ))}
