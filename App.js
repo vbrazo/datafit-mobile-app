@@ -37,7 +37,7 @@ class Initial extends Component<{}> {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" backgroundColor="#16a085" />
-        <Login navigation={this.props.navigation} />
+        <Home navigation={this.props.navigation} />
       </View>
     );
   }

@@ -59,7 +59,7 @@ export default class Exercise extends Component {
           if(response["status"] == 200){
             response["data"]["uploads"].map((e, i) => {
               this.setState({
-                uploads: this.state.uploads.concat([e])
+                uploads: this.state.uploads.concat([e[0]])
               })
             });
           } else {
@@ -97,7 +97,6 @@ export default class Exercise extends Component {
                   <Image source={require("../../assets/images/go.png")} />
                 </TouchableHighlight>
               </View>
-              <Text>{this.state.uploads}</Text>
             </View>
           </ImageBackground>
           {this.state.uploads.map((upload, index) => (
