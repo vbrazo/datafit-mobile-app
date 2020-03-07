@@ -37,6 +37,13 @@ export default class Exercise extends Component {
   componentDidMount() {
     const { params } = this.props.navigation.state;
     const id = params ? params.id : null;
+    const name = params ? params.name : null;
+    const image = params ? params.image : null;
+
+    this.setState({
+      name: name,
+      image: image
+    })
 
     AsyncStorage.getItem('token').then(token => {
       if (token !== null) {
@@ -83,7 +90,7 @@ export default class Exercise extends Component {
             </View>
             <View>
               <View style={styles.contentLeftContainer}>
-                <Text style={styles.title}>Air Squat</Text>
+                <Text style={styles.title}>{this.state.name}</Text>
               </View>
               <View style={styles.contentContainer}>
                 <TouchableHighlight onPress={() => this.props.navigation.navigate("Camera")}>
