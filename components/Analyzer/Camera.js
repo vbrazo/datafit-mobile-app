@@ -9,6 +9,7 @@ import {
   View
 } from "react-native";
 import { RNCamera } from 'react-native-camera';
+import { StackNavigator } from "react-navigation";
 
 export default class Login extends Component {
   constructor() {
@@ -75,17 +76,16 @@ export default class Login extends Component {
             onPress={this.stopRecording.bind(this)}
             style={styles.capture}
           >
-            <Text style={{ fontSize: 14, top: 100 }}> STOP </Text>
+          <View style={{ fontSize: 14, height: 120, top: 18 }}>
+            <Image source={require("../../assets/images/record-button.png")} />
+          </View>
+
           </TouchableOpacity>
         );
       }
 
       if (this.state.processing) {
-        button = (
-          <View style={styles.capture}>
-            <ActivityIndicator animating size={18} style={{ top: 100 }} />
-          </View>
-        );
+        this.props.navigation.navigate("FeedbackResult");
       }
 
       return (
