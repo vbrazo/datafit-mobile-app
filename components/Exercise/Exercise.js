@@ -108,13 +108,17 @@ export default class Exercise extends Component {
                 <Image source={require("../../assets/images/oval-red-icon.png")} style={styles.ovalIcon} />
               )}
               </View>
-              <View style={styles.measurementsCol}>
-                <Text style={styles.exerciseTitle}>{this.state.name}</Text>
-                <Text style={styles.exerciseResult}>{Object.keys(upload["uploads"]["failed_uploads"]) == 0 ? 'Perfect!' : Object.keys(upload["uploads"]["failed_uploads"]) + ' pontos para melhorar' }</Text>
+              <TouchableHighlight onPress={() => (upload["uploads"]["id"] !== null) ? (this.props.navigation.navigate("FeedbackResult", {id: upload["uploads"]["id"]})) : null}>
+              <View style={{flexDirection: "row"}}>
+                <View style={styles.measurementsCol}>
+                  <Text style={styles.exerciseTitle}>{this.state.name}</Text>
+                  <Text style={styles.exerciseResult}>{Object.keys(upload["uploads"]["failed_uploads"]) == 0 ? 'Perfect!' : Object.values(upload["uploads"]["failed_uploads"]) + ' pontos para melhorar' }</Text>
+                </View>
+                <View style={styles.measurementsCol}>
+                  <Text style={styles.exerciseResultDate}>{upload["uploads"]["created_at"]}</Text>
+                </View>
               </View>
-              <View style={styles.measurementsCol}>
-                <Text style={styles.exerciseResultDate}>{upload["uploads"]["created_at"]}</Text>
-              </View>
+              </TouchableHighlight>
             </View>
           ))}
         </ScrollView>
@@ -151,7 +155,7 @@ const styles = StyleSheet.create({
     width: "10%"
   },
   measurementsCol: {
-    width: "65%"
+    width: "45%"
   },
   exerciseTitle: {
     color: "#fff",

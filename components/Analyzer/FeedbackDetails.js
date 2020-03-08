@@ -5,6 +5,8 @@ import {
   ImageBackground,
   KeyboardAvoidingView,
   Image,
+  Dimensions,
+  Item,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -28,44 +30,102 @@ export default class FeedbackDetails extends Component {
     header: null
   };
 
+  constructor(props) {
+    super(props);
+    const tips = [];
+    this.state = { tips };
+  }
+
+  componentDidMount(){
+    const { params } = this.props.navigation.state;
+    const id = params ? params.id : null;
+
+    this.setState({
+      id: id
+    })
+
+    AsyncStorage.getItem('token').then(token => {
+      if (token !== null) {
+        const headers = {
+          'Authorization': token
+        };
+
+        axios({
+          method: 'GET',
+          url: 'https://datafit-api.herokuapp.com/api/mobile/uploads/'+this.state.id+'/feedback',
+          headers: headers
+        }).then((response) => {
+          if(response["status"] == 200){
+            response["data"]["uploads"]["tips"].map((e, i) => {
+              console.log(token);
+              this.setState({
+                tips: this.state.tips.concat([e])
+              })
+            });
+          } else {
+            console.error("Bad request");
+          }
+        })
+        .catch((error) => {
+           // Handle returned errors here
+        });
+      } else {
+        // Handle exception
+      }
+    }).catch(err => console.error(err));
+  }
+
   render() {
     return (
       <View style={styles.container}>
       <SafeAreaView style={styles.safeAreaView}>
         <ScrollView>
-          <ImageBackground source={require("../../assets/images/feedback-details.png")} style={{width: '100%', height: 627}}>
-            
-          </ImageBackground>
-          <View style={styles.row}>
-            <Text style={styles.exerciseTitle}>Dica 02</Text>
-          </View>
+          <ImageBackground source={require("../../assets/images/feedback-details.png")} style={{width: '100%', height: 627}} />
 
-          <View style={styles.row}>
-            <Text style={styles.exerciseTip}>Abaixe um pouco mais!</Text>
-          </View>
+          <ScrollView
+            horizontal={true}
+            contentContainerStyle={{ width: `${100 * (this.state.tips.length+1.1)}%` }}
+            showsHorizontalScrollIndicator={false}
+            scrollEventThrottle={200}
+            decelerationRate="fast"
+            pagingEnabled
+          >
+          {this.state.tips.map((tip, index) => (
+            <View style={styles.tipRow}>
+              <View style={styles.row}>
+                <Text style={styles.exerciseTitle}>Dica {index}</Text>
+              </View>
 
-          <View style={styles.row}>
-            <Text style={styles.exerciseTitle}>Você precisa descer mais um pouco. Dessa forma você terá um maior fortalecimento da parte frontal da perna.</Text>
-          </View>
-          <View style={styles.navBar}>
-            <View style={styles.leftContainer}>
-              <TouchableHighlight onPress={() => this.props.navigation.navigate("FeedbackResult")}>
-                <Text style={styles.backButton}>
-                  Anterior
+              <View style={styles.row}>
+                <Text style={styles.exerciseTip}>{tip.title}</Text>
+              </View>
+
+              <View style={styles.row}>
+                <Text style={styles.exerciseResult}>{tip.description}</Text>
+              </View>
+
+              <View style={styles.navBar}>
+                <View style={styles.leftContainer}>
+                  <TouchableHighlight onPress={() => this.props.navigation.navigate("FeedbackResult", { id: this.state.id })}>
+                    <Text style={styles.backButton}>
+                      Anterior
+                    </Text>
+                  </TouchableHighlight>
+                </View>
+                <Text style={styles.title}>
+                  ...
                 </Text>
-              </TouchableHighlight>
+                <View style={styles.rightContainer}>
+                  <TouchableOpacity>
+                    <Text style={styles.nextButton}>
+                      Avancar
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             </View>
-            <Text style={styles.title}>
-              ...
-            </Text>
-            <View style={styles.rightContainer}>
-              <TouchableOpacity>
-                <Text style={styles.nextButton}>
-                  Avancar
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          ))}
+          </ScrollView>
         </ScrollView>
         </SafeAreaView>
       </View>
@@ -74,6 +134,9 @@ export default class FeedbackDetails extends Component {
 }
 
 const styles = StyleSheet.create({
+  tipRow: {
+    width: Dimensions.get('window').width
+  },
   nextButton: {
     color: "#fff",
     fontFamily: "Roboto-Medium",
