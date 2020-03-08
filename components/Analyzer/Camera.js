@@ -5,9 +5,11 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  Image,
   View
 } from "react-native";
 import { RNCamera } from 'react-native-camera';
+import { StackNavigator } from "react-navigation";
 
 export default class Login extends Component {
   constructor() {
@@ -62,7 +64,9 @@ export default class Login extends Component {
           onPress={this.startRecording.bind(this)}
           style={styles.capture}
         >
-          <Text style={{ fontSize: 14 }}> RECORD </Text>
+          <View style={{ fontSize: 14, height: 120, top: 18 }}>
+            <Image source={require("../../assets/images/record-button.png")} />
+          </View>
         </TouchableOpacity>
       );
 
@@ -72,36 +76,45 @@ export default class Login extends Component {
             onPress={this.stopRecording.bind(this)}
             style={styles.capture}
           >
-            <Text style={{ fontSize: 14 }}> STOP </Text>
+          <View style={{ fontSize: 14, height: 120, top: 18 }}>
+            <Image source={require("../../assets/images/record-button.png")} />
+          </View>
+
           </TouchableOpacity>
         );
       }
 
       if (this.state.processing) {
-        button = (
-          <View style={styles.capture}>
-            <ActivityIndicator animating size={18} />
-          </View>
-        );
+        this.props.navigation.navigate("FeedbackResult");
       }
 
       return (
         <View style={styles.container}>
           <RNCamera
-            ref={ref => {
+          ref={ref => {
               this.camera = ref;
             }}
             style={styles.preview}
             type={RNCamera.Constants.Type.back}
             flashMode={RNCamera.Constants.FlashMode.on}
-            permissionDialogTitle={"Permission to use camera"}
-            permissionDialogMessage={
-              "We need your permission to use your camera phone"
-            }
+            androidCameraPermissionOptions={{
+              title: "Permission to use camera",
+              message: "We need your permission to use your camera",
+              buttonPositive: "Ok",
+              buttonNegative: "Cancel"
+            }}
+            androidRecordAudioPermissionOptions={{
+              title: "Permission to use audio recording",
+              message: "We need your permission to use your audio",
+              buttonPositive: "Ok",
+              buttonNegative: "Cancel"
+            }}
+            onGoogleVisionBarcodesDetected={({ barcodes }) => {
+              console.log(barcodes);
+            }}
           />
           <View
-            style={{ flex: 0, flexDirection: "row", justifyContent: "center" }}
-          >
+            style={{ flex: 0, flexDirection: "row", justifyContent: "center", backgroundColor: "#2A2E34" }}>
             {button}
           </View>
         </View>
@@ -113,11 +126,15 @@ const styles = StyleSheet.create({
   preview: {
     flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   wrapper: {
     flex: 1,
     backgroundColor: "#2A2E34"
+  },
+  container: {
+    width: "100%",
+    height: "100%"
   }
 });
 
