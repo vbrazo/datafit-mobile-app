@@ -84,7 +84,9 @@ export default class Exercise extends Component {
             <View style={styles.navBar}>
               <View style={styles.leftContainer}>
                 <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
-                  <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
+                  <View style={{width: 50, height: 100}}>
+                    <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
+                  </View>
                 </TouchableHighlight>
                 <View style={styles.contentLeftContainer}>
                   <Text style={styles.title}>{this.state.name}</Text>
@@ -126,12 +128,16 @@ export default class Exercise extends Component {
         <View style={styles.footer}>
           <View style={styles.footerCol}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
-              <Image source={require("../../assets/images/icon-home.png")} />
+              <View style={{width: 50, height: 20}}>
+                <Image source={require("../../assets/images/icon-home.png")} />
+              </View>
             </TouchableHighlight>
           </View>
           <View style={styles.footerCol}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
-              <Image source={require("../../assets/images/home/profile-icon.png")} />
+              <View style={{width: 50, height: 20}}>
+                <Image source={require("../../assets/images/home/profile-icon.png")} />
+              </View>
             </TouchableHighlight>
           </View>
         </View>
@@ -141,6 +147,10 @@ export default class Exercise extends Component {
 }
 
 const styles = StyleSheet.create({
+  backButton: {
+    top: 25,
+    left: 20
+  },
   ovalIcon: {
     height: 24,
     width: 24
@@ -184,7 +194,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    left: 20
+    top: 40
   },
   safeAreaView: {
     flex: 1,
