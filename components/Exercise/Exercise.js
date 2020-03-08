@@ -102,19 +102,19 @@ export default class Exercise extends Component {
           {this.state.uploads.map((upload, index) => (
             <View style={styles.row}>
               <View style={styles.measurementsColIcon}>
-              {Object.keys(upload["uploads"]["failed_uploads"]) == 0 ? (
+              {Object.keys(upload["uploads"]["number_of_problems"]).length == 0 ? (
                 <Image source={require("../../assets/images/oval-green-icon.png")} style={styles.ovalIcon} />
               ) : (
                 <Image source={require("../../assets/images/oval-red-icon.png")} style={styles.ovalIcon} />
               )}
               </View>
-              <TouchableHighlight onPress={() => (upload["uploads"]["id"] !== null) ? (this.props.navigation.navigate("FeedbackResult", {id: upload["uploads"]["id"]})) : null}>
+              <TouchableHighlight onPress={() => (Object.keys(upload["uploads"]["number_of_problems"]).length !== 0) ? (this.props.navigation.navigate("FeedbackResult", {id: upload["uploads"]["id"]})) : null}>
               <View style={{flexDirection: "row"}}>
                 <View style={styles.measurementsCol}>
                   <Text style={styles.exerciseTitle}>{this.state.name}</Text>
-                  <Text style={styles.exerciseResult}>{Object.keys(upload["uploads"]["failed_uploads"]) == 0 ? 'Perfect!' : Object.values(upload["uploads"]["failed_uploads"]) + ' pontos para melhorar' }</Text>
+                  <Text style={styles.exerciseResult}>{Object.keys(upload["uploads"]["number_of_problems"]).length == 0 ? 'Perfect!' : Object.keys(upload["uploads"]["number_of_problems"]).length + ' pontos para melhorar' }</Text>
                 </View>
-                <View style={styles.measurementsCol}>
+                <View style={{alignItems: "flex-end", width: "40%"}}>
                   <Text style={styles.exerciseResultDate}>{upload["uploads"]["created_at"]}</Text>
                 </View>
               </View>
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     width: "10%"
   },
   measurementsCol: {
-    width: "45%"
+    width: "50%"
   },
   exerciseTitle: {
     color: "#fff",

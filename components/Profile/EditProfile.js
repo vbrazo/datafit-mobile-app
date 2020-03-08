@@ -123,8 +123,7 @@ export default class EditProfile extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View behavior="padding" style={styles.container}>
+        <View style={styles.container}>
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
             <View style={styles.navBar}>
               <View style={styles.leftContainer}>
@@ -205,7 +204,6 @@ export default class EditProfile extends Component {
             </View>
           </KeyboardAvoidingView>
         </View>
-      </View>
     );
   }
 }

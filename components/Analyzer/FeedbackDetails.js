@@ -57,7 +57,6 @@ export default class FeedbackDetails extends Component {
         }).then((response) => {
           if(response["status"] == 200){
             response["data"]["uploads"]["tips"].map((e, i) => {
-              console.log(token);
               this.setState({
                 tips: this.state.tips.concat([e])
               })
@@ -81,7 +80,6 @@ export default class FeedbackDetails extends Component {
       <SafeAreaView style={styles.safeAreaView}>
         <ScrollView>
           <ImageBackground source={require("../../assets/images/feedback-details.png")} style={{width: '100%', height: 627}} />
-
           <ScrollView
             horizontal={true}
             contentContainerStyle={{ width: `${100 * (this.state.tips.length+1.1)}%` }}
@@ -93,7 +91,7 @@ export default class FeedbackDetails extends Component {
           {this.state.tips.map((tip, index) => (
             <View style={styles.tipRow}>
               <View style={styles.row}>
-                <Text style={styles.exerciseTitle}>Dica {index}</Text>
+                <Text style={styles.exerciseTitle}>Dica 0{index+1}</Text>
               </View>
 
               <View style={styles.row}>
@@ -115,13 +113,6 @@ export default class FeedbackDetails extends Component {
                 <Text style={styles.title}>
                   ...
                 </Text>
-                <View style={styles.rightContainer}>
-                  <TouchableOpacity>
-                    <Text style={styles.nextButton}>
-                      Avancar
-                    </Text>
-                  </TouchableOpacity>
-                </View>
               </View>
             </View>
           ))}
@@ -135,7 +126,8 @@ export default class FeedbackDetails extends Component {
 
 const styles = StyleSheet.create({
   tipRow: {
-    width: Dimensions.get('window').width
+    width: Dimensions.get('window').width,
+    padding: 10
   },
   nextButton: {
     color: "#fff",
@@ -176,7 +168,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    left: 20
+    left: 10
   },
   safeAreaView: {
     flex: 1,
