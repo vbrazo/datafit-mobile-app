@@ -6,6 +6,10 @@
 	<string>Camera</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We record audios to send you reports about athletes&apos; performance.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We record videos to send you reports about athletes&apos; performance.</string>
 	<key>CFBundleDisplayName</key>
 	<string>DataFit</string>
 	<key>CFBundleExecutable</key>
