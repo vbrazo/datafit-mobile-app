@@ -14,7 +14,6 @@ import {
   ScrollView,
   View
 } from "react-native";
-import moment from 'moment';
 import axios from 'axios';
 import Constants from 'expo-constants';
 
@@ -72,7 +71,7 @@ export default class Home extends Component {
       <SafeAreaView style={styles.safeAreaView}>
         <ScrollView>
           <View style={styles.contentContainer}>
-            <Text style={styles.title}>CrossFit</Text>
+            <Text style={styles.title}>Exercícios</Text>
             <Text style={styles.description}>Escolha um exercício abaixo para começar a praticar</Text>
           </View>
 
@@ -134,7 +133,7 @@ export default class Home extends Component {
                         </View>
                         <View style={styles.item2}>
                           <Text style={styles.lastDateLabel}>Última vez</Text>
-                          <Text style={styles.lastDate}>{moment(exercise["exercise"].created_at).format('DD/MM/YYYY')}</Text>
+                          <Text style={styles.lastDate}>{exercise["exercise"].created_at}</Text>
                         </View>
                       </View>
                     </ImageBackground>
