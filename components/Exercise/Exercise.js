@@ -84,7 +84,9 @@ export default class Exercise extends Component {
             <View style={styles.navBar}>
               <View style={styles.leftContainer}>
                 <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
-                  <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
+                  <View style={{width: 50, height: 100}}>
+                    <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
+                  </View>
                 </TouchableHighlight>
                 <View style={styles.contentLeftContainer}>
                   <Text style={styles.title}>{this.state.name}</Text>
@@ -102,19 +104,19 @@ export default class Exercise extends Component {
           {this.state.uploads.map((upload, index) => (
             <View style={styles.row}>
               <View style={styles.measurementsColIcon}>
-              {Object.keys(upload["uploads"]["failed_uploads"]) == 0 ? (
+              {Object.keys(upload["uploads"]["number_of_problems"]).length == 0 ? (
                 <Image source={require("../../assets/images/oval-green-icon.png")} style={styles.ovalIcon} />
               ) : (
                 <Image source={require("../../assets/images/oval-red-icon.png")} style={styles.ovalIcon} />
               )}
               </View>
-              <TouchableHighlight onPress={() => (upload["uploads"]["id"] !== null) ? (this.props.navigation.navigate("FeedbackResult", {id: upload["uploads"]["id"]})) : null}>
+              <TouchableHighlight onPress={() => (Object.keys(upload["uploads"]["number_of_problems"]).length !== 0) ? (this.props.navigation.navigate("FeedbackResult", {id: upload["uploads"]["id"]})) : null}>
               <View style={{flexDirection: "row"}}>
                 <View style={styles.measurementsCol}>
                   <Text style={styles.exerciseTitle}>{this.state.name}</Text>
-                  <Text style={styles.exerciseResult}>{Object.keys(upload["uploads"]["failed_uploads"]) == 0 ? 'Perfect!' : Object.values(upload["uploads"]["failed_uploads"]) + ' pontos para melhorar' }</Text>
+                  <Text style={styles.exerciseResult}>{Object.keys(upload["uploads"]["number_of_problems"]).length == 0 ? 'Perfect!' : Object.keys(upload["uploads"]["number_of_problems"]).length + ' pontos para melhorar' }</Text>
                 </View>
-                <View style={styles.measurementsCol}>
+                <View style={{alignItems: "flex-end", width: "40%"}}>
                   <Text style={styles.exerciseResultDate}>{upload["uploads"]["created_at"]}</Text>
                 </View>
               </View>
@@ -126,12 +128,16 @@ export default class Exercise extends Component {
         <View style={styles.footer}>
           <View style={styles.footerCol}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Home")}>
-              <Image source={require("../../assets/images/icon-home.png")} />
+              <View style={{width: 50, height: 20}}>
+                <Image source={require("../../assets/images/icon-home.png")} />
+              </View>
             </TouchableHighlight>
           </View>
           <View style={styles.footerCol}>
             <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
-              <Image source={require("../../assets/images/home/profile-icon.png")} />
+              <View style={{width: 50, height: 20}}>
+                <Image source={require("../../assets/images/home/profile-icon.png")} />
+              </View>
             </TouchableHighlight>
           </View>
         </View>
@@ -141,6 +147,10 @@ export default class Exercise extends Component {
 }
 
 const styles = StyleSheet.create({
+  backButton: {
+    top: 25,
+    left: 20
+  },
   ovalIcon: {
     height: 24,
     width: 24
@@ -155,7 +165,7 @@ const styles = StyleSheet.create({
     width: "10%"
   },
   measurementsCol: {
-    width: "45%"
+    width: "50%"
   },
   exerciseTitle: {
     color: "#fff",
@@ -184,7 +194,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    left: 20
+    top: 40
   },
   safeAreaView: {
     flex: 1,

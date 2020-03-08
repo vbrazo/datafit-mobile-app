@@ -123,13 +123,14 @@ export default class EditProfile extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View behavior="padding" style={styles.container}>
+        <View style={styles.container}>
           <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
             <View style={styles.navBar}>
               <View style={styles.leftContainer}>
                 <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
-                  <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
+                  <View style={{width: 30, height: 30}}>
+                    <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
+                  </View>
                 </TouchableHighlight>
               </View>
               <Text style={styles.title}>
@@ -137,7 +138,9 @@ export default class EditProfile extends Component {
               </Text>
               <View style={styles.rightContainer}>
                 <TouchableOpacity onPress={this.onSubmitPress.bind(this)}>
-                  <Image source={require("../../assets/images/icon-submit.png")} style={styles.submitButton} />
+                  <View style={{width: 30, height: 30}}>
+                    <Image source={require("../../assets/images/icon-submit.png")} style={styles.submitButton} />
+                  </View>
                 </TouchableOpacity>
               </View>
             </View>
@@ -205,7 +208,6 @@ export default class EditProfile extends Component {
             </View>
           </KeyboardAvoidingView>
         </View>
-      </View>
     );
   }
 }
@@ -291,7 +293,8 @@ const styles = StyleSheet.create({
   },
   keyboard: {
     margin: 20,
-    padding: 20,
+    marginTop: 40,
+    padding: 0,
     alignSelf: "stretch"
   },
   buttonContainer: {

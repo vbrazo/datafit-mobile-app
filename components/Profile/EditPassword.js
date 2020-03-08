@@ -85,7 +85,9 @@ export default class EditPassword extends Component {
             <View style={styles.navBar}>
               <View style={styles.leftContainer}>
                 <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
-                  <Image source={require("../../assets/images/icon.png")} style={styles.backButton} />
+                  <View style={{width: 30, height: 30}}>
+                    <Image source={require("../../assets/images/icon.png")} />
+                  </View>
                 </TouchableHighlight>
               </View>
               <Text style={styles.title}>
@@ -230,7 +232,7 @@ const styles = StyleSheet.create({
   },
   keyboard: {
     margin: 20,
-    padding: 20,
+    marginTop: 40,
     alignSelf: "stretch"
   },
   buttonContainer: {

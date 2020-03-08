@@ -154,7 +154,9 @@ export default class Home extends Component {
         </View>
         <View style={styles.footerCol}>
           <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
-            <Image source={require("../../assets/images/home/profile-icon.png")} />
+            <View style={{width: 50, height: 20}}>
+              <Image source={require("../../assets/images/home/profile-icon.png")} />
+            </View>
           </TouchableHighlight>
         </View>
       </View>

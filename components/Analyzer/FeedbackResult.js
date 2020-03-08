@@ -27,7 +27,8 @@ export default class FeedbackResult extends Component {
   constructor(props) {
     super(props);
     const feedback = [];
-    this.state = { feedback };
+    const tips = [];
+    this.state = { feedback, tips };
   }
 
   componentDidMount() {
@@ -51,7 +52,7 @@ export default class FeedbackResult extends Component {
         }).then((response) => {
           if(response["status"] == 200){
             this.setState({
-              number_of_problems: response["data"]["uploads"]["failed_uploads"],
+              number_of_problems: response["data"]["uploads"]["number_of_problems"],
               tips: response["data"]["uploads"]["tips"]
             })
           } else {
@@ -73,16 +74,16 @@ export default class FeedbackResult extends Component {
       <SafeAreaView style={styles.safeAreaView}>
         <ScrollView>
           <View style={styles.backgroundRed}>
-            <View>
+            <View style={styles.firstTitle}>
               <Text style={styles.regularText}>Hummm...</Text>
             </View>
-            <View>
-              <Text style={{fontSize: 149, color: "#fff", fontFamily: "Roboto-Medium"}}>{this.state.number_of_problems}</Text>
+            <View style={styles.subtTitle}>
+              <Text style={{fontSize: 149, color: "#fff", fontFamily: "Roboto-Medium"}}>{this.state.tips.length}</Text>
             </View>
-            <View>
+            <View style={styles.title}>
               <Text style={{fontSize: 18, color: "#fff", fontFamily: "Roboto-Medium"}}>Pontos que podemos melhorar!</Text>
             </View>
-            <View>
+            <View style={styles.nextButtonContainer}>
               <TouchableHighlight onPress={() => this.props.navigation.navigate("FeedbackDetails", {
                 id: this.state.id,
                 tips: this.state.tips
@@ -99,6 +100,25 @@ export default class FeedbackResult extends Component {
 }
 
 const styles = StyleSheet.create({
+  firstTitle: {
+    width: "100%",
+    alignItems: "center",
+    paddingTop: 200
+  },
+  subtTitle: {
+    width: "100%",
+    alignItems: "center",
+    paddingTop: 10
+  },
+  title: {
+    width: "100%",
+    alignItems: "center",
+    paddingTop: 10,
+  },
+  nextButtonContainer: {
+    top: 75,
+    alignItems: "center"
+  },
   regularText: {
     color: "#fff",
     fontFamily: "Roboto-Medium",
