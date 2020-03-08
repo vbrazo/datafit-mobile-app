@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
   },
   keyboard: {
     margin: 20,
-    padding: 20,
+    marginTop: 40,
     alignSelf: "stretch"
   },
   buttonContainer: {
