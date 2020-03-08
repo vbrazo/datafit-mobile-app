@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
   AppRegistry,
+  AsyncStorage,
   Image,
   SafeAreaView,
   ScrollView,
@@ -23,6 +24,49 @@ export default class FeedbackResult extends Component {
     header: null
   };
 
+  constructor(props) {
+    super(props);
+    const feedback = [];
+    this.state = { feedback };
+  }
+
+  componentDidMount() {
+    const { params } = this.props.navigation.state;
+    const id = params ? params.id : null;
+
+    this.setState({
+      id: id
+    })
+
+    AsyncStorage.getItem('token').then(token => {
+      if (token !== null) {
+        const headers = {
+          'Authorization': token
+        };
+
+        axios({
+          method: 'GET',
+          url: 'https://datafit-api.herokuapp.com/api/mobile/uploads/'+this.state.id+'/feedback',
+          headers: headers
+        }).then((response) => {
+          if(response["status"] == 200){
+            this.setState({
+              number_of_problems: response["data"]["uploads"]["failed_uploads"],
+              tips: response["data"]["uploads"]["tips"]
+            })
+          } else {
+            console.error("Bad request");
+          }
+        })
+        .catch((error) => {
+           // Handle returned errors here
+        });
+      } else {
+        // Handle exception
+      }
+    }).catch(err => console.error(err));
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -33,16 +77,16 @@ export default class FeedbackResult extends Component {
               <Text style={styles.regularText}>Hummm...</Text>
             </View>
             <View>
-              <Text style={{fontSize: 149, color: "#fff", fontFamily: "Roboto-Medium"}}>5</Text>
-            </View>
-            <View>
-              <Image source={require("../../assets/images/feedback-icon.png")} />
+              <Text style={{fontSize: 149, color: "#fff", fontFamily: "Roboto-Medium"}}>{this.state.number_of_problems}</Text>
             </View>
             <View>
               <Text style={{fontSize: 18, color: "#fff", fontFamily: "Roboto-Medium"}}>Pontos que podemos melhorar!</Text>
             </View>
             <View>
-              <TouchableHighlight onPress={() => this.props.navigation.navigate("FeedbackDetails")}>
+              <TouchableHighlight onPress={() => this.props.navigation.navigate("FeedbackDetails", {
+                id: this.state.id,
+                tips: this.state.tips
+              })}>
                 <Image source={require("../../assets/images/next-button.png")} />
               </TouchableHighlight>
             </View>
