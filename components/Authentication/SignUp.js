@@ -81,7 +81,7 @@ export default class SignUp extends Component {
       <View style={styles.container}>
         <SafeAreaView style={styles.safeAreaView}>
           <ScrollView>
-            <View behavior="padding" style={styles.container}>
+            <View style={styles.container}>
               <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
                 <View style={styles.navBar}>
                   <View style={styles.leftContainer}>
@@ -217,6 +217,7 @@ const styles = StyleSheet.create({
   },
   navBar: {
     height: 60,
+    marginBottom: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
@@ -303,7 +304,7 @@ const styles = StyleSheet.create({
   },
   keyboard: {
     margin: 20,
-    padding: 20,
+    marginTop: 0,
     alignSelf: "stretch"
   },
   buttonContainer: {

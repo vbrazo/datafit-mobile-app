@@ -255,15 +255,15 @@ const styles = StyleSheet.create({
     fontSize: 25
   },
   contentContainer: {
-    padding: 24,
-    top: 50
+    paddingLeft: 24,
+    top: 15
   },
   contentContainer2: {
     padding: 4,
-    top: 40
+    top: 15
   },
   contentContainer3: {
-    top: 10
+    top: 12
   },
   container: {
     flex: 1,
