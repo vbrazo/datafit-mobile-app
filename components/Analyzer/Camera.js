@@ -17,6 +17,8 @@ export default class Login extends Component {
     this.state = {
       recording: '',
       processing: '',
+      id: '',
+      name: '',
     };
   }
 
@@ -58,6 +60,17 @@ export default class Login extends Component {
     this.camera.stopRecording();
   }
 
+  componentDidMount() {
+    const {params} = this.props.navigation.state;
+    const id = params ? params.id : null;
+    const name = params ? params.name : null;
+
+    this.setState({
+      id: id,
+      name: name,
+    });
+  }
+
   render() {
     let button = (
       <TouchableOpacity
@@ -82,7 +95,7 @@ export default class Login extends Component {
     }
 
     if (this.state.processing) {
-      this.props.navigation.navigate('FeedbackResult', { recent_upload: true });
+      this.props.navigation.navigate('FeedbackResult', { recent_upload: true, id: this.state.id, name: this.state.name });
     }
 
     return (
