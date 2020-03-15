@@ -1,37 +1,33 @@
-import React, { Component } from 'react';
-import {
-  StatusBar,
-  StyleSheet,
-  View
-} from 'react-native';
+import React, {Component} from 'react';
+import {StatusBar, StyleSheet, View} from 'react-native';
 
 // Analyzer Components
-import Camera from "./components/Analyzer/Camera";
-import FeedbackDetails from "./components/Analyzer/FeedbackDetails";
-import FeedbackResult from "./components/Analyzer/FeedbackResult";
+import Camera from './components/Analyzer/Camera';
+import FeedbackDetails from './components/Analyzer/FeedbackDetails';
+import FeedbackResult from './components/Analyzer/FeedbackResult';
 
 // Authentication Components
-import Login from "./components/Authentication/Login";
-import SignUp from "./components/Authentication/SignUp";
+import Login from './components/Authentication/Login';
+import SignUp from './components/Authentication/SignUp';
 
 // Exercises Components
-import Exercise from "./components/Exercise/Exercise";
-import Home from "./components/Exercise/Home";
+import Exercise from './components/Exercise/Exercise';
+import Home from './components/Exercise/Home';
 
 // Profile Components
-import EditPassword from "./components/Profile/EditPassword";
-import EditProfile from "./components/Profile/EditProfile";
-import Profile from "./components/Profile/Profile";
+import EditPassword from './components/Profile/EditPassword';
+import EditProfile from './components/Profile/EditProfile';
+import Profile from './components/Profile/Profile';
 
-import { StackNavigator } from "react-navigation";
+import {StackNavigator} from 'react-navigation';
 
 class Initial extends Component<{}> {
   static navigationOptions = {
     headerStyle: {
-      backgroundColor: "#16a085",
-      elevation: null
+      backgroundColor: '#16a085',
+      elevation: null,
     },
-    header: null
+    header: null,
   };
   render() {
     return (
@@ -43,77 +39,77 @@ class Initial extends Component<{}> {
   }
 }
 
-export default App = StackNavigator({
+export default (App = StackNavigator({
   Initial: {
     screen: Initial,
     navigationOptions: {
-      title: "Initial"
-    }
+      title: 'Initial',
+    },
   },
   Login: {
     screen: Login,
     navigationOptions: {
-      title: "Login"
-    }
+      title: 'Login',
+    },
   },
   SignUp: {
     screen: SignUp,
     navigationOptions: {
-      title: "SignUp"
-    }
+      title: 'SignUp',
+    },
   },
   EditProfile: {
     screen: EditProfile,
     navigationOptions: {
-      title: "EditProfile"
-    }
+      title: 'EditProfile',
+    },
   },
   EditPassword: {
     screen: EditPassword,
     navigationOptions: {
-      title: "EditPassword"
-    }
+      title: 'EditPassword',
+    },
   },
   Profile: {
     screen: Profile,
     navigationOptions: {
-      title: "Profile"
-    }
+      title: 'Profile',
+    },
   },
   Home: {
     screen: Home,
     navigationOptions: {
-      title: "Home"
-    }
+      title: 'Home',
+    },
   },
   Exercise: {
     screen: Exercise,
     navigationOptions: {
-      title: "Exercise"
-    }
+      title: 'Exercise',
+    },
   },
   FeedbackDetails: {
     screen: FeedbackDetails,
     navigationOptions: {
-      title: "FeedbackDetails"
-    }
+      title: 'FeedbackDetails',
+    },
   },
   FeedbackResult: {
     screen: FeedbackResult,
     navigationOptions: {
-      title: "FeedbackResult"
-    }
+      title: 'FeedbackResult',
+    },
   },
   Camera: {
     screen: Camera,
     navigationOptions: {
-      title: "Camera"
-    }
-  }
-});
+      title: 'Camera',
+    },
+  },
+}));
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });

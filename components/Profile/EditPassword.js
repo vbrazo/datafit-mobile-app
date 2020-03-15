@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   Alert,
   AsyncStorage,
@@ -11,91 +11,96 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   Text,
-  View
-} from "react-native";
+  View,
+} from 'react-native';
 import axios from 'axios';
-import { StackNavigator } from "react-navigation";
+import {StackNavigator} from 'react-navigation';
 
 export default class EditPassword extends Component {
   static navigationOptions = {
     headerStyle: {
-      backgroundColor: "#16a085",
-      elevation: null
+      backgroundColor: '#16a085',
+      elevation: null,
     },
-    header: null
+    header: null,
   };
 
   constructor() {
     super();
     this.state = {
-      password: "",
-      password_confirmation: ""
+      password: '',
+      password_confirmation: '',
     };
   }
 
   onSubmitPress = async () => {
-    AsyncStorage.getItem('token').then(token => {
-      if (token !== null) {
-        const { password } = this.state;
+    AsyncStorage.getItem('token')
+      .then(token => {
+        if (token !== null) {
+          const {password} = this.state;
 
-        const headers = {
-          'Authorization': token
-        };
+          const headers = {
+            Authorization: token,
+          };
 
-        const params = {
-          password: password
+          const params = {
+            password: password,
+          };
+
+          axios({
+            method: 'PUT',
+            url:
+              'https://datafit-api.herokuapp.com/api/mobile/users/change_profile',
+            params: params,
+            headers: headers,
+          })
+            .then(response => {
+              if (response.status == 200) {
+                Alert.alert('Senha atualizada', '', [
+                  {
+                    text: 'Voltar',
+                    onPress: () => this.props.navigation.navigate('Profile'),
+                    style: 'cancel',
+                  },
+                ]);
+              } else {
+                console.error('Bad request');
+              }
+            })
+            .catch(error => {
+              // Handle returned errors here
+            });
+        } else {
+          // Handle exception
         }
-
-        axios({
-          method: 'PUT',
-          url: 'https://datafit-api.herokuapp.com/api/mobile/users/change_profile',
-          params: params,
-          headers: headers
-        }).then((response) => {
-          if(response["status"] == 200){
-            Alert.alert(
-              'Senha atualizada',
-              '',
-              [
-                {
-                  text: 'Voltar',
-                  onPress: () => this.props.navigation.navigate("Profile"),
-                  style: 'cancel',
-                }
-              ]
-            );
-          } else {
-            console.error("Bad request");
-          }
-        })
-        .catch((error) => {
-           // Handle returned errors here
-        });
-      } else {
-        // Handle exception
-      }
-    }).catch(err => reject(err));
-  }
+      })
+      .catch(err => reject(err));
+  };
 
   render() {
     return (
       <View style={styles.container}>
         <View behavior="padding" style={styles.container}>
-          <KeyboardAvoidingView style={styles.keyboard} behavior="padding" enabled>
+          <KeyboardAvoidingView
+            style={styles.keyboard}
+            behavior="padding"
+            enabled>
             <View style={styles.navBar}>
               <View style={styles.leftContainer}>
-                <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}>
+                <TouchableHighlight
+                  onPress={() => this.props.navigation.navigate('Profile')}>
                   <View style={{width: 30, height: 30}}>
-                    <Image source={require("../../assets/images/icon.png")} />
+                    <Image source={require('../../assets/images/icon.png')} />
                   </View>
                 </TouchableHighlight>
               </View>
-              <Text style={styles.title}>
-                Alterar senha
-              </Text>
+              <Text style={styles.title}>Alterar senha</Text>
               <View style={styles.rightContainer}>
                 <TouchableOpacity onPress={this.onSubmitPress.bind(this)}>
-                  <Image source={require("../../assets/images/icon-submit.png")} style={styles.submitButton} />
+                  <Image
+                    source={require('../../assets/images/icon-submit.png')}
+                    style={styles.submitButton}
+                  />
                 </TouchableOpacity>
               </View>
             </View>
@@ -119,7 +124,7 @@ export default class EditPassword extends Component {
                 autoCorrect={false}
                 style={styles.input}
                 value={this.state.password}
-                onChangeText={password => this.setState({ password })}
+                onChangeText={password => this.setState({password})}
               />
               <Text style={styles.formLabel}>CRIAR SENHA</Text>
             </View>
@@ -133,7 +138,9 @@ export default class EditPassword extends Component {
                 autoCorrect={false}
                 style={styles.input}
                 value={this.state.passwordConfirmation}
-                onChangeText={passwordConfirmation => this.setState({ passwordConfirmation })}
+                onChangeText={passwordConfirmation =>
+                  this.setState({passwordConfirmation})
+                }
               />
               <Text style={styles.formLabel}>CONFIRMAR SENHA</Text>
             </View>
@@ -149,18 +156,18 @@ const styles = StyleSheet.create({
     height: 60,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   leftContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
   rightContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   rightIcon: {
     height: 10,
@@ -168,30 +175,30 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     backgroundColor: 'white',
   },
-  userTypeText:{
-    color: "#C9CDD0",
-    width: "100%",
-    textAlign: "center",
-    textAlignVertical: "center"
+  userTypeText: {
+    color: '#C9CDD0',
+    width: '100%',
+    textAlign: 'center',
+    textAlignVertical: 'center',
   },
   userType1: {
-    borderColor: "#C9CDD0",
+    borderColor: '#C9CDD0',
     borderWidth: 1,
     borderBottomLeftRadius: 7,
     borderTopLeftRadius: 7,
-    width: "50%"
+    width: '50%',
   },
   userType2: {
-    borderColor: "#C9CDD0",
+    borderColor: '#C9CDD0',
     borderWidth: 1,
     borderBottomEndRadius: 7,
     borderTopRightRadius: 7,
-    width: "50%"
+    width: '50%',
   },
   rowUserType: {
-    flexDirection: "row",
+    flexDirection: 'row',
     height: 35,
-    marginTop: 10
+    marginTop: 10,
   },
   checkbox: {
     height: 20,
@@ -199,73 +206,71 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'white',
     borderColor: 'green',
-    borderStyle: 'dotted'
+    borderStyle: 'dotted',
   },
   row: {
-    flexDirection: "row",
-    height: 100
+    flexDirection: 'row',
+    height: 100,
   },
   window: {
-    marginBottom: 15
+    marginBottom: 15,
   },
   title: {
-    fontFamily: "Roboto-Regular",
+    fontFamily: 'Roboto-Regular',
     fontSize: 20,
-    color: "#FFFFFF",
-    textAlign: "center"
+    color: '#FFFFFF',
+    textAlign: 'center',
   },
   measurementsCol: {
-    width: "45%"
+    width: '45%',
   },
   measurementsColSpace: {
-    width:"10%"
+    width: '10%',
   },
   container: {
     flex: 1,
-    backgroundColor: "#2A2E34"
+    backgroundColor: '#2A2E34',
   },
   logoContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     flexGrow: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   keyboard: {
     margin: 20,
     marginTop: 40,
-    alignSelf: "stretch"
+    alignSelf: 'stretch',
   },
   buttonContainer: {
-    backgroundColor: "#FFC13C",
+    backgroundColor: '#FFC13C',
     paddingVertical: 15,
-    borderRadius: 5
+    borderRadius: 5,
   },
   buttonText: {
-    textAlign: "center",
-    fontWeight: "700",
+    textAlign: 'center',
+    fontWeight: '700',
     fontSize: 20,
-    color: "#2A2E34",
-    fontFamily: "Roboto-Regular"
+    color: '#2A2E34',
+    fontFamily: 'Roboto-Regular',
   },
   formLabel: {
-    color: "#C9CDD0",
+    color: '#C9CDD0',
     fontSize: 12.8,
     marginTop: 10,
-    fontFamily: "Roboto-Regular"
+    fontFamily: 'Roboto-Regular',
   },
   input: {
     height: 40,
-    color: "#FFFFFF",
-    fontFamily: "Roboto-Regular",
+    color: '#FFFFFF',
+    fontFamily: 'Roboto-Regular',
     fontSize: 20,
     borderBottomWidth: 1.0,
-    width: "100%",
-    borderBottomColor: "#C9CDD0"
+    width: '100%',
+    borderBottomColor: '#C9CDD0',
   },
-  backButton: {
-  },
-  submitButton: {
-  }
+  backButton: {},
+  submitButton: {},
 });
 
-AppRegistry.registerComponent("EditPassword", () => EditPassword);
+AppRegistry.registerComponent('EditPassword', () => EditPassword);
