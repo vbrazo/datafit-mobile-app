@@ -34,9 +34,11 @@ export default class FeedbackResult extends Component {
   componentDidMount() {
     const {params} = this.props.navigation.state;
     const id = params ? params.id : null;
+    const recent_upload = params ? params.recent_upload : false;
 
     this.setState({
       id: id,
+      recent_upload: recent_upload,
     });
 
     AsyncStorage.getItem('token')
@@ -79,43 +81,83 @@ export default class FeedbackResult extends Component {
       <View style={styles.container}>
         <SafeAreaView style={styles.safeAreaView}>
           <ScrollView>
-            <View style={styles.backgroundRed}>
-              <View style={styles.firstTitle}>
-                <Text style={styles.regularText}>Hummm...</Text>
-              </View>
-              <View style={styles.subtTitle}>
-                <Text
-                  style={{
-                    fontSize: 149,
-                    color: '#fff',
-                    fontFamily: 'Roboto-Medium',
-                  }}>
-                  {this.state.tips.length}
-                </Text>
-              </View>
-              <View style={styles.title}>
+            <View style={this.state.recent_uploaded !== false ? styles.backgroundYellow : styles.backgroundRed}>
+              {this.state.recent_uploaded !== false ?
+                null
+                :
+                (<View>
+                  <View style={styles.firstTitle}>
+                    <Text style={styles.regularText}>Hummm...</Text>
+                  </View>
+                  <View style={styles.subTitle}>
+                    <Text
+                      style={{
+                        fontSize: 149,
+                        color: '#fff',
+                        fontFamily: 'Roboto-Medium',
+                      }}>
+                      {this.state.tips.length}
+                    </Text>
+                  </View>
+                </View>
+              )}
+
+              {this.state.recent_uploaded !== false ?
+                (
+                <View style={styles.pendingTitle}>
+                  <View style={styles.pendingRegularText}>
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        color: '#fff',
+                        fontFamily: 'Roboto-Medium',
+                      }}>
+                      Estamos processando o seu feedback.
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        color: '#fff',
+                        fontFamily: 'Roboto-Medium',
+                      }}>Por favor, volte mais tarde!</Text>
+                  </View>
+                </View>
+                ) : (
+                  <View style={styles.title}>
                 <Text
                   style={{
                     fontSize: 18,
                     color: '#fff',
-                    fontFamily: 'Roboto-Medium',
+                    fontFamily: 'Roboto-Medium'
                   }}>
                   Pontos que podemos melhorar!
                 </Text>
-              </View>
-              <View style={styles.nextButtonContainer}>
-                <TouchableHighlight
-                  onPress={() =>
-                    this.props.navigation.navigate('FeedbackDetails', {
-                      id: this.state.id,
-                      tips: this.state.tips,
-                    })
-                  }>
-                  <Image
-                    source={require('../../assets/images/next-button.png')}
-                  />
-                </TouchableHighlight>
-              </View>
+              </View>)}
+
+              {this.state.recent_uploaded !== false ?
+                ( <View style={styles.nextButtonContainer}>
+                    <TouchableHighlight
+                      onPress={() =>
+                        this.props.navigation.navigate('Home')
+                      }>
+                      <Image
+                        source={require('../../assets/images/voltar-button.png')}
+                      />
+                    </TouchableHighlight>
+                  </View> ) :
+                ( <View style={styles.nextButtonContainer}>
+                    <TouchableHighlight
+                      onPress={() =>
+                        this.props.navigation.navigate('FeedbackDetails', {
+                          id: this.state.id,
+                          tips: this.state.tips,
+                        })
+                      }>
+                      <Image
+                        source={require('../../assets/images/next-button.png')}
+                      />
+                    </TouchableHighlight>
+                  </View> )}
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -135,6 +177,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 10,
   },
+  pendingTitle: {
+    width: '100%',
+    alignItems: 'center',
+    paddingTop: 280
+  },
   title: {
     width: '100%',
     alignItems: 'center',
@@ -144,10 +191,19 @@ const styles = StyleSheet.create({
     top: 75,
     alignItems: 'center',
   },
+  pendingRegularText: {
+    paddingTop: 120,
+    position: "relative",
+    bottom: 50
+  },
   regularText: {
     color: '#fff',
     fontFamily: 'Roboto-Medium',
     fontSize: 18,
+  },
+  backgroundYellow: {
+    backgroundColor: '#FFCB3F',
+    height: 600,
   },
   backgroundRed: {
     backgroundColor: '#D65551',

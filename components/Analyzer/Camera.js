@@ -82,7 +82,7 @@ export default class Login extends Component {
     }
 
     if (this.state.processing) {
-      this.props.navigation.navigate('FeedbackResult');
+      this.props.navigation.navigate('FeedbackResult', { recent_upload: true });
     }
 
     return (
