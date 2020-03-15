@@ -37,9 +37,6 @@ export default class FeedbackResult extends Component {
     const name = params ? params.name : null;
     const recent_upload = params ? params.recent_upload : false;
 
-    console.log(id);
-    console.log(name);
-
     this.setState({
       id: id,
       name: name,

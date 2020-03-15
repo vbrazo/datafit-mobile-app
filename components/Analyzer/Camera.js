@@ -65,8 +65,6 @@ export default class Login extends Component {
     const id = params ? params.id : null;
     const name = params ? params.name : null;
 
-    console.log(id);
-
     this.setState({
       id: id,
       name: name,
