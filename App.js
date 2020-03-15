@@ -21,6 +21,8 @@ import Profile from './components/Profile/Profile';
 
 import {StackNavigator} from 'react-navigation';
 
+console.disableYellowBox = true;
+
 class Initial extends Component<{}> {
   static navigationOptions = {
     headerStyle: {
