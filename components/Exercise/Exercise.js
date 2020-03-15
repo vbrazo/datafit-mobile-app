@@ -41,6 +41,7 @@ export default class Exercise extends Component {
     const image = params ? params.image : null;
 
     this.setState({
+      id: id,
       name: name,
       image: image,
     });
@@ -108,7 +109,7 @@ export default class Exercise extends Component {
               <View>
                 <View style={styles.contentContainer}>
                   <TouchableHighlight
-                    onPress={() => this.props.navigation.navigate('Camera')}>
+                    onPress={() => this.props.navigation.navigate('Camera', { id: this.state.id, name: this.state.name } )}>
                     <Image source={require('../../assets/images/go.png')} />
                   </TouchableHighlight>
                 </View>

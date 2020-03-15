@@ -34,10 +34,15 @@ export default class FeedbackResult extends Component {
   componentDidMount() {
     const {params} = this.props.navigation.state;
     const id = params ? params.id : null;
+    const name = params ? params.name : null;
     const recent_upload = params ? params.recent_upload : false;
+
+    console.log(id);
+    console.log(name);
 
     this.setState({
       id: id,
+      name: name,
       recent_upload: recent_upload,
     });
 
@@ -138,7 +143,7 @@ export default class FeedbackResult extends Component {
                 ( <View style={styles.nextButtonContainer}>
                     <TouchableHighlight
                       onPress={() =>
-                        this.props.navigation.navigate('Home')
+                        this.props.navigation.navigate('Exercise', { id: this.state.id, name: this.state.name })
                       }>
                       <Image
                         source={require('../../assets/images/voltar-button.png')}
