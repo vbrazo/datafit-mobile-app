@@ -94,7 +94,7 @@ export default class EditPassword extends Component {
                   </View>
                 </TouchableHighlight>
               </View>
-              <Text style={styles.title}>Alterar senha</Text>
+              <Text style={styles.title}>Change your password</Text>
               <View style={styles.rightContainer}>
                 <TouchableOpacity onPress={this.onSubmitPress.bind(this)}>
                   <Image
@@ -113,7 +113,7 @@ export default class EditPassword extends Component {
                 autoCorrect={false}
                 style={styles.input}
               />
-              <Text style={styles.formLabel}>SENHA ATUAL</Text>
+              <Text style={styles.formLabel}>CURRENT PASSWORD</Text>
             </View>
 
             <View style={styles.window}>
@@ -126,7 +126,7 @@ export default class EditPassword extends Component {
                 value={this.state.password}
                 onChangeText={password => this.setState({password})}
               />
-              <Text style={styles.formLabel}>CRIAR SENHA</Text>
+              <Text style={styles.formLabel}>PASSWORD</Text>
             </View>
 
             <View style={styles.window}>
@@ -142,7 +142,7 @@ export default class EditPassword extends Component {
                   this.setState({passwordConfirmation})
                 }
               />
-              <Text style={styles.formLabel}>CONFIRMAR SENHA</Text>
+              <Text style={styles.formLabel}>PASSWORD CONFIRMATION</Text>
             </View>
           </KeyboardAvoidingView>
         </View>
