@@ -152,7 +152,7 @@ export default class EditProfile extends Component {
                 </View>
               </TouchableHighlight>
             </View>
-            <Text style={styles.title}>Edit your profile</Text>
+            <Text style={styles.title}>Change profile</Text>
             <View style={styles.rightContainer}>
               <TouchableOpacity onPress={this.onSubmitPress.bind(this)}>
                 <View style={{width: 30, height: 30}}>
