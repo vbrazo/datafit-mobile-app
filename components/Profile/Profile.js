@@ -45,7 +45,7 @@ export default class Profile extends Component {
                     justifyContent: 'flex-start',
                     flex: 1,
                   }}>
-                  <Text style={styles.formLabel}>Editar Perfil</Text>
+                  <Text style={styles.formLabel}>Edit Profile</Text>
                 </View>
                 <View
                   style={{
@@ -81,7 +81,7 @@ export default class Profile extends Component {
                     justifyContent: 'flex-start',
                     flex: 1,
                   }}>
-                  <Text style={styles.formLabel}>Alterar senha</Text>
+                  <Text style={styles.formLabel}>Edit password</Text>
                 </View>
                 <View
                   style={{
@@ -117,7 +117,7 @@ export default class Profile extends Component {
                     justifyContent: 'flex-start',
                     flex: 1,
                   }}>
-                  <Text style={styles.formLabel}>Sair</Text>
+                  <Text style={styles.formLabel}>Sign out</Text>
                 </View>
               </View>
             </TouchableHighlight>

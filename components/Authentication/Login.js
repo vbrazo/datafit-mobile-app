@@ -106,16 +106,16 @@ export default class Login extends Component {
                 />
               </View>
               <View style={{flexDirection: 'row'}}>
-                <Text style={styles.passwordLabel}>SENHA</Text>
+                <Text style={styles.passwordLabel}>PASSWORD</Text>
                 <Text style={styles.forgotPasswordLabel}>
-                  ESQUECEU SUA SENHA?
+                  FORGOT YOUR PASSWORD?
                 </Text>
               </View>
             </View>
             <TouchableOpacity
               style={styles.buttonContainer}
               onPress={this.onLoginPress.bind(this)}>
-              <Text style={styles.signInButton}>Entrar</Text>
+              <Text style={styles.signInButton}>Log In</Text>
             </TouchableOpacity>
           </KeyboardAvoidingView>
         </View>
@@ -124,7 +124,7 @@ export default class Login extends Component {
             style={styles.signUpLink}
             onPress={() => this.props.navigation.navigate('SignUp')}
             title="Sign up">
-            CADASTRE-SE
+            SIGN UP
           </Text>
         </TouchableOpacity>
       </View>

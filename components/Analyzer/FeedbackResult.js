@@ -114,14 +114,14 @@ export default class FeedbackResult extends Component {
                         color: '#fff',
                         fontFamily: 'Roboto-Medium',
                       }}>
-                      Estamos processando o seu feedback.
+                      We're processing your feedback.
                     </Text>
                     <Text
                       style={{
                         fontSize: 18,
                         color: '#fff',
                         fontFamily: 'Roboto-Medium',
-                      }}>Por favor, volte mais tarde!</Text>
+                      }}>Please, come back later!</Text>
                   </View>
                 </View>
                 ) : (
@@ -132,7 +132,7 @@ export default class FeedbackResult extends Component {
                     color: '#fff',
                     fontFamily: 'Roboto-Medium'
                   }}>
-                  Pontos que podemos melhorar!
+                  Points that we can improve!
                 </Text>
               </View>)}
 

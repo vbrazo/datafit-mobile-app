@@ -152,7 +152,7 @@ export default class EditProfile extends Component {
                 </View>
               </TouchableHighlight>
             </View>
-            <Text style={styles.title}>Editar perfil</Text>
+            <Text style={styles.title}>Change profile</Text>
             <View style={styles.rightContainer}>
               <TouchableOpacity onPress={this.onSubmitPress.bind(this)}>
                 <View style={{width: 30, height: 30}}>
@@ -174,7 +174,7 @@ export default class EditProfile extends Component {
               value={this.state.name}
               onChangeText={name => this.setState({name})}
             />
-            <Text style={styles.formLabel}>NOME COMPLETO</Text>
+            <Text style={styles.formLabel}>NAME</Text>
           </View>
 
           <View style={styles.window}>
@@ -198,7 +198,7 @@ export default class EditProfile extends Component {
               value={this.state.dateOfBirth}
               onChangeText={dateOfBirth => this.setState({dateOfBirth})}
             />
-            <Text style={styles.formLabel}>DATA DE NASCIMENTO</Text>
+            <Text style={styles.formLabel}>DATE OF BIRTH</Text>
           </View>
 
           <View style={styles.row}>
@@ -211,7 +211,7 @@ export default class EditProfile extends Component {
                 value={this.state.height}
                 onChangeText={height => this.setState({height})}
               />
-              <Text style={styles.formLabel}>ALTURA (CM)</Text>
+              <Text style={styles.formLabel}>HEIGHT (CM)</Text>
             </View>
             <View style={styles.measurementsColSpace} />
             <View style={styles.measurementsCol}>
@@ -223,7 +223,7 @@ export default class EditProfile extends Component {
                 value={this.state.weight}
                 onChangeText={weight => this.setState({weight})}
               />
-              <Text style={styles.formLabel}>PESO (KG)</Text>
+              <Text style={styles.formLabel}>WEIGHT (KG)</Text>
             </View>
           </View>
         </KeyboardAvoidingView>
