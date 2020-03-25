@@ -37,7 +37,7 @@ export default class Login extends Component {
   };
 
   alertMessage() {
-    Alert.alert('Dados inválidos. Por favor tente novamente.');
+    Alert.alert('Invalid credentials. Please try again.');
   }
 
   onLoginPress() {

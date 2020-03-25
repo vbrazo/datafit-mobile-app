@@ -112,9 +112,9 @@ export default class EditProfile extends Component {
           })
             .then(response => {
               if (response.status == 200) {
-                Alert.alert('Perfil atualizado', '', [
+                Alert.alert('Profile updated', '', [
                   {
-                    text: 'Voltar',
+                    text: 'Back',
                     onPress: () => this.props.navigation.navigate('Profile'),
                     style: 'cancel',
                   },
