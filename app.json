@@ -1,4 +1,27 @@
 {
   "name": "DataFit",
-  "displayName": "DataFit"
+  "displayName": "DataFit",
+  "expo": {
+    "name": "datafit.app",
+    "slug": "datafitapp",
+    "privacy": "unlisted",
+    "sdkVersion": "36.0.0",
+    "platforms": [
+       "ios",
+       "android"
+     ],
+     "version": "1.0.1",
+     "orientation": "portrait",
+     "icon": "./assets/images/Icon-83.5@2x.png",
+     "updates": {
+       "fallbackToCacheTimeout": 0
+     },
+     "assetBundlePatterns": [
+       "./assets/**/*"
+     ],
+     "ios": {
+       "supportsTablet": true,
+       "bundleIdentifier": "datafit.app"
+     }
+   }
 }
