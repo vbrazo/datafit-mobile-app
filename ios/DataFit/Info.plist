@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -39,8 +39,12 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>DataFit requires user’s location for better user experience.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>DataFit requires user’s location for better user experience.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>DataFit requires user’s location for better user experience.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We record audios to send you reports about athletes' performance.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
