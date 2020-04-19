@@ -24,7 +24,7 @@ export default class Profile extends Component {
       <View style={styles.container}>
         <View behavior="padding" style={styles.container}>
           <View style={styles.navBar}>
-            <Text style={styles.title}>Perfil</Text>
+            <Text style={styles.title}>Profile</Text>
           </View>
 
           <View>
@@ -45,7 +45,7 @@ export default class Profile extends Component {
                     justifyContent: 'flex-start',
                     flex: 1,
                   }}>
-                  <Text style={styles.formLabel}>Editar Perfil</Text>
+                  <Text style={styles.formLabel}>Edit Profile</Text>
                 </View>
                 <View
                   style={{
@@ -81,7 +81,7 @@ export default class Profile extends Component {
                     justifyContent: 'flex-start',
                     flex: 1,
                   }}>
-                  <Text style={styles.formLabel}>Alterar senha</Text>
+                  <Text style={styles.formLabel}>Edit Password</Text>
                 </View>
                 <View
                   style={{
@@ -117,7 +117,7 @@ export default class Profile extends Component {
                     justifyContent: 'flex-start',
                     flex: 1,
                   }}>
-                  <Text style={styles.formLabel}>Sair</Text>
+                  <Text style={styles.formLabel}>Sign Out</Text>
                 </View>
               </View>
             </TouchableHighlight>

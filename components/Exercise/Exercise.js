@@ -149,7 +149,7 @@ export default class Exercise extends Component {
                           .length == 0
                           ? 'Perfect!'
                           : Object.keys(upload.uploads.number_of_problems)
-                              .length + ' pontos para melhorar'}
+                              .length + ' points to improve'}
                       </Text>
                     </View>
                     <View style={{alignItems: 'flex-end', width: '40%'}}>

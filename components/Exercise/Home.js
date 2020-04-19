@@ -74,9 +74,9 @@ export default class Home extends Component {
         <SafeAreaView style={styles.safeAreaView}>
           <ScrollView>
             <View style={styles.contentContainer}>
-              <Text style={styles.title}>Exercícios</Text>
+              <Text style={styles.title}>Exercises</Text>
               <Text style={styles.description}>
-                Escolha um exercício abaixo para começar a praticar
+                Choose an exercise below to start practicing
               </Text>
             </View>
 
@@ -102,7 +102,7 @@ export default class Home extends Component {
                               </Text>
                               <View style={styles.exerciseDescriptionContainer}>
                                 <Text style={styles.exerciseDescription}>
-                                  Você ainda não praticou
+                                  You haven't practiced it yet
                                 </Text>
                               </View>
                             </View>
@@ -169,7 +169,7 @@ export default class Home extends Component {
                             </View>
                           </View>
                           <View style={styles.item2}>
-                            <Text style={styles.lastDateLabel}>Última vez</Text>
+                            <Text style={styles.lastDateLabel}>Last time</Text>
                             <Text style={styles.lastDate}>
                               {exercise.exercise.created_at}
                             </Text>

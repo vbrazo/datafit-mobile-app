@@ -101,7 +101,7 @@ export default class FeedbackDetails extends Component {
               {this.state.tips.map((tip, index) => (
                 <View style={styles.tipRow}>
                   <View style={styles.row}>
-                    <Text style={styles.exerciseTitle}>Dica 0{index + 1}</Text>
+                    <Text style={styles.exerciseTitle}>Tip 0{index + 1}</Text>
                   </View>
 
                   <View style={styles.row}>

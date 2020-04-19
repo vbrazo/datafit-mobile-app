@@ -106,7 +106,7 @@ export default class SignUp extends Component {
                       />
                     </TouchableHighlight>
                   </View>
-                  <Text style={styles.title}>Completar cadastro</Text>
+                  <Text style={styles.title}>Complete your profile</Text>
                   <View style={styles.rightContainer} />
                 </View>
 
@@ -119,7 +119,7 @@ export default class SignUp extends Component {
                     value={this.state.name}
                     onChangeText={name => this.setState({name})}
                   />
-                  <Text style={styles.formLabel}>NOME COMPLETO</Text>
+                  <Text style={styles.formLabel}>NAME</Text>
                 </View>
 
                 <View style={styles.window}>
@@ -143,7 +143,7 @@ export default class SignUp extends Component {
                     value={this.state.dateOfBirth}
                     onChangeText={dateOfBirth => this.setState({dateOfBirth})}
                   />
-                  <Text style={styles.formLabel}>DATA DE NASCIMENTO</Text>
+                  <Text style={styles.formLabel}>DATE OF BIRTH</Text>
                 </View>
 
                 <View style={styles.row}>
@@ -156,7 +156,7 @@ export default class SignUp extends Component {
                       value={this.state.height}
                       onChangeText={height => this.setState({height})}
                     />
-                    <Text style={styles.formLabel}>ALTURA (CM)</Text>
+                    <Text style={styles.formLabel}>HEIGHT (CM)</Text>
                   </View>
                   <View style={styles.measurementsColSpace} />
                   <View style={styles.measurementsCol}>
@@ -168,7 +168,7 @@ export default class SignUp extends Component {
                       value={this.state.weight}
                       onChangeText={weight => this.setState({weight})}
                     />
-                    <Text style={styles.formLabel}>PESO (KG)</Text>
+                    <Text style={styles.formLabel}>WEIGHT (KG)</Text>
                   </View>
                 </View>
 
@@ -182,7 +182,7 @@ export default class SignUp extends Component {
                     value={this.state.password}
                     onChangeText={password => this.setState({password})}
                   />
-                  <Text style={styles.formLabel}>CRIAR SENHA</Text>
+                  <Text style={styles.formLabel}>PASSWORD</Text>
                 </View>
 
                 <View style={styles.window}>
@@ -194,7 +194,7 @@ export default class SignUp extends Component {
                     autoCorrect={false}
                     style={styles.input}
                   />
-                  <Text style={styles.formLabel}>CONFIRMAR SENHA</Text>
+                  <Text style={styles.formLabel}>PASSWORD CONFIRMATION</Text>
                 </View>
 
                 <View style={styles.window}>
@@ -207,8 +207,7 @@ export default class SignUp extends Component {
                       />
                     </View>
                     <Text style={styles.titleCheckbox}>
-                      Li e concordo com os termos de uso e políticas de
-                      privacidade
+                      By signing up to our website, you agree to our Terms of Services and you have read our Privacy Policy.
                     </Text>
                     <View style={styles.rightContainer} />
                   </View>
@@ -217,7 +216,7 @@ export default class SignUp extends Component {
                 <TouchableOpacity
                   style={styles.buttonContainer}
                   onPress={this.onNextPress.bind(this)}>
-                  <Text style={styles.buttonText}>Avancar</Text>
+                  <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
               </KeyboardAvoidingView>
             </View>
