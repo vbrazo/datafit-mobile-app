@@ -668,12 +668,13 @@
 				DEVELOPMENT_TEAM = N29QM2989V;
 				INFOPLIST_FILE = DataFit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 0.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = datafit.app;
+				PRODUCT_BUNDLE_IDENTIFIER = DataFit;
 				PRODUCT_NAME = DataFit;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -692,12 +693,13 @@
 				DEVELOPMENT_TEAM = N29QM2989V;
 				INFOPLIST_FILE = DataFit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 0.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = datafit.app;
+				PRODUCT_BUNDLE_IDENTIFIER = DataFit;
 				PRODUCT_NAME = DataFit;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
