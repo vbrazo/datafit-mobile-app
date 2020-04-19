@@ -39,12 +39,16 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>DataFit requires user’s location for better user experience.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>DataFit requires user’s location for better user experience.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>DataFit requires user’s location for better user experience.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>We record audios to send you reports about athletes' performance.</string>
+	<string>We record audios to send you reports about athletes&apos; performance.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We record videos to send you reports about athletes' performance.</string>
+	<string>We record videos to send you reports about athletes&apos; performance.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto-Black.ttf</string>
