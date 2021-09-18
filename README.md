@@ -4,14 +4,9 @@ DataFit was a side project that I was involved in last year, and I have decided 
 
 - [DataFit React Native app](#datafit-react-native-app)
   - [Screens](#screens)
-    - [Welcome](#welcome)
     - [Sign up](#sign-up)
-    - [Login](#login)
     - [Exercises](#exercises)
     - [Analyzer](#analyzer)
-    - [Feedback](#feedback)
-
-# DataFit Android app
 
 ## Screens
 
