@@ -17,18 +17,14 @@ DataFit was a side project that I was involved in last year, and I have decided 
 
 ### Sign Up
 
-<img src="./images/sign-up.png" width=400 />
-
-### Login
-
-<img src="./images/datafit-login.png" width=400 />
+<img src="./images/sign-up.png" width=800 />
 
 ### Exercises
 
-<img src="./images/exercises.png" width=400 />
+<img src="./images/exercises.png" width=800 />
 
 ### Analyzer
 
-<img src="./images/analyzer.png" width=800 />
+<img src="./images/analyzer.png" width=700 />
 
-<img src="./images/feedback.png" width=800 />
+<img src="./images/feedback.png" width=300 />
